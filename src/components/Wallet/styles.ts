@@ -6,6 +6,7 @@ export const WalletCard = styled.div`
   background-color: ${({ theme }) => theme.bgLogin};
   width: 95%;
   border-radius: 5px;
+  margin-left: auto;
   & .header {
     color: white;
     background-color: ${({ theme }) => theme.primary};
@@ -27,9 +28,6 @@ export const WalletCard = styled.div`
       justify-content: center;
       align-items: center;
       font-size: 28px;
-    }
-    & .content-coin-value {
-      margin-left: 10px;
     }
   }
 `;

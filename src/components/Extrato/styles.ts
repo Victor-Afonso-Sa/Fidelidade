@@ -8,6 +8,7 @@ export const ExtratoCard = styled.div`
   background-color: ${({ theme }) => theme.bgLogin};
   width: 95%;
   border-radius: 5px;
+  margin-left: auto;
   padding: 20px;
   align-items: center;
   & .extrato-transactions {

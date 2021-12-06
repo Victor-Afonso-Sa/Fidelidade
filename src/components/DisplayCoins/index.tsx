@@ -11,6 +11,9 @@ const CoinWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    & .content-coin-value {
+      margin-left: 10px;
+    }
 `
 export const DisplayCoins = ({ amount }: Props) => {
     return (

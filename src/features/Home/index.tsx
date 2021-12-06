@@ -26,11 +26,13 @@ export const Home = () => {
   return (
     <>
       <Header name="'Nome e sobrenome'" />
-      <div className="row mt-4">
+      <div className="row mt-4 p-0 w-100 d-flex justify-content-center">
         <div className="col-12 col-md-8 ">
-        <ReactEcharts option={chartOptions} />
+          <div>
+            <ReactEcharts option={chartOptions} />
+          </div>
         </div>
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-md-4 ">
           <Wallet />
           <Extrato />
         </div>
