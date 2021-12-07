@@ -51,3 +51,23 @@ export const Backdrop = styled.div`
   background: rgba(0, 0, 0, 0.4);
   height: 100%;
 `;
+
+export const SubTitle = styled.h6`
+  font-weight: bold;
+  color: ${({ theme }) => theme.primary};
+`;
+
+export const CoinValue = styled.span`
+  font-size: 32px;
+  color: #fff;
+  font-weight: 1000;
+  line-height: 56px;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: small-caps;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: ${({ theme }) => theme.primary};
+`;

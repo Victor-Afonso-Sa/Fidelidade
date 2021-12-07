@@ -1,30 +1,42 @@
 // @flow
 import * as React from "react";
+
 import { Header } from "../../components/Header";
-import { Modal } from "../../components/Modal";
-import { RescueNow } from "../../components/Modal/components/RescueNow";
+import { Extrato } from "../../components/Extrato";
+import { Wallet } from "../../components/Wallet";
+import ReactEcharts from "echarts-for-react";
 
 export const Home = () => {
-  const [showModal, setShowModal] = React.useState(false);
+  let chartOptions = {
+    xAxis: {
+      type: "category",
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    },
+    yAxis: {
+      type: "value",
+    },
+    series: [
+      {
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: "bar",
+      },
+    ],
+  };
 
   return (
     <>
       <Header name="'Nome e sobrenome'" />
-      <button
-        onClick={() => {
-          setShowModal(!showModal);
-        }}
-      >
-        teste
-      </button>
-      {showModal && (
-        <Modal
-          content={<RescueNow></RescueNow>}
-          setState={setShowModal}
-          state={showModal}
-          okText="Resgatar"
-        />
-      )}
+      <div className="row mt-4 p-0 w-100 d-flex justify-content-center">
+        <div className="col-12 col-md-8 ">
+          <div>
+            <ReactEcharts option={chartOptions} />
+          </div>
+        </div>
+        <div className="col-12 col-md-4 ">
+          <Wallet />
+          <Extrato />
+        </div>
+      </div>
     </>
   );
 };
