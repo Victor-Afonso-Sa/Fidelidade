@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import coin from "../../../../assets/Coin.svg";
+import coin from "../../../../assets/coin.svg";
 import { Input } from "../../../Input";
 import {
   ArrowRightIcon,
@@ -29,7 +29,7 @@ export const RescueNow = (props: any) => {
           <BalanceText className="d-flex align-items-center">
             Você possui:
           </BalanceText>
-          <img style={{ marginRight: "8px" }} src={coin} alt="" />
+          <img className="d-32" style={{ marginRight: "8px" }} src={coin} alt="" />
           <CoinText>{value}</CoinText>
         </div>
       </SecondaryBg>
