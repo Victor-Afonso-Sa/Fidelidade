@@ -31,7 +31,7 @@ export const Modal = (props: ModalPropsModel) => {
           </button>
         </ModalTitle>
         {content}
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-end col-12">
           <PrimaryBtnOutline
             onClick={() => {
               setState(!state);

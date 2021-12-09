@@ -1,9 +1,11 @@
 // @flow
 import * as React from "react";
-import { DisplayCoins } from "../../../../components/DisplayCoins";
+import { DisplayCoins } from "../../../../../../components/DisplayCoins";
 import { RightCardWrapper } from "../styles";
-import UserImage from "../../../../assets/user.svg";
+import UserImage from "../../../../../../assets/user.svg";
 import { CardRow } from "./CardRow";
+import { PrimaryBtnOutline } from "../../../../../../styles/global";
+import { SecondaryBtn } from "./../../../../../../styles/global";
 
 type Props = {};
 
@@ -21,6 +23,10 @@ export const RightCard = (props: Props) => {
       </div>
       <CardRow label="Fidelizado em" value="01/12/2021" />
       <CardRow label="CPF" value="999.999.999-09" />
+      <div className="d-flex justify-content-between mt-2">
+        <SecondaryBtn>Cancelar compra</SecondaryBtn>
+        <PrimaryBtnOutline>Usar moedas</PrimaryBtnOutline>
+      </div>
     </RightCardWrapper>
   );
 };

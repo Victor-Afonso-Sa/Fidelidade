@@ -16,6 +16,7 @@ export const Aside = styled.aside`
   background-color: ${({ theme }) => theme.primary};
   .active {
     background-color: ${({ theme }) => theme.darkBlue};
+    color: ${({ theme }) => theme.orange};
   }
 `;
 export const IconWrapper = styled(NavLink)<IconWrapperType>`
@@ -26,7 +27,4 @@ export const IconWrapper = styled(NavLink)<IconWrapperType>`
   color: white;
   font-size: 36px;
   padding: 0.5em 0;
-  &:hover{
-    color: #eee;
-  }
 `;

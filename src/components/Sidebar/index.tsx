@@ -8,16 +8,28 @@ type Props = {};
 export const Sidebar = (props: Props) => {
   return (
     <Aside>
-      <IconWrapper to="/pdv/home" className={({ isActive }) => isActive ? "active" : ""}>
+      <IconWrapper
+        to="/pdv/home"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
         <AiFillHome />
       </IconWrapper>
-      <IconWrapper to="/pdv/dashboard" >
+      <IconWrapper
+        to="/pdv/dashboard"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
         <AiOutlineAreaChart />
       </IconWrapper>
-      <IconWrapper to="/pdv/venda" >
+      <IconWrapper
+        to="/pdv/venda"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
         <BsHandbagFill />
       </IconWrapper>
-      <IconWrapper to="/pdv/apps" >
+      <IconWrapper
+        to="/pdv/apps"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
         <MdApps />
       </IconWrapper>
     </Aside>

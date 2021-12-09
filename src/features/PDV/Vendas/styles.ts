@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { DivWithScroll } from "../../../styles/global";
 
 export const VendasWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 
 export const Thead = styled.thead`
   background-color: #fff;
@@ -20,12 +21,12 @@ export const Thead = styled.thead`
 `;
 export const TableWrapper = styled.table`
   width: calc(100vw - 80px);
-  overflow: scroll;
 `;
-export const TableContainer = styled.div`
+export const TableContainer = styled(DivWithScroll("&"))`
   display: flex;
   justify-content: center;
   padding: 20px;
+  overflow: auto;
   @media screen and (max-width: 576px) {
     display: block;
     overflow: scroll;
