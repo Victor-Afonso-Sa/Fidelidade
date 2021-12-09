@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 import { Extrato } from "../../components/Extrato";
 import { Wallet } from "../../components/Wallet";
 import ReactEcharts from "echarts-for-react";
+import * as AlertService from "../../components/Alert";
 
 export const Home = () => {
   let chartOptions = {
@@ -31,6 +32,15 @@ export const Home = () => {
           <div>
             <ReactEcharts option={chartOptions} />
           </div>
+
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              AlertService.presentAlert();
+            }}
+          >
+            Open Alert
+          </button>
         </div>
         <div className="col-12 col-md-4 ">
           <Wallet />

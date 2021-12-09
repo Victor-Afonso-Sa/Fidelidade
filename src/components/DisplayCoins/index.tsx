@@ -1,7 +1,7 @@
 // @flow 
 import * as React from 'react';
 import { CoinValue } from '../../styles/global';
-import CoinSVG from "../../assets/coin.svg";
+import CoinSVG from "../../assets/Coin.svg";
 import styled from 'styled-components';
 
 type Props = {

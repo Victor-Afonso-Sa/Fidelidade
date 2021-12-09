@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import coin from "../../../../assets/coin.svg";
+import coin from "../../../../assets/Coin.svg";
 import { Input } from "../../../Input";
 import {
   ArrowRightIcon,
