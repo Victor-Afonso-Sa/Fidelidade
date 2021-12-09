@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import { DivWithScroll } from "../../styles/global";
 
-export const ModalFrame = styled.div`
+export const ModalFrame = styled(DivWithScroll("&"))`
   background-color: white;
   border-radius: 8px;
-  width: calc(100vw - 30%) !important;
-  height: calc(100vh - 30%) !important;
+  min-width: calc(100vw - 30%) !important;
+  min-height: calc(100vh - 30%) !important;
+  max-height: calc(100vh - 10%) !important;
+  max-width: calc(100vh - 10%) !important;
+  overflow: auto;
   padding: 10px;
 `;
 
