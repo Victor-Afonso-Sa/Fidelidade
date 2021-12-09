@@ -32,3 +32,6 @@ export const CoinValue = styled.span`
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: ${({ theme }) => theme.primary};
 `;
+export const Row = styled.div`
+    display: flex;
+`

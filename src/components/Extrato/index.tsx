@@ -5,6 +5,7 @@ import { ExtratoItem } from "../ExtratoItem";
 import { ExtratoCard } from "./styles";
 
 type Props = {};
+
 export const Extrato = (props: Props) => {
   return (
     <ExtratoCard>
