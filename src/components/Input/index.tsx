@@ -17,9 +17,10 @@ type Props = {
   readOnly?: boolean | false;
   mask?: string;
   error?: FieldError;
+  customOnChange?: any;
 };
 export const Input = (props: Props) => {
-  const register = props.register(props.name);
+  const register = props.register(props.name, { onChange: (e) => props?.customOnChange(e.target.value)});
 
   return (
     <InputWrapper>
