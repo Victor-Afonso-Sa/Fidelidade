@@ -25,7 +25,7 @@ export const SecondaryBg = styled.div`
   background-color: ${({ theme }) => theme.background};
 `;
 
-export const RuleSystemText = styled.h1`
+export const RuleSystemText = styled.h3`
   text-align: center;
   color: ${({ theme }) => theme.primary};
 `;
@@ -46,5 +46,5 @@ export const CashBackText = styled.span`
   -webkit-text-stroke-color: ${({ theme }) => theme.success};
   border: 2px solid ${({ theme }) => theme.success};
   border-radius: 8px;
-  padding: 18px;
+  padding: 10px 18px;
 `;

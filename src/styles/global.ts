@@ -24,13 +24,31 @@ export const PrimaryBtn = styled.button`
   border-radius: 4px;
 `;
 
+export const SecondaryBtn = styled.button`
+  background-color: ${({ theme }) => theme.secondary};
+  color: #fff;
+  padding: 0.5em 0.7em;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 0;
+`;
+
 export const PrimaryBtnOutline = styled.button`
   background-color: #fff;
   color: ${({ theme }) => theme.primary};
-  padding: 0.5em 0.5em;
+  padding: 0.5em 0.7em;
   font-weight: 600;
   border-radius: 4px;
   border: 2px solid ${({ theme }) => theme.primary};
+`;
+
+export const SecondaryBtnOutline = styled.button`
+  background-color: transparent;
+  color: ${({ theme }) => theme.secondary};
+  padding: 0.5em 0.5em;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 2px solid ${({ theme }) => theme.secondary};
 `;
 
 export const DisabledBtn = styled.button`
@@ -71,3 +89,33 @@ export const CoinValue = styled.span`
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: ${({ theme }) => theme.primary};
 `;
+export const Row = styled.div`
+  display: flex;
+`;
+
+export const DivWithScroll = (name: string) => {
+  return styled.div`
+    @media (max-width: 720px) {
+      & {
+        width: 100%;
+      }
+      ${name}::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    ${name}::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ${name}::-webkit-scrollbar-track {
+      background: ${({ theme }) => theme.background};
+      border-radius: 10px;
+      padding: 1px;
+    }
+
+    ${name}::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme.primary};
+      border-radius: 10px;
+    }
+  `;
+};

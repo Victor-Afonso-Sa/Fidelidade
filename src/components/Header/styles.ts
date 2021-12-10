@@ -1,19 +1,34 @@
 import styled from 'styled-components'
+interface HeaderContentType {
+  cargo: boolean
+}
 
 export const Wrapper = styled.nav`
   display: flex;
-  padding: 0 20px;
   align-items: center;
   background-color: ${({ theme }) => theme.primary};
   height: 70px;
+
+  & .header__title{
+    margin-left: 28px;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: lighter;
+  }
 `
-export const HeaderContent = styled.div`
-  width: calc(100vw - 60px);
+export const HeaderContent = styled.div<HeaderContentType>`
+  margin-left: auto;
+  height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding: 0 10px;
+  background-color: ${({cargo, theme}) => cargo ? theme.darkBlue : "transparent"};
 `
 export const UserName = styled.div`
+  display: flex;
+  flex-direction: column;
   color: #fff;
   margin-right: 25px;
   font-size: 24px;
