@@ -29,6 +29,7 @@ export const Wallet = (props: Props) => {
           state={showModal}
           setState={setModalState}
           okText="Resgatar"
+          canProceed={true}
         />
       )}
     </WalletCard>

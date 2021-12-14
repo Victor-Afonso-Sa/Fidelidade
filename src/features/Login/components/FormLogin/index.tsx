@@ -8,7 +8,10 @@ import { CustomForm, LoginButton, Title } from "./styles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 export const FormLogin = () => {
+  let navigate = useNavigate();
+
   const validatedFields = {
     cpf: yup
       .string()
@@ -23,6 +26,7 @@ export const FormLogin = () => {
   });
   const onSubmit = (data: LoginType) => {
     console.log(data);
+    navigate("/")
   };
   const onError = (errors: FieldErrors) => {
     Object.values(errors).map(e => (e && e.message ?  toast.error(e.message) : false))

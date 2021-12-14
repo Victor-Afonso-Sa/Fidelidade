@@ -17,13 +17,16 @@ type Props = {
   readOnly?: boolean | false;
   mask?: string;
   error?: FieldError;
+  customOnChange?: Function;
 };
 export const Input = (props: Props) => {
-  const register = props.register(props.name);
+  const register = props.register(props.name, {
+    onChange: (e) => props.customOnChange ? props.customOnChange(e.target.value) : undefined,
+  });
 
   return (
     <InputWrapper>
-      <div className={`form-floating mb-3 ${props.className ?? ''}`}>
+      <div className={`form-floating mb-3 ${props.className ?? ""}`}>
         <ReactInputMask
           mask={props.mask || ""}
           onChange={register.onChange}
@@ -34,7 +37,9 @@ export const Input = (props: Props) => {
           {() => (
             <CustomInput
               type={props.type}
-              className={`${props.inputClassName ?? ''} form-control ${props.error ? "is-invalid" : ""} `}
+              className={`${props.inputClassName ?? ""} form-control ${
+                props.error ? "is-invalid" : ""
+              } `}
               id={props.name}
               {...register}
               placeholder={props.placeholder}
