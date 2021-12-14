@@ -6,6 +6,10 @@ import { Login } from "./features/Login";
 import { Home } from "./features/Home/index";
 import { PDV } from './features/PDV/index';
 import { Vendas } from "./features/PDV/Vendas";
+import { PdvHome } from "./features/PDV/Home";
+import { Register } from "./features/Register";
+import { Profile } from "./features/Profile";
+import { EditProfile } from "./features/Profile/EditProfile";
 
 
 export const AppRoutes = () => {
@@ -13,10 +17,16 @@ export const AppRoutes = () => {
         <BrowserRouter>
             <Routes>
                 <Route element={<Login />} path="/login" />
+                <Route element={<Register />} path="/cadastro" />
+                <Route element={<Profile />} path="/perfil" >
+                    <Route element={(<EditProfile />)} path="/perfil/editar" />
+                    <Route element={(<h1>notificacoes</h1>)} path="/perfil/notificacoes" />
+                    <Route element={(<h1>Config</h1>)} path="/perfil/configuracao" />
+                </Route>
                 <Route element={<PDV />} path="/pdv" >
                     <Route element={(<h1>Dashboard</h1>)} path="/pdv/dashboard" />
                     <Route element={<Vendas />} path="/pdv/venda" />
-                    <Route element={(<h1>Home</h1>)} path="/pdv//home" />
+                    <Route element={(<PdvHome />)} path="/pdv//home" />
                     <Route element={(<h1>Apps</h1>)} path="/pdv//apps" />
                 </Route>
                 <Route element={<Home />} path="/" />

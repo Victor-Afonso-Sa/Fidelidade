@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import coin from "../../../../assets/Coin.svg";
+import coin from "../../../../assets/coin.svg";
+import { formatter } from "../../../../utils/functions";
 import { Input } from "../../../Input";
 import {
   ArrowRightIcon,
@@ -13,9 +15,11 @@ import {
 
 export const RescueNow = (props: any) => {
   const { value } = props;
-  let cashValue: number = 0;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { register, handleSubmit } = useForm();
+  const [cashValue, setCashValue] = useState(formatter.format(0));
+  const { register } = useForm();
+  const onValueChange = (value: number) => {
+    setCashValue(formatter.format(value / 100));
+  };
   return (
     <div className="d-flex flex-column m-4 h-100">
       <div className="d-flex flex-column">
@@ -46,9 +50,10 @@ export const RescueNow = (props: any) => {
             register={register}
             label="Moedas Araujo"
             type="number"
+            customOnChange={onValueChange}
           />
           <ArrowRightIcon className="d-32"></ArrowRightIcon>
-          <CashBackText>R$ {cashValue}</CashBackText>
+          <CashBackText>{cashValue}</CashBackText>
         </div>
       </div>
     </div>
