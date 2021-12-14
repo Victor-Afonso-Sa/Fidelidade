@@ -3,12 +3,22 @@ import styled from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
     background-color: #fff;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* overflow: hidden; */
+    min-height: 100vh;
   }
 
   code {
@@ -34,7 +44,7 @@ export const SecondaryBtn = styled.button`
   border: 0;
 `;
 export const SuccessBtn = styled.button`
-  background-color: ${({ theme }) =>  theme.success};
+  background-color: ${({ theme }) => theme.success};
   color: #fff;
   padding: 0.5em 0.7em;
   font-weight: 600;
@@ -148,3 +158,17 @@ export const DivWithScroll = (name: string) => {
     }
   `;
 };
+
+interface ButtonModel {
+  styled: string;
+  outline?: boolean;
+}
+
+export const Button = styled.button<ButtonModel>`
+  background-color: ${({ styled, outline, theme }) =>
+    outline ? "white" : theme[styled]};
+  color: ${({ styled, outline, theme }) => (outline ? theme[styled] : "white")};
+  padding: 0.5em 0.7em;
+  border-radius: 4px;
+  border: 2px solid ${({ styled, outline, theme }) => theme[styled]};
+`;

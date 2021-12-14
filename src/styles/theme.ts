@@ -8,4 +8,5 @@ export const theme = {
   danger: "#E51818",
   darkBlue: "#161E64",
   orange: "#E93636",
+  chartLabel: "#7B61FF",
 };
