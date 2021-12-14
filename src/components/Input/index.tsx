@@ -32,7 +32,7 @@ export const Input = (props: Props) => {
           onChange={register.onChange}
           onBlur={register.onBlur}
           readOnly={props.readOnly}
-          maskPlaceholder=" "
+          maskPlaceholder={null}
         >
           {() => (
             <CustomInput
@@ -47,7 +47,7 @@ export const Input = (props: Props) => {
             />
           )}
         </ReactInputMask>
-        <label htmlFor="CPF">{props.label}</label>
+        <label htmlFor={props.name}>{props.label}</label>
       </div>
     </InputWrapper>
   );
