@@ -18,8 +18,8 @@ export const RescueNow = (props: any) => {
   const [cashValue, setCashValue] = useState(formatter.format(0));
   const { register } = useForm();
   const onValueChange = (value: number) => {
-    setCashValue(formatter.format(value / 100))
-  }
+    setCashValue(formatter.format(value / 100));
+  };
   return (
     <div className="d-flex flex-column m-4 h-100">
       <div className="d-flex flex-column">

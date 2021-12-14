@@ -14,7 +14,7 @@ import { HomeCointainer } from "./styles";
 export const Menssage = styled.span`
   text-align: center;
   font-weight: bold;
-`
+`;
 
 export const Home = () => {
   let chartOptions = {
@@ -46,8 +46,9 @@ export const Home = () => {
               title="Sistema de Moedas"
               content={
                 <Menssage>
-                  No <span className="text__purple">+Fidelidade</span>, você pode recarregar as moedas para facilitar
-                  na hora da compra. Clique nesse card para saber mais.
+                  No <span className="text__purple">+Fidelidade</span>, você
+                  pode recarregar as moedas para facilitar na hora da compra.
+                  Clique nesse card para saber mais.
                 </Menssage>
               }
             />
