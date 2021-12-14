@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^2.8.4",
-    "@popperjs/core": "^2.11.0",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
