@@ -19,13 +19,22 @@ body {
 export const PrimaryBtn = styled.button`
   background-color: ${({ theme }) => theme.primary};
   color: #fff;
-  padding: 0.5em 0.5em;
+  padding: 0.5em 0.7em;
   font-weight: 600;
   border-radius: 4px;
+  border: 0;
 `;
 
 export const SecondaryBtn = styled.button`
   background-color: ${({ theme }) => theme.secondary};
+  color: #fff;
+  padding: 0.5em 0.7em;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 0;
+`;
+export const SuccessBtn = styled.button`
+  background-color: ${({ theme }) =>  theme.success};
   color: #fff;
   padding: 0.5em 0.7em;
   font-weight: 600;
@@ -51,6 +60,15 @@ export const SecondaryBtnOutline = styled.button`
   border: 2px solid ${({ theme }) => theme.secondary};
 `;
 
+export const SuccessBtnOutline = styled.button`
+  background-color: transparent;
+  color: ${({ theme }) => theme.success};
+  padding: 0.5em 0.5em;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 2px solid ${({ theme }) => theme.success};
+`;
+
 export const DisabledBtn = styled.button`
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.gray};
@@ -60,7 +78,14 @@ export const DisabledBtn = styled.button`
   border: 0;
   margin-left: 8px !important;
 `;
-
+export const CirclePrimaryBtnOutline = styled.button`
+  background-color: #fff;
+  color: ${({ theme }) => theme.primary};
+  padding: 0.5em;
+  font-weight: 600;
+  border: 2px solid ${({ theme }) => theme.primary};
+  border-radius: 50%;
+`;
 export const Backdrop = styled.div`
   position: absolute;
   top: 0;
@@ -71,6 +96,10 @@ export const Backdrop = styled.div`
 `;
 
 export const SubTitle = styled.h6`
+  font-weight: bold;
+  color: ${({ theme }) => theme.primary};
+`;
+export const Title = styled.h2`
   font-weight: bold;
   color: ${({ theme }) => theme.primary};
 `;

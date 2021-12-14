@@ -1,18 +1,24 @@
 // @flow
 import * as React from "react";
-import Logo from "../../assets/mini-logo.svg";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.svg";
+import { SubTitle } from "../../styles/global";
 import { FormLogin } from "./components/FormLogin";
-import { ContainerImg, ContainerLogin, LoginWrapper } from "./styles";
+import { ContainerImg, LoginContainer, LoginFooter, LoginWrapper } from "./styles";
 type Props = {};
 export const Login = (props: Props) => {
   return (
-    <LoginWrapper>
+    <LoginWrapper >
       <ContainerImg className="d-none d-sm-flex col-sm-6">
         <img src={Logo} alt="Logo araujo" />
       </ContainerImg>
-      <ContainerLogin className="col-12 col-sm-6">
+      <LoginContainer className="col-12 col-sm-6">
         <FormLogin />
-      </ContainerLogin>
+        <LoginFooter>
+        <SubTitle>Não tem conta? </SubTitle>
+        <Link to={"/cadastro"}>Comece aqui</Link>
+        </LoginFooter>
+      </LoginContainer>
     </LoginWrapper>
   );
 };

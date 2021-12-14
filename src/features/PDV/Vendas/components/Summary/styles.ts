@@ -35,3 +35,9 @@ export const RightCardWrapper = styled.div`
   background-color: #fff;
   padding: 20px;
 `;
+export const InputContainer = styled.div`
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
