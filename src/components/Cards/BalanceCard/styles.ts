@@ -23,6 +23,6 @@ export const BalanceFooter = styled.div`
    margin-top: 10px;
 `;
 export const BalanceText = styled.h1`
-   color: ${({ theme }) => theme.success};
+   color: ${({ theme }) => theme.moneyColor};
    font-weight: bold;
 `;
