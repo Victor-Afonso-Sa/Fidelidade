@@ -61,7 +61,7 @@ export const RescueNow = (props: RescueNowModel) => {
             type="number"
             customOnChange={onValueChange}
           />
-          <ArrowRightIcon className="d-32"></ArrowRightIcon>
+          <ArrowRightIcon className="d-32 mx-1"></ArrowRightIcon>
           <CashBackText>{cashValue}</CashBackText>
         </div>
       </div>
