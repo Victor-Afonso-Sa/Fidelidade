@@ -24,7 +24,7 @@ export const Register = (props: Props) => {
       <RegisterLogoContainer className="col-5 d-none d-md-flex">
         <img src={Logo} alt="+Fidelidade logo" width={250} />
       </RegisterLogoContainer>
-      <RegisterFormContainer className="col-7">
+      <RegisterFormContainer className="col-12 col-md-7">
         <FormHeader className="mb-3">
           <div className="d-flex justify-content-between m-2">
             <h4 className="fw-bold">Novo Usuário</h4>
@@ -39,7 +39,7 @@ export const Register = (props: Props) => {
             </h5>
           </div>
         </FormHeader>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center m-4">
           <RegisterForm onSubmit={onSubmit} btnText="Cadastrar" />
         </div>
       </RegisterFormContainer>

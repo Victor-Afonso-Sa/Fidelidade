@@ -9,14 +9,14 @@ type Props = {};
 export const Login = (props: Props) => {
   return (
     <LoginWrapper >
-      <ContainerImg className="d-none d-sm-flex col-sm-6">
+      <ContainerImg className="d-none d-md-flex col-sm-6">
         <img src={Logo} alt="Logo araujo" />
       </ContainerImg>
-      <LoginContainer className="col-12 col-sm-6">
+      <LoginContainer className="col-12 col-md-6">
         <FormLogin />
         <LoginFooter>
-        <SubTitle>Não tem conta? </SubTitle>
-        <Link to={"/cadastro"}>Comece aqui</Link>
+          <SubTitle>Não tem conta? </SubTitle>
+          <Link to={"/cadastro"}>Comece aqui</Link>
         </LoginFooter>
       </LoginContainer>
     </LoginWrapper>

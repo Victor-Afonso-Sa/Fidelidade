@@ -5,7 +5,7 @@ import { Balance } from "../../components/Cards/BalanceCard";
 import { MenssageCard } from "../../components/Cards/MenssageCard";
 import { theme } from "../../styles/theme";
 import styled from "styled-components";
-import { ChartContainer, HomeCointainer } from "./styles";
+import { ChartContainer, HomeCointainer, HomeWrapper } from "./styles";
 import Chart from "../../components/Chart";
 import { Button } from "../../styles/global";
 import { useState } from "react";
@@ -71,7 +71,7 @@ export const Home = () => {
   return (
     <HomeCointainer>
       <Header name="'Nome e sobrenome'" />
-      <div className="row mt-4 p-0 w-100 d-flex justify-content-center">
+      <HomeWrapper className="row mt-4 p-0 w-100 d-flex justify-content-center">
         <div className="col-12 col-md-8 p-0">
           <div className="d-flex justify-content-center flex-wrap flex-md-nowrap">
             <Balance />
@@ -88,7 +88,7 @@ export const Home = () => {
               }
             />
           </div>
-          <ChartContainer className="mx-4">
+          <ChartContainer className="mx-4 mb-3">
             <div className="d-flex justify-content-end p-3">
               {chartButtons.map((btnInfo, index) => {
                 return (
@@ -126,7 +126,7 @@ export const Home = () => {
           <Wallet />
           <Extrato />
         </div>
-      </div>
+      </HomeWrapper>
     </HomeCointainer>
   );
 };

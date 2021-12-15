@@ -21,7 +21,7 @@ export const  LoginContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-height: 100vh;
+    height: 100vh;
     background-color: ${( { theme } ) => theme.bgLogin};
 `
 export const LoginFooter= styled.div`
