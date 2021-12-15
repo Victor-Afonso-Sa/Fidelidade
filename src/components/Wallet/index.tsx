@@ -9,6 +9,14 @@ import { ButtonClain, WalletCard } from "./styles";
 type Props = {};
 export const Wallet = (props: Props) => {
   const [showModal, setModalState] = React.useState(false);
+
+  const modalContent = {
+    ModalContent: RescueNow,
+    contentProps: {
+      value: 300,
+    },
+  };
+
   return (
     <WalletCard>
       <div className="header">Moedas Araujo</div>
@@ -25,11 +33,10 @@ export const Wallet = (props: Props) => {
       </ButtonClain>
       {showModal && (
         <Modal
-          content={<RescueNow></RescueNow>}
+          modalContent={modalContent}
           state={showModal}
           setState={setModalState}
           okText="Resgatar"
-          canProceed={true}
         />
       )}
     </WalletCard>

@@ -167,7 +167,8 @@ interface ButtonModel {
 export const Button = styled.button<ButtonModel>`
   background-color: ${({ styled, outline, theme }) =>
     outline ? "white" : theme[styled]};
-  color: ${({ styled, outline, theme }) => (outline ? theme[styled] : "white")};
+  color: ${({ styled, outline, theme }) =>
+    outline ? theme[styled] : styled === "disabled" ? theme.gray : "white"};
   padding: 0.5em 0.7em;
   border-radius: 4px;
   border: 2px solid ${({ styled, outline, theme }) => theme[styled]};

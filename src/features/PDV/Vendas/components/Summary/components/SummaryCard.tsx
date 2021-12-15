@@ -11,6 +11,11 @@ type Props = {};
 export const SummaryCard = (props: Props) => {
   const [showModal, setModalState] = React.useState(false);
 
+  const modalContent = {
+    ModalContent: FinishModal,
+    contentProps: {},
+  };
+
   return (
     <>
       <SummaryCardWrapper className="col-12 col-md-8 ms-2">
@@ -44,7 +49,7 @@ export const SummaryCard = (props: Props) => {
       </SummaryCardWrapper>
       {showModal && (
         <Modal
-          content={<FinishModal />}
+          modalContent={modalContent}
           state={showModal}
           setState={setModalState}
           okText="Finalizar"

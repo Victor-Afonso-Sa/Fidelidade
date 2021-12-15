@@ -13,12 +13,21 @@ import {
   SecondaryBg,
 } from "./style";
 
-export const RescueNow = (props: any) => {
-  const { value } = props;
+interface RescueNowModel {
+  value?: number;
+  emitter?(value: any): any;
+}
+
+export const RescueNow = (props: RescueNowModel) => {
+  const { value, emitter } = props;
   const [cashValue, setCashValue] = useState(formatter.format(0));
   const { register } = useForm();
-  const onValueChange = (value: number) => {
-    setCashValue(formatter.format(value / 100));
+  const onValueChange = (value: string) => {
+    setCashValue(formatter.format(parseInt(value) ? parseInt(value) : 0 / 100));
+    if (emitter) {
+      const aux = parseInt(value);
+      aux && aux !== 0 ? emitter(true) : emitter(false);
+    }
   };
   return (
     <div className="d-flex flex-column m-4 h-100">
