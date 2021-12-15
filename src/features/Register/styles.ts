@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 export const RegisterContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   max-width: 100vw;
   display: flex;
 `;
 export const RegisterLogoContainer = styled.div`
   background-color: #00000066;
-  height: 100%;
   justify-content: center;
   align-items: center;
   & img {

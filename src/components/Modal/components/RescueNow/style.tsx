@@ -46,5 +46,11 @@ export const CashBackText = styled.span`
   -webkit-text-stroke-color: ${({ theme }) => theme.moneyColor};
   border: 2px solid ${({ theme }) => theme.moneyColor};
   border-radius: 8px;
-  padding: 10px 18px;
+  padding: 10px ;
+  @media screen and (max-width: 576px) {
+    font-size: 1.5em;
+  }
+  @media screen and (max-width: 340px) {
+    font-size: 1.2em;
+  }
 `;

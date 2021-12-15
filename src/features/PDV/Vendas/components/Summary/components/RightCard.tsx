@@ -28,12 +28,12 @@ export const RightCard = (props: Props) => {
       </div>
       <CardRow label="Fidelizado em" value="01/12/2021" />
       <CardRow label="CPF" value="999.999.999-09" />
-      <div className="d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center mt-2">
+      <div className="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-lg-between align-items-center mt-2">
         <SecondaryBtn>Cancelar compra</SecondaryBtn>
         {applyCoins ? (
-          <InputContainer className="ms-auto">
+          <InputContainer className="">
             <Input
-              className="mx-auto w-75"
+              className="mx-auto w-50"
               name="DiscountCoins"
               register={register}
               type="number"

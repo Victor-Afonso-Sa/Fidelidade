@@ -9,6 +9,7 @@ export const ExtratoCard = styled.div`
   width: 95%;
   border-radius: 5px;
   margin-left: auto;
+  margin-right: auto;
   padding: 20px;
   align-items: center;
   & .extrato-transactions {

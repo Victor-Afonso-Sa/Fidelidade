@@ -3,7 +3,13 @@ import styled from "styled-components";
 export const CustomForm = styled.form`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 25%;
+    @media (max-width: 720px) {
+      & {
+        width: 90%;
+        margin: 0 auto;
+    }
 `
 export const LoginButton = styled.button`
     width: 50%;
