@@ -1,15 +1,14 @@
-// @flow
-import * as React from "react";
-
 import { Header } from "../../components/Header";
 import { Extrato } from "../../components/Extrato";
 import { Wallet } from "../../components/Wallet";
-import ReactEcharts from "echarts-for-react";
 import { Balance } from "../../components/Cards/BalanceCard";
 import { MenssageCard } from "../../components/Cards/MenssageCard";
 import { theme } from "../../styles/theme";
 import styled from "styled-components";
-import { HomeCointainer } from "./styles";
+import { ChartContainer, HomeCointainer } from "./styles";
+import Chart from "../../components/Chart";
+import { Button } from "../../styles/global";
+import { useState } from "react";
 
 export const Menssage = styled.span`
   text-align: center;
@@ -17,27 +16,63 @@ export const Menssage = styled.span`
 `;
 
 export const Home = () => {
-  let chartOptions = {
-    xAxis: {
-      type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  const currencyValues: number[] = [];
+  for (let idx = 0; idx < 30; idx++) {
+    currencyValues.push(Math.floor(Math.random() * 200));
+  }
+
+  const coinValues: number[] = [];
+  for (let idx = 0; idx < 30; idx++) {
+    coinValues.push(Math.floor(Math.random() * 200));
+  }
+
+  const [chartButtons, setChartButtons] = useState([
+    {
+      label: "Ultimos 7 dias",
+      selected: false,
     },
-    yAxis: {
-      type: "value",
+    {
+      label: "Ultimos 15 dias",
+      selected: true,
     },
-    series: [
-      {
-        data: [120, 200, 150, 80, 70, 110, 130],
-        type: "bar",
-      },
-    ],
-  };
+    {
+      label: "Ultimos 30 dias",
+      selected: false,
+    },
+  ]);
+  const [xChartValues, setxChartValues] = useState(
+    createArrayOfDatesWithGivenNumber(15)
+  );
+
+  function chartAction(index: number) {
+    switch (index) {
+      case 0:
+        setxChartValues(createArrayOfDatesWithGivenNumber(7));
+        break;
+      case 1:
+        setxChartValues(createArrayOfDatesWithGivenNumber(15));
+        break;
+      case 2:
+        setxChartValues(createArrayOfDatesWithGivenNumber(30));
+        break;
+    }
+  }
+
+  function createArrayOfDatesWithGivenNumber(numberOfDays: number): string[] {
+    const datesList: string[] = [];
+    for (let idx = 0; idx < numberOfDays; idx++) {
+      const date = new Date();
+      date.setDate(date.getDate() - idx);
+      datesList.unshift(date.toDateString());
+    }
+    return datesList;
+  }
 
   return (
     <HomeCointainer>
       <Header name="'Nome e sobrenome'" />
       <div className="row mt-4 p-0 w-100 d-flex justify-content-center">
-        <div className="col-12 col-md-8">
+        <div className="col-12 col-md-8 p-0">
           <div className="d-flex justify-content-center flex-wrap flex-md-nowrap">
             <Balance />
             <MenssageCard
@@ -53,11 +88,41 @@ export const Home = () => {
               }
             />
           </div>
-          <div className="mx-auto">
-            <ReactEcharts option={chartOptions} />
-          </div>
+          <ChartContainer className="mx-4">
+            <div className="d-flex justify-content-end p-3">
+              {chartButtons.map((btnInfo, index) => {
+                return (
+                  <Button
+                    key={index.toString()}
+                    className={index === 1 ? "mx-3" : ""}
+                    styled={"primary"}
+                    outline={!btnInfo.selected}
+                    onClick={() => {
+                      btnInfo.selected = true;
+                      chartButtons.forEach((btnInfo, btnIndex) => {
+                        if (index !== btnIndex) {
+                          btnInfo.selected = false;
+                        }
+                      });
+                      setChartButtons((previousState) => {
+                        return [...previousState];
+                      });
+                      chartAction(index);
+                    }}
+                  >
+                    {btnInfo.label}
+                  </Button>
+                );
+              })}
+            </div>
+            <Chart
+              xAxisValues={xChartValues}
+              coinValues={coinValues}
+              currencyValues={currencyValues}
+            />
+          </ChartContainer>
         </div>
-        <div className="col-12 col-md-4 ">
+        <div className="col-12 col-md-4 p-0">
           <Wallet />
           <Extrato />
         </div>
