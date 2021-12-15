@@ -6,7 +6,7 @@ import { Row } from "../../../../../styles/global";
 import { FinishContainer } from "./styles";
 type Props = {};
 export const ModalTitle = styled.h1`
-  color: ${({ theme }) => theme.success};
+  color: ${({ theme }) => theme.moneyColor};
 `;
 export const PaymentContainer = styled.div`
   display: flex;

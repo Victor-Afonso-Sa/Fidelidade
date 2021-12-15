@@ -1,4 +1,4 @@
-// @flow 
+// @flow
 import * as React from 'react';
 import { CoinValue } from '../../styles/global';
 import CoinSVG from "../../assets/coin.svg";

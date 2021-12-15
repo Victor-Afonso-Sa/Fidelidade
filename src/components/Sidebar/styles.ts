@@ -27,4 +27,7 @@ export const IconWrapper = styled(NavLink)<IconWrapperType>`
   color: white;
   font-size: 36px;
   padding: 0.5em 0;
+  &:hover{
+    color: ${({ theme }) => theme.orange};
+  }
 `;

@@ -25,9 +25,9 @@ export const SummaryCardWrapper = styled.div`
   flex-direction: column;
 `;
 export const TotalValue = styled.div`
-  border: 1pt solid ${({ theme }) => theme.success};
+  border: 1pt solid ${({ theme }) => theme.moneyColor};
   font-size: 40px;
-  color: ${({ theme }) => theme.success};
+  color: ${({ theme }) => theme.moneyColor};
   padding: 0 20px;
 `;
 export const RightCardWrapper = styled.div`

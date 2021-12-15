@@ -35,7 +35,7 @@ export const InformationLineIcon = styled(RiInformationLine)`
 `;
 
 export const ArrowRightIcon = styled(FaArrowRight)`
-  color: ${({ theme }) => theme.success};
+  color: ${({ theme }) => theme.moneyColor};
 `;
 
 export const CashBackText = styled.span`
@@ -43,8 +43,8 @@ export const CashBackText = styled.span`
   font-size: 3em;
   font-weight: bold;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: ${({ theme }) => theme.success};
-  border: 2px solid ${({ theme }) => theme.success};
+  -webkit-text-stroke-color: ${({ theme }) => theme.moneyColor};
+  border: 2px solid ${({ theme }) => theme.moneyColor};
   border-radius: 8px;
   padding: 10px 18px;
 `;
