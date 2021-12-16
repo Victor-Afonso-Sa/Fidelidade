@@ -1,9 +1,9 @@
 // @flow
+import { Badge } from "antd";
 import * as React from "react";
-import { Badge, DropdownItemContainer, ItemIcon, ItemTitle } from "./styles";
-import * as MdIcons from "react-icons/md";
 import { IconType } from "react-icons";
-import { formatBigNumbers } from "../../utils/functions";
+import * as MdIcons from "react-icons/md";
+import { DropdownItemContainer, ItemIcon, ItemTitle } from "./styles";
 
 type Props = {
   label: string;
@@ -28,10 +28,15 @@ export const DropdownItem = ({
       data-tooltip={label}
     >
       <ItemTitle className="d-none d-lg-block">{label}</ItemTitle>
-        <span>
-        {badgeCount ? <Badge>{formatBigNumbers(badgeCount)}</Badge> : ""}
-        <ItemIcon>{Icon}</ItemIcon>
-        </span>
+      <span>
+        {badgeCount ? (
+          <Badge count={badgeCount} overflowCount={9}>
+            <ItemIcon>{Icon}</ItemIcon>
+          </Badge>
+        ) : (
+          <ItemIcon>{Icon}</ItemIcon>
+        )}
+      </span>
     </DropdownItemContainer>
   );
 };
