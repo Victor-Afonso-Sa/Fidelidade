@@ -1,5 +1,4 @@
-import { createGlobalStyle } from "styled-components";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
@@ -172,24 +171,3 @@ export const Button = styled.button<ButtonModel>`
   border-radius: 4px;
   border: 2px solid ${({ styled, outline, theme }) => theme[styled]};
 `;
-export const Tooltip = (component: string) => `
-  ${component}::before{
-    content: attr(data-tooltip);
-    position: absolute;
-    top: 100%;
-    width: max-content;
-    max-width: 250px;
-    margin-top 8px;
-    padding: 6px;
-    background: #0d1117;
-    border-radius: 5px;
-    color: #cccfd3;
-    opacity: 0;
-    display: none;
-  }
-   ${component}:hover::before{
-    top: 100;
-    opacity: 1;
-    display: inline;
-  }
-`
