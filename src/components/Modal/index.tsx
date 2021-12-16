@@ -1,22 +1,34 @@
-import * as React from "react";
+import { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
-import { Backdrop, DisabledBtn, PrimaryBtnOutline, SuccessBtn } from "../../styles/global";
+import { Backdrop, Button } from "../../styles/global";
 import { ModalFrame, ModalTitle } from "./style";
 
 import "../../styles/global.css";
+import * as AlertService from "../Alert";
 
-export interface ModalPropsModel {
-  content: React.ReactElement;
+interface ModalPropsModel {
+  modalContent: ModalContentModel;
   setState(state: boolean): void;
   state: boolean;
   title: string;
   cancelText: string;
   okText: string;
-  canProceed?: boolean | false;
+}
+
+interface ModalContentModel {
+  ModalContent: any;
+  contentProps: any;
 }
 
 export const Modal = (props: ModalPropsModel) => {
-  const { title, content, setState, state, cancelText, okText, canProceed } = props;
+  const { title, modalContent, setState, state, cancelText, okText } = props;
+  const { ModalContent, contentProps } = modalContent;
+  const [canProceed, setCanProceed] = useState(false);
+
+  function onModalContentEmitter(params: any) {
+    setCanProceed(params);
+  }
+
   return (
     <Backdrop className="d-flex align-items-center justify-content-center">
       <ModalFrame className="d-flex flex-column justify-content-between">
@@ -31,16 +43,31 @@ export const Modal = (props: ModalPropsModel) => {
             <RiCloseCircleFill className="d-32" style={{ color: "white" }} />
           </button>
         </ModalTitle>
-        {content}
+        {<ModalContent {...contentProps} emitter={onModalContentEmitter} />}
         <div className="d-flex justify-content-end col-12">
-          <PrimaryBtnOutline
+          <Button
+            styled="primary"
+            outline
             onClick={() => {
               setState(!state);
             }}
           >
             {cancelText}
-          </PrimaryBtnOutline>
-          {canProceed ? (<SuccessBtn className="ms-3">{okText}</SuccessBtn>) :(<DisabledBtn disabled={true}>{okText}</DisabledBtn>)}
+          </Button>
+          <Button
+            className="mx-3"
+            disabled={!canProceed}
+            styled={canProceed ? "success" : "disabled"}
+            onClick={() => {
+              setState(!state);
+              AlertService.presentAlert({
+                type: "success",
+                message: "Resgate realizado com sucesso!",
+              });
+            }}
+          >
+            {okText}
+          </Button>
         </div>
       </ModalFrame>
     </Backdrop>

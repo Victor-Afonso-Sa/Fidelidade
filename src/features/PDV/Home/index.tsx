@@ -9,6 +9,11 @@ type Props = {};
 export const PdvHome = (props: Props) => {
   const [showModal, setModalState] = React.useState(false);
 
+  const modalContent = {
+    ModalContent: NewBuyModal,
+    contentProps: {},
+  };
+
   return (
     <>
       <div className="d-flex justify-content-center align-items-center h-100">
@@ -23,7 +28,7 @@ export const PdvHome = (props: Props) => {
       </div>
       {showModal && (
         <Modal
-          content={<NewBuyModal />}
+          modalContent={modalContent}
           state={showModal}
           setState={setModalState}
           okText="Continuar"
