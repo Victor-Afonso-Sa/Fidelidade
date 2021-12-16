@@ -1,9 +1,10 @@
-import * as React from "react";
+import { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { Backdrop, Button } from "../../styles/global";
 import { ModalFrame, ModalTitle } from "./style";
 
 import "../../styles/global.css";
+import * as AlertService from "../Alert";
 
 interface ModalPropsModel {
   modalContent: ModalContentModel;
@@ -22,7 +23,7 @@ interface ModalContentModel {
 export const Modal = (props: ModalPropsModel) => {
   const { title, modalContent, setState, state, cancelText, okText } = props;
   const { ModalContent, contentProps } = modalContent;
-  const [canProceed, setCanProceed] = React.useState(undefined);
+  const [canProceed, setCanProceed] = useState(false);
 
   function onModalContentEmitter(params: any) {
     setCanProceed(params);
@@ -57,6 +58,13 @@ export const Modal = (props: ModalPropsModel) => {
             className="mx-3"
             disabled={!canProceed}
             styled={canProceed ? "success" : "disabled"}
+            onClick={() => {
+              setState(!state);
+              AlertService.presentAlert({
+                type: "success",
+                message: "Resgate realizado com sucesso!",
+              });
+            }}
           >
             {okText}
           </Button>
