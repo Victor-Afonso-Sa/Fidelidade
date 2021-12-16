@@ -6,9 +6,8 @@ export const Item = styled.div`
   align-items: center;
   background-color: #fff;
   border-radius: 5px;
-  width: 98%;
   padding: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   & .see_more{
       margin-left: auto;
   }
@@ -18,7 +17,6 @@ export const Item = styled.div`
     & span{
         font-size: 12px;
         color: gray;
-
     }
   }
 `;

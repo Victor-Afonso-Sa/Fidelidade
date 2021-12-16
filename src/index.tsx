@@ -7,6 +7,8 @@ import { GlobalStyle } from "./styles/global";
 import { theme } from "./styles/theme";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
+import 'animate.css';
+
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />

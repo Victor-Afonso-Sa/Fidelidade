@@ -10,3 +10,10 @@
 .text__purple{
     color: #907CFF;
 }
+
+.hoverable-icon:hover{
+  background: #161E64;
+  color: #fff !important;
+  border-radius: 50%;
+  cursor: pointer;
+}

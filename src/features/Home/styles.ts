@@ -10,5 +10,7 @@ export const HomeWrapper = styled.div`
 export const ChartContainer = styled.div`
   background-color: ${({ theme }) => theme.background};
   border-radius: 10px;
+  animation: fadeInUp;
+  animation-duration: 1.2s;
 `;
 

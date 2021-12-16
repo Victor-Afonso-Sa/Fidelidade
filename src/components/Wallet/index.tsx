@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
-import { SubTitle } from "../../styles/global";
+import { PrimaryBtnOutline, SubTitle } from "../../styles/global";
 import { DisplayCoins } from "../DisplayCoins";
 import { Modal } from "../Modal";
 import { RescueNow } from "../Modal/components/RescueNow";
-import { ButtonClain, WalletCard } from "./styles";
+import { WalletCard } from "./styles";
 
 type Props = {};
 export const Wallet = (props: Props) => {
@@ -24,13 +24,14 @@ export const Wallet = (props: Props) => {
         <SubTitle>Você Possui:</SubTitle>
         <DisplayCoins amount="500" />
       </div>
-      <ButtonClain
+      <PrimaryBtnOutline
+        className="w-100"
         onClick={() => {
           setModalState(true);
         }}
       >
         Resgatar
-      </ButtonClain>
+      </PrimaryBtnOutline>
       {showModal && (
         <Modal
           modalContent={modalContent}

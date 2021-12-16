@@ -9,10 +9,10 @@ type Props = {};
 
 export const Balance = (props: Props) => {
   return (
-    <CardsContainer>
+    <CardsContainer hoverable>
       <BalanceHeader>
         <BalanceTitle>Carteira - Saldo</BalanceTitle>
-        <MdMoreVert className="ms-auto" size={28}/>
+        <MdMoreVert className="hoverable-icon ms-auto p-1" size={32}/>
       </BalanceHeader>
       <BalanceBody>
         <BalanceText>R$ 3,200.00</BalanceText>

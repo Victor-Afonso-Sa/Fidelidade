@@ -2,13 +2,16 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { DropdownItem } from "./DropdownItem";
-import { DropdownListContainer } from "./styles";
+import { DropdownMenu } from "./styles";
+
 type Props = {};
+
 export const DropdownList = (props: Props) => {
   let navigate = useNavigate();
   return (
-    <DropdownListContainer>
+    <DropdownMenu>
       <DropdownItem
+        className="first"
         onClick={() => navigate("/perfil/editar")}
         label="Ver perfil"
         icon="MdAccountBox"
@@ -24,6 +27,6 @@ export const DropdownList = (props: Props) => {
         label="Configurações"
         icon="MdSettings"
       />
-    </DropdownListContainer>
+    </DropdownMenu>
   );
 };
