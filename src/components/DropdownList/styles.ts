@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Tooltip } from './../../styles/global';
 
 export const DropdownListContainer = styled.div`
   display: flex;
@@ -15,12 +14,11 @@ export const DropdownItemContainer = styled.div`
   align-items: baseline;
   justify-content: space-between;
   border-bottom: 1pt solid ${({ theme }) => theme.gray};
-  padding: 10px 0;
+  padding: 20px 0;
   cursor: pointer;
   @media screen and (max-width: 992px) {
     justify-content: center;
   }
-  ${Tooltip("&")}
 `;
 export const ItemTitle = styled.span`
   color: ${({ theme }) => theme.primary};
@@ -29,17 +27,4 @@ export const ItemTitle = styled.span`
 export const ItemIcon = styled.span`
   color: ${({ theme }) => theme.gray};
   font-size: 24px;
-`;
-export const Badge = styled.span`
-  position: absolute;
-  margin-left: 10px;
-  display: block;
-  width: 24px;
-  height: 24px;
-  border-radius: 100%;
-  background-color: ${({ theme }) => theme.secondary};
-  color:white;
-  font-size: 12px;
-  line-height: 2;
-  text-align: center;
 `;
