@@ -35,7 +35,7 @@ export const RescueNow = (props: RescueNowModel) => {
         <div className="d-flex flex-column align-items-center justify-content-center">
           <InformationLineIcon className="d-64"></InformationLineIcon>
           <RuleSystemText>
-            A cada 100 Moedas Araujo, você pode trocar por R$ 1,00.
+            A cada 100 Moedas, você pode trocar por R$ 1,00.
           </RuleSystemText>
         </div>
         <SecondaryBg className="d-flex justify-content-center p-4">
@@ -57,7 +57,7 @@ export const RescueNow = (props: RescueNowModel) => {
             name="value"
             placeholder="Insira a quantidade de moedas"
             register={register}
-            label="Moedas Araujo"
+            label="Moedas"
             type="number"
             customOnChange={onValueChange}
           />

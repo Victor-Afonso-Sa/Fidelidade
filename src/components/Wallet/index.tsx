@@ -18,7 +18,7 @@ export const Wallet = (props: any) => {
 
   return (
     <WalletCard>
-      <div className="header">Moedas Araujo</div>
+      <div className="header">Moedas</div>
       <div className="content">
         <SubTitle>Você Possui:</SubTitle>
         <DisplayCoins amount="500" />

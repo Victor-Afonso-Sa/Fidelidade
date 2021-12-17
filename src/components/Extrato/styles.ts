@@ -7,7 +7,7 @@ export const ExtratoCard = styled(Card)`
   margin-bottom: 8px;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.bgLogin};
+  background-color: ${({ theme }) => theme.background};
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
