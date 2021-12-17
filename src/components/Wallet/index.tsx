@@ -24,6 +24,7 @@ export const Wallet = (props: any) => {
         <DisplayCoins amount="500" />
       </div>
       <ButtonClain
+        className="w-100"
         onClick={() => {
           setModalVisible(true);
         }}

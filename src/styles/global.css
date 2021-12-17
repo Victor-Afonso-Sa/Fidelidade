@@ -14,3 +14,10 @@
 .ant-btn {
   border-radius: 4px !important;
 }
+
+.hoverable-icon:hover {
+  background: #161e64;
+  color: #fff !important;
+  border-radius: 50%;
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
+import { Card } from "antd";
 import styled from "styled-components";
 
-export const WalletCard = styled.div`
+export const WalletCard = styled(Card)`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.bgLogin};
@@ -8,11 +9,12 @@ export const WalletCard = styled.div`
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
+  animation: fadeInRight;
+  animation-duration: 1.2s;
   & .header {
     color: white;
     background-color: ${({ theme }) => theme.primary};
     text-transform: uppercase;
-    margin: 8px;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
@@ -31,17 +33,4 @@ export const WalletCard = styled.div`
       font-size: 28px;
     }
   }
-`;
-
-export const ButtonClain = styled.button`
-  width: 98%;
-  align-self: center;
-  text-align: center;
-  color: ${({ theme }) => theme.primary};
-  background-color: #fff;
-  border: 2pt solid ${({ theme }) => theme.primary};
-  border-radius: 5px;
-  padding: 0.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
 `;

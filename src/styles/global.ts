@@ -172,6 +172,7 @@ export const Button = styled.button<ButtonModel>`
   border-radius: 4px;
   border: 2px solid ${({ styled, outline, theme }) => theme[styled]};
 `;
+
 export const Tooltip = (component: string) => `
   ${component}::before{
     content: attr(data-tooltip);

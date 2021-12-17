@@ -19,14 +19,14 @@ export const MenssageCardBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto 0;
+  margin: 25px 0;
 `;
 export const MenssageCard = ({ background, color, title, content }: Props) => {
   return (
-    <CardsContainer background={background} color={color}>
+    <CardsContainer hoverable background={background} color={color}>
       <MenssageCardHeader>
         <span>{title}</span>
-        <MdClear className="ms-auto" />
+        <MdClear className="hoverable-icon ms-auto p-1" size={28}/>
       </MenssageCardHeader>
       <MenssageCardBody>
          {content}

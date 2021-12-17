@@ -1,15 +1,10 @@
 // @flow
 import * as React from "react";
-import {
-  Dropdown,
-  HeaderContent,
-  UserAcount,
-  UserName,
-  Wrapper,
-} from "./styles";
+import { HeaderContent, UserAcount, UserName, Wrapper } from "./styles";
 import MiniLogo from "../../assets/mini-logo.svg";
 import { MdAccountCircle, MdExpandMore } from "react-icons/md";
 import { DropdownList } from "../DropdownList";
+import { Avatar, Badge, Dropdown } from "antd";
 
 type Props = {
   name: string;
@@ -17,7 +12,6 @@ type Props = {
 };
 
 export const Header = ({ name, cargo }: Props) => {
-  const [isDropdownOpen, toggleDropdown] = React.useState(false);
   return (
     <>
       <Wrapper className="col-12">
@@ -34,15 +28,16 @@ export const Header = ({ name, cargo }: Props) => {
             </div>
             {cargo && <span>{cargo}</span>}
           </UserName>
-          <UserAcount className="dropdown" onClick={() => toggleDropdown(!isDropdownOpen)}>
-            <MdAccountCircle size="60px" />
-            <MdExpandMore className="dropdown-toggle" size="30px" />
-          </UserAcount>
+          <Dropdown overlay={<DropdownList />} trigger={["click"]} placement="bottomLeft" arrow>
+            <UserAcount className="dropdown">
+              <Badge count={10} offset={[0, 10]} overflowCount={9}>
+                <Avatar shape="circle" size={60} icon={<MdAccountCircle />} />
+              </Badge>
+              <MdExpandMore className="dropdown-toggle" size="30px" />
+            </UserAcount>
+          </Dropdown>
         </HeaderContent>
       </Wrapper>
-      <Dropdown hidden={!isDropdownOpen}>
-        <DropdownList />
-      </Dropdown>
     </>
   );
 };
