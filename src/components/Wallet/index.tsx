@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SubTitle } from "../../styles/global";
 import { DisplayCoins } from "../DisplayCoins";
 import { RescueNow } from "../Modal/components/RescueNow";
-import { ButtonClain, WalletCard } from "./styles";
+import { WalletCard } from "./styles";
 import * as AlertService from "../Alert";
 import { RiCloseCircleFill } from "react-icons/ri";
 
@@ -23,25 +23,15 @@ export const Wallet = (props: any) => {
         <SubTitle>Você Possui:</SubTitle>
         <DisplayCoins amount="500" />
       </div>
-      <ButtonClain
+      <AntButton
+        type="default"
+        styled="primary"
         className="w-100"
         onClick={() => {
           setModalVisible(true);
         }}
       >
         Resgatar
-      </ButtonClain>
-      <AntButton
-        type="primary"
-        styled="moneyColor"
-        onClick={() => {
-          AlertService.presentAlert({
-            type: "success",
-            message: "Resgate realizado com sucesso!",
-          });
-        }}
-      >
-        Ant Modal
       </AntButton>
       <AntModal
         title="Resgatar Agora"
@@ -54,15 +44,18 @@ export const Wallet = (props: any) => {
         footer={[
           <AntButton
             key="back"
+            type="default"
+            styled="primary"
             onClick={() => {
               setModalVisible(false);
             }}
           >
-            Return
+            Cancelar
           </AntButton>,
           <AntButton
             key="submit"
             type="primary"
+            styled="success"
             disabled={!canProceed}
             onClick={() => {
               setModalVisible(false);
@@ -72,7 +65,7 @@ export const Wallet = (props: any) => {
               });
             }}
           >
-            Submit
+            Resgatar
           </AntButton>,
         ]}
       >

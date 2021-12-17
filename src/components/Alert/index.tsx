@@ -24,23 +24,34 @@ let alertProps: AlertPropsModel = {
 
 const Alert = () => {
   const [opened, setState] = useState(false);
+  const [alertClass, setAlertClass] = useState("d-none");
   useEffect(() => {
     if (!opened) {
       subscrible(setState);
+    } else {
+      setAlertClass("d-flex animate__fadeIn");
     }
   }, [opened]);
 
   function close() {
     setState(false);
+    setTimeout(() => {
+      setAlertClass("d-flex animate__fadeOut");
+      setTimeout(() => {
+        setAlertClass("d-none");
+      }, 100);
+    }, 100);
   }
 
   return (
     <Backdrop
-      className={`justify-content-center align-items-center animate__animated ${
-        opened ? "d-flex animate__fadeIn" : "d-none animate__fadeOut"
-      }`}
+      className={`justify-content-center align-items-center animate__animated ${alertClass}`}
     >
-      <AlertFrame className="d-flex flex-column justify-content-center">
+      <AlertFrame
+        className={`d-flex flex-column justify-content-center animate__animated ${
+          opened ? "animate__zoomIn" : "animate__zoomOut"
+        }`}
+      >
         <AlertTitleIcon className="d-flex justify-content-center align-items-center">
           {alertProps.type === "success" ? (
             <AiOutlineCheckCircle size={128} color={theme.success} />
