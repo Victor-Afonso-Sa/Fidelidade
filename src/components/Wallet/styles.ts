@@ -8,6 +8,8 @@ export const WalletCard = styled.div`
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
+  padding-bottom: 10px;
   & .header {
     color: white;
     background-color: ${({ theme }) => theme.primary};

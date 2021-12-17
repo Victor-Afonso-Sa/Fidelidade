@@ -7,8 +7,3 @@ export const HomeWrapper = styled.div`
   --bs-gutter-x: 0;
 `;
 
-export const ChartContainer = styled.div`
-  background-color: ${({ theme }) => theme.background};
-  border-radius: 10px;
-`;
-
