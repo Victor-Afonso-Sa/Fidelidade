@@ -7,12 +7,16 @@
   width: 64px;
   height: 64px;
 }
-.text__purple{
-    color: #907CFF;
+.text__purple {
+  color: #907cff;
 }
 
-.hoverable-icon:hover{
-  background: #161E64;
+.ant-btn {
+  border-radius: 4px !important;
+}
+
+.hoverable-icon:hover {
+  background: #161e64;
   color: #fff !important;
   border-radius: 50%;
   cursor: pointer;

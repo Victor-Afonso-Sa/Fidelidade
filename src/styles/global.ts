@@ -1,4 +1,7 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
+import { ConfigProvider } from "antd";
+import { theme } from "./theme";
 
 export const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
@@ -13,10 +16,6 @@ body {
     background-color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    /* overflow: hidden; */
     min-height: 100vh;
   }
 
@@ -102,6 +101,7 @@ export const Backdrop = styled.div`
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
   height: 100%;
+  animation-duration: 0.2s;
 `;
 
 export const SubTitle = styled.h6`
@@ -157,6 +157,7 @@ export const DivWithScroll = (name: string) => {
     }
   `;
 };
+
 interface ButtonModel {
   styled: string;
   outline?: boolean;
@@ -171,3 +172,36 @@ export const Button = styled.button<ButtonModel>`
   border-radius: 4px;
   border: 2px solid ${({ styled, outline, theme }) => theme[styled]};
 `;
+
+export const Tooltip = (component: string) => `
+  ${component}::before{
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    width: max-content;
+    max-width: 250px;
+    margin-top 8px;
+    padding: 6px;
+    background: #0d1117;
+    border-radius: 5px;
+    color: #cccfd3;
+    opacity: 0;
+    display: none;
+  }
+   ${component}:hover::before{
+    top: 100;
+    opacity: 1;
+    display: inline;
+  }
+`;
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: theme.primary,
+    errorColor: theme.danger,
+    successColor: theme.success,
+    infoColor: theme.gray,
+    processingColor: theme.chartLabel,
+    warningColor: theme.moneyColor,
+  },
+});

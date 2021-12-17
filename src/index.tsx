@@ -5,10 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GlobalStyle } from "./styles/global";
 import { theme } from "./styles/theme";
+import "./styles/global.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "antd/dist/antd.css";
-import 'animate.css';
-
+import "antd/dist/antd.variable.min.css";
+import "animate.css";
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
