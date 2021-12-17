@@ -2,8 +2,6 @@ import { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { Backdrop, Button } from "../../styles/global";
 import { ModalFrame, ModalTitle } from "./style";
-
-import "../../styles/global.css";
 import * as AlertService from "../Alert";
 
 interface ModalPropsModel {

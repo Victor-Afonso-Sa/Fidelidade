@@ -36,8 +36,9 @@ const Alert = () => {
 
   return (
     <Backdrop
-      className="justify-content-center align-items-center"
-      style={{ display: opened ? "flex" : "none" }}
+      className={`justify-content-center align-items-center animate__animated ${
+        opened ? "d-flex animate__fadeIn" : "d-none animate__fadeOut"
+      }`}
     >
       <AlertFrame className="d-flex flex-column justify-content-center">
         <AlertTitleIcon className="d-flex justify-content-center align-items-center">

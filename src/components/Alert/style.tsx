@@ -8,6 +8,9 @@ export const AlertFrame = styled.div`
   width: 580px;
   height: 380px;
   position: relative;
+
+  animation: zoomIn;
+  animation-duration: 0.2s;
 `;
 
 export const AlertTitleIcon = styled.div`

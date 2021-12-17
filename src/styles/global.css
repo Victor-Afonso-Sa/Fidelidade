@@ -7,6 +7,10 @@
   width: 64px;
   height: 64px;
 }
-.text__purple{
-    color: #907CFF;
+.text__purple {
+  color: #907cff;
+}
+
+.ant-btn {
+  border-radius: 4px !important;
 }

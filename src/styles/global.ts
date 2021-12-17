@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
+import { ConfigProvider } from "antd";
+import { theme } from "./theme";
 
 export const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
@@ -14,10 +16,6 @@ body {
     background-color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    /* overflow: hidden; */
     min-height: 100vh;
   }
 
@@ -103,6 +101,7 @@ export const Backdrop = styled.div`
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
   height: 100%;
+  animation-duration: 0.2s;
 `;
 
 export const SubTitle = styled.h6`
@@ -158,6 +157,7 @@ export const DivWithScroll = (name: string) => {
     }
   `;
 };
+
 interface ButtonModel {
   styled: string;
   outline?: boolean;
@@ -192,4 +192,15 @@ export const Tooltip = (component: string) => `
     opacity: 1;
     display: inline;
   }
-`
+`;
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: theme.primary,
+    errorColor: theme.danger,
+    successColor: theme.success,
+    infoColor: theme.gray,
+    processingColor: theme.chartLabel,
+    warningColor: theme.moneyColor,
+  },
+});
