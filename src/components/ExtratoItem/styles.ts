@@ -9,16 +9,15 @@ export const Item = styled.div`
   width: 98%;
   padding: 20px;
   margin-bottom: 10px;
-  & .see_more{
-      margin-left: auto;
+  & .see_more {
+    margin-left: auto;
   }
   & .items-content {
     display: flex;
     flex-direction: column;
-    & span{
-        font-size: 12px;
-        color: gray;
-
+    & span {
+      font-size: 15px;
+      color: gray;
     }
   }
 `;

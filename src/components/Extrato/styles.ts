@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const ExtratoCard = styled.div`
   margin-top: 8px;
   display: flex;

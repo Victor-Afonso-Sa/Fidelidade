@@ -106,6 +106,7 @@ export const Backdrop = styled.div`
 
 export const SubTitle = styled.h6`
   font-weight: bold;
+  font-size: 17px;
   color: ${({ theme }) => theme.primary};
 `;
 export const Title = styled.h2`
