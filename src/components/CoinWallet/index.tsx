@@ -34,6 +34,8 @@ export const CoinWallet = (props: any) => {
         footer={[
           <AntButton
             key="back"
+            type="default"
+            styled="primary"
             onClick={() => {
               setModalVisible(false);
             }}

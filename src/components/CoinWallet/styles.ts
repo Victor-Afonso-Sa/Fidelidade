@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const WalletCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.bgLogin};
+  background-color: ${({ theme }) => theme.background};
   width: 95%;
   border-radius: 5px;
   margin-left: auto;
