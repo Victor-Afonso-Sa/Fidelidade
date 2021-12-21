@@ -17,12 +17,12 @@ export const BalanceText = styled.span`
   line-height: 28px;
   text-align: center;
   text-transform: capitalize;
-  color: ${({ theme }) => theme.primary};
+  color: #fff;
   margin-right: 8px;
 `;
 
 export const SecondaryBg = styled.div`
-  background-color: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.secondary};
 `;
 
 export const RuleSystemText = styled.h3`

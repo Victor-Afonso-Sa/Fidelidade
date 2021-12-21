@@ -31,7 +31,7 @@ export const Modal = (props: ModalPropsModel) => {
     <Backdrop className="d-flex align-items-center justify-content-center">
       <ModalFrame className="d-flex flex-column justify-content-between">
         <ModalTitle className="d-flex justify-content-between align-items-center">
-          <h2>{title}</h2>
+          <h3>{title}</h3>
           <button
             className="btn rounded-circle m-0 p-0 d-32"
             onClick={() => {

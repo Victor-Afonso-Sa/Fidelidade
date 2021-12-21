@@ -33,6 +33,7 @@ export const AlertDescription = styled.span`
   line-height: 42px;
   text-align: center;
   letter-spacing: 0.1em;
+  margin-top: 89px;
 `;
 
 export const AlertActions = styled.div``;

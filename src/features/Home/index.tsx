@@ -1,14 +1,13 @@
-import { Header } from "../../components/Header";
-import { Extrato } from "../../components/Extrato";
-import { Wallet } from "../../components/Wallet";
+import { useState } from "react";
+import styled from "styled-components";
 import { Balance } from "../../components/Cards/BalanceCard";
 import { MenssageCard } from "../../components/Cards/MenssageCard";
-import { theme } from "../../styles/theme";
-import styled from "styled-components";
-import { ChartContainer, HomeCointainer, HomeWrapper } from "./styles";
 import Chart from "../../components/Chart";
+import { Extrato } from "../../components/Extrato";
+import { Header } from "../../components/Header";
 import { Button } from "../../styles/global";
-import { useState } from "react";
+import { ChartContainer, HomeCointainer, HomeWrapper } from "./styles";
+import { CoinWallet } from './../../components/CoinWallet/index';
 
 export const Menssage = styled.span`
   text-align: center;
@@ -74,21 +73,10 @@ export const Home = () => {
       <HomeWrapper className="row mt-4 p-0 w-100 d-flex justify-content-center">
         <div className="col-12 col-md-8 p-0">
           <div className="d-flex justify-content-center flex-wrap flex-md-nowrap">
-            <Balance />
-            <MenssageCard
-              background={theme.primary}
-              color="#fff"
-              title="Sistema de Moedas"
-              content={
-                <Menssage>
-                  No <span className="text__purple">+Fidelidade</span>, você
-                  pode recarregar as moedas para facilitar na hora da compra.
-                  Clique nesse card para saber mais.
-                </Menssage>
-              }
-            />
+            <Balance className="w-100 animate__fadeInUp" title="Carteira - Saldo" btnText="Trocar para moedas"/>
+            <CoinWallet />
           </div>
-          <ChartContainer className="mx-4 mb-3">
+          <ChartContainer className="mb-3">
             <div className="d-flex justify-content-end p-3">
               {chartButtons.map((btnInfo, index) => {
                 return (
@@ -123,8 +111,22 @@ export const Home = () => {
           </ChartContainer>
         </div>
         <div className="col-12 col-md-4 p-0">
-          <Wallet />
           <Extrato />
+          <div>
+
+          <MenssageCard
+              className="animate__fadeInRight"
+              color="#fff"
+              title="Sistema de Moedas"
+              content={
+                <Menssage>
+                  No <span className="text__green">+Fidelidade</span>, você
+                  pode recarregar as moedas para facilitar na hora da compra.
+                  Clique nesse card para saber mais.
+                </Menssage>
+              }
+            />
+          </div>
         </div>
       </HomeWrapper>
     </HomeCointainer>

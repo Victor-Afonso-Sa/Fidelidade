@@ -23,7 +23,7 @@ export const RightCard = (props: Props) => {
         </div>
         <div className="d-flex flex-wrap flex-column align-items-center ms-4">
           <h6 className="fw-bold">Nome do Cliente</h6>
-          <DisplayCoins amount="500" />
+          <DisplayCoins amount={500} />
         </div>
       </div>
       <CardRow label="Fidelizado em" value="01/12/2021" />

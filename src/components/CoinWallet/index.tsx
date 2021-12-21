@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { SubTitle } from "../../styles/global";
-import { DisplayCoins } from "../DisplayCoins";
-import { RescueNow } from "../Modal/components/RescueNow";
-import { ButtonClain, WalletCard } from "./styles";
-import * as AlertService from "../Alert";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { AntButton, AntModal } from "../../styles/antDesign";
+import * as AlertService from "../Alert";
+import { RescueNow } from "../Modal/components/RescueNow";
+import { Balance } from "./../Cards/BalanceCard/index";
 
-import { AntModal, AntButton } from "../../styles/antDesign";
 
-export const Wallet = (props: any) => {
+export const CoinWallet = (props: any) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [canProceed, setCanProceed] = useState(false);
 
@@ -17,32 +15,14 @@ export const Wallet = (props: any) => {
   }
 
   return (
-    <WalletCard>
-      <div className="header">Moedas Araujo</div>
-      <div className="content">
-        <SubTitle>Você Possui:</SubTitle>
-        <DisplayCoins amount="500" />
-      </div>
-      <ButtonClain
-        className="w-100"
-        onClick={() => {
-          setModalVisible(true);
-        }}
-      >
-        Resgatar
-      </ButtonClain>
-      <AntButton
-        type="primary"
-        styled="moneyColor"
-        onClick={() => {
-          AlertService.presentAlert({
-            type: "success",
-            message: "Resgate realizado com sucesso!",
-          });
-        }}
-      >
-        Ant Modal
-      </AntButton>
+    <>
+      <Balance
+        className="w-100 animate__fadeInUp"
+        title="Moedas - Saldo"
+        btnText="Resgatar"
+        isCoins
+        action={() => setModalVisible(true)}
+      />
       <AntModal
         title="Resgatar Agora"
         centered
@@ -58,11 +38,12 @@ export const Wallet = (props: any) => {
               setModalVisible(false);
             }}
           >
-            Return
+            Fechar
           </AntButton>,
           <AntButton
             key="submit"
             type="primary"
+            styled="success"
             disabled={!canProceed}
             onClick={() => {
               setModalVisible(false);
@@ -72,12 +53,12 @@ export const Wallet = (props: any) => {
               });
             }}
           >
-            Submit
+            Finalizar
           </AntButton>,
         ]}
       >
         <RescueNow value={3000} emitter={onModalContentEmitter} />
       </AntModal>
-    </WalletCard>
+    </>
   );
 };

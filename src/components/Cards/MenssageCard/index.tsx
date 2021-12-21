@@ -7,6 +7,7 @@ import { MdClear } from "react-icons/md";
 interface Props extends Cards {
   title: string;
   content: any;
+  className?: string
 }
 
 export const MenssageCardHeader = styled.div`
@@ -21,9 +22,9 @@ export const MenssageCardBody = styled.div`
   align-items: center;
   margin: 25px 0;
 `;
-export const MenssageCard = ({ background, color, title, content }: Props) => {
+export const MenssageCard = ({ background, color, title, content,className }: Props) => {
   return (
-    <CardsContainer hoverable background={background} color={color}>
+    <CardsContainer hoverable background={background} color={color} className={className}>
       <MenssageCardHeader>
         <span>{title}</span>
         <MdClear className="hoverable-icon ms-auto p-1" size={28}/>

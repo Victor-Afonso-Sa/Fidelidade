@@ -10,6 +10,9 @@
 .text__purple {
   color: #907cff;
 }
+.text__green {
+  color: #BDFF00;
+}
 
 .ant-btn {
   border-radius: 4px !important;

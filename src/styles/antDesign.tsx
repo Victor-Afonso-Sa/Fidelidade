@@ -18,7 +18,7 @@ export const AntModal = styled(Modal)`
       background-color: ${({ theme }) => theme.primary};
       font-style: normal;
       font-weight: normal;
-      font-size: 48px;
+      font-size: 34px;
       line-height: 56px;
       display: flex;
       align-items: center;
@@ -74,6 +74,7 @@ interface ButtonModel {
 }
 
 export const AntButton = styled(Button)<ButtonModel>`
+  letter-spacing: 0.1em;
   &.ant-btn[disabled] {
     color: ${({ theme }) => theme.gray} !important;
     border-color: ${({ theme }) => theme.disabled}!important;

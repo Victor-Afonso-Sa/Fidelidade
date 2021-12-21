@@ -2,19 +2,14 @@ import styled from "styled-components";
 
 export const LoginWrapper = styled.div`
   display: flex;
-  background-color: ${({ theme }) => theme.bgLogin};
+  background-color: ${({ theme }) => theme.background};
 `;
 export const ContainerImg = styled.div`
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
   background-color: #fff;
-  border-right: 6pt solid ${({ theme }) => theme.primary};
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  & img {
-    width: 70%;
-  }
 `;
 export const LoginContainer = styled.div`
   display: flex;
@@ -22,7 +17,7 @@ export const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: ${({ theme }) => theme.bgLogin};
+  background-color: ${({ theme }) => theme.gray};
 `;
 export const LoginFooter = styled.div`
   position: absolute;

@@ -21,7 +21,7 @@ const Chart = ({
     },
     grid: {
       show: false,
-      backgroundColor: "#E7E8F3",
+      backgroundColor: "rgb(61, 89, 171,0.25)",
     },
     xAxis: {
       show: true,
@@ -57,7 +57,7 @@ const Chart = ({
       splitLine: {
         show: true,
         lineStyle: {
-          color: [theme.gray],
+          color: [theme.secondary],
         },
       },
     },
@@ -66,8 +66,8 @@ const Chart = ({
         data: coinValues,
         type: "bar",
         itemStyle: {
-          color: theme.primary,
-          borderColor: theme.primary,
+          color: theme.secondary,
+          borderColor: theme.secondary,
           borderWidth: 2,
           borderRadius: 4,
         },
@@ -78,7 +78,7 @@ const Chart = ({
         type: "bar",
         itemStyle: {
           color: "white",
-          borderColor: theme.primary,
+          borderColor: theme.secondary,
           borderWidth: 2,
           borderRadius: 4,
         },

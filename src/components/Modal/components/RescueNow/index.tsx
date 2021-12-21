@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import coin from "../../../../assets/coin.svg";
 import { formatter } from "../../../../utils/functions";
+import { DisplayCoins } from "../../../DisplayCoins";
 import { Input } from "../../../Input";
 import {
   ArrowRightIcon,
   BalanceText,
-  CashBackText,
-  CoinText,
-  InformationLineIcon,
+  CashBackText, InformationLineIcon,
   RuleSystemText,
-  SecondaryBg,
+  SecondaryBg
 } from "./style";
 
 interface RescueNowModel {
@@ -18,12 +16,11 @@ interface RescueNowModel {
   emitter?(value: any): any;
 }
 
-export const RescueNow = (props: RescueNowModel) => {
-  const { value, emitter } = props;
+export const RescueNow = ({ value=0, emitter }: RescueNowModel) => {
   const [cashValue, setCashValue] = useState(formatter.format(0));
   const { register } = useForm();
   const onValueChange = (value: string) => {
-    setCashValue(formatter.format(parseInt(value) ? parseInt(value) : 0 / 100));
+    setCashValue(formatter.format(value ? (parseInt(value) / 100) : 0 / 100));
     if (emitter) {
       const aux = parseInt(value);
       aux && aux !== 0 ? emitter(true) : emitter(false);
@@ -43,13 +40,7 @@ export const RescueNow = (props: RescueNowModel) => {
             <BalanceText className="d-flex align-items-center">
               Você possui:
             </BalanceText>
-            <img
-              className="d-32"
-              style={{ marginRight: "8px" }}
-              src={coin}
-              alt=""
-            />
-            <CoinText>{value}</CoinText>
+            <DisplayCoins amount={value || 0} />
           </div>
         </SecondaryBg>
         <div className="d-flex align-items-center justify-content-around pt-2 my-2">
