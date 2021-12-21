@@ -1,13 +1,12 @@
 // @flow
 import { Badge } from "antd";
 import * as React from "react";
-import { IconType } from "react-icons";
-import * as MdIcons from "react-icons/md";
+
 import { DropdownItemContainer, ItemIcon, ItemTitle } from "./styles";
 
 type Props = {
   label: string;
-  icon: string;
+  icon: React.ReactElement;
   className?: string;
   badgeCount?: number;
   onClick?: any;
@@ -19,8 +18,6 @@ export const DropdownItem = ({
   badgeCount,
   className = "",
 }: Props) => {
-  let Icon = React.createElement(MdIcons[icon! as keyof IconType]);
-
   return (
     <DropdownItemContainer
       className={className}
@@ -31,10 +28,10 @@ export const DropdownItem = ({
       <span>
         {badgeCount ? (
           <Badge count={badgeCount} overflowCount={9}>
-            <ItemIcon>{Icon}</ItemIcon>
+            <ItemIcon>{icon}</ItemIcon>
           </Badge>
         ) : (
-          <ItemIcon>{Icon}</ItemIcon>
+          <ItemIcon>{icon}</ItemIcon>
         )}
       </span>
     </DropdownItemContainer>
