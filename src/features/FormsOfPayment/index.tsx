@@ -10,6 +10,7 @@ import { theme } from "../../styles/theme";
 import { BsBank2 } from "react-icons/bs";
 import Pix from "../../assets/pix.png";
 import { FaKey } from "react-icons/fa";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 import { useState } from "react";
 
 export const FormsOfPayment = () => {
@@ -48,7 +49,9 @@ export const FormsOfPayment = () => {
                   <div>TEXTO</div>
                   <div>Chave: NÚMERO DA CHAVE</div>
                 </div>
-                <div>ICONE DELETAR</div>
+                <div>
+                  <RiDeleteBin5Fill color="red" size={35} />
+                </div>
               </PixKey>
             )}
             {formOfPayment === "ted" && <h1>conteudo TED</h1>}
