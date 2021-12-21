@@ -28,7 +28,7 @@ export const Register = (props: Props) => {
         <FormHeader className="mb-3">
           <div className="d-flex justify-content-between m-2">
             <h4 className="fw-bold">Novo Usuário</h4>
-            <MdArrowForward size={24} onClick={() => navigate("/login")} />
+            <MdArrowForward className="hoverable-icon p-1" size={29} onClick={() => navigate("/login")} />
           </div>
           <div className="d-flex justify-content-center m-2 text-capitalize">
             <h5 className="fw-light">

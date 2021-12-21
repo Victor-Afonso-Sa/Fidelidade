@@ -1,24 +1,53 @@
 // @flow
 import * as React from "react";
 import { MdMoreVert } from "react-icons/md";
-import { PrimaryBtn } from "../../../styles/global";
+import { BalanceText, Button } from "../../../styles/global";
+import { DisplayCoins } from "../../DisplayCoins";
 import { CardsContainer } from "../styles";
-import { BalanceBody, BalanceFooter, BalanceHeader, BalanceText, BalanceTitle } from "./styles";
-type Props = {};
+import {
+  BalanceBody,
+  BalanceFooter,
+  BalanceHeader,
+  BalanceTitle,
+} from "./styles";
+type Props = {
+  className?: string;
+  title: string;
+  btnText: string;
+  isCoins?: boolean;
+  action?: any;
+};
 
-
-export const Balance = (props: Props) => {
+export const Balance = ({
+  className,
+  title,
+  btnText,
+  isCoins = false,
+  action,
+}: Props) => {
   return (
-    <CardsContainer hoverable>
+    <CardsContainer className={className} hoverable>
       <BalanceHeader>
-        <BalanceTitle>Carteira - Saldo</BalanceTitle>
-        <MdMoreVert className="hoverable-icon ms-auto p-1" size={32}/>
+        <BalanceTitle>{title}</BalanceTitle>
+        <MdMoreVert className="hoverable-icon ms-auto p-1" size={32} />
       </BalanceHeader>
       <BalanceBody>
-        <BalanceText>R$ 3,200.00</BalanceText>
+        {isCoins ? (
+          <DisplayCoins amount={100} />
+        ) : (
+          <BalanceText>R$ 200.00</BalanceText>
+        )}
       </BalanceBody>
       <BalanceFooter>
-        <PrimaryBtn className="ms-auto">Transferir</PrimaryBtn>
+        <Button
+          className="ms-auto mt-auto"
+          type="button"
+          styled="primary"
+          outline
+          onClick={() => (action ? action() : () => {})}
+        >
+          {btnText}
+        </Button>
       </BalanceFooter>
     </CardsContainer>
   );

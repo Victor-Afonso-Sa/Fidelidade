@@ -15,7 +15,7 @@ export const RegisterLogoContainer = styled.div`
 `;
 export const RegisterFormContainer = styled.div`
   height: 100%;
-`
+`;
 export const FormHeader = styled.div`
   flex: 0 0 auto;
   display: flex;
@@ -23,5 +23,8 @@ export const FormHeader = styled.div`
   padding: 20px;
   background-color: ${({ theme }) => theme.primary};
   border-top-left-radius: 20px;
-  color: #fff
-`
+  color: #fff !important;
+  h4,h5 {
+    color: #fff !important;
+  }
+`;

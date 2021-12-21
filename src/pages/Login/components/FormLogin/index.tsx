@@ -1,14 +1,15 @@
 // @flow
+import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import * as React from "react";
-
 import { FieldErrors, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import * as AlertService from "../../../../components/Alert";
 import { Input } from "../../../../components/Input";
+import { CONSTANTS } from "../../../../constants/api";
 import { LoginType } from "../../../../types/LoginTypes";
 import { CustomForm, LoginButton, Title } from "./styles";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 export const FormLogin = () => {
   let navigate = useNavigate();
@@ -26,15 +27,33 @@ export const FormLogin = () => {
     resolver: yupResolver<yup.AnyObjectSchema>(schema),
   });
   const onSubmit = (data: LoginType) => {
-    console.log(data);
-    navigate("/")
+    data.cpf = data.cpf.split(".").join("").split("-").join("");
+    axios
+      .post(`${CONSTANTS.BASE_URL}/login`, data)
+      .then((response) => {
+        console.log(response.data);
+        navigate("/");
+      })
+      .catch((error) => {
+        AlertService.presentAlert({
+          type: "danger",
+          message: "Usuário ou senha incorretos ",
+        })
+      });
   };
   const onError = (errors: FieldErrors) => {
-    Object.values(errors).map(e => (e && e.message ?  toast.error(e.message) : false))
-  }
+    Object.values(errors).map((e) =>
+      e && e.message
+        ? AlertService.presentAlert({
+            type: "danger",
+            message: e.message,
+          })
+        : false
+    );
+  };
   return (
     <>
-      <CustomForm onSubmit={handleSubmit(onSubmit,onError)}>
+      <CustomForm onSubmit={handleSubmit(onSubmit, onError)}>
         <Title className="mb-3 ">Bem-vindo!</Title>
 
         <Input

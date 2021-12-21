@@ -1,15 +1,15 @@
 // @flow
 import * as React from "react";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "../pages/Home/index";
+import { Login } from "../pages/Login";
+import { PdvHome } from "../pages/PDV/Home";
+import { PDV } from '../pages/PDV/index';
+import { Vendas } from "../pages/PDV/Vendas";
+import { Profile } from "../pages/Profile";
+import { EditProfile } from "../pages/Profile/EditProfile";
+import { Register } from "../pages/Register";
 
-import { Login } from "./features/Login";
-import { Home } from "./features/Home/index";
-import { PDV } from './features/PDV/index';
-import { Vendas } from "./features/PDV/Vendas";
-import { PdvHome } from "./features/PDV/Home";
-import { Register } from "./features/Register";
-import { Profile } from "./features/Profile";
-import { EditProfile } from "./features/Profile/EditProfile";
 
 
 export const AppRoutes = () => {

@@ -6,7 +6,8 @@ interface HeaderContentType {
 export const Wrapper = styled.nav`
   display: flex;
   align-items: center;
-  background-color: ${({ theme }) => theme.primary};
+  background: #191970;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   height: 70px;
 
   & .header__title{
