@@ -45,7 +45,7 @@ export const Balance = ({
           type="button"
           styled="primary"
           outline
-          onClick={() => action()}
+          onClick={() => (action ? action() : () => {})}
         >
           {btnText}
         </Button>

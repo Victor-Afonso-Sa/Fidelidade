@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import { AppRoutes } from "./Routes";
+import { AppRoutes } from "./routes/Routes";
 import "react-toastify/dist/ReactToastify.min.css";
 import Alert from "./components/Alert";
 function App() {
