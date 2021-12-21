@@ -5,7 +5,6 @@ import { Input } from "../../Input";
 import {
   ArrowRightIcon,
   BalanceText,
-  CashBackText,
   InformationLineIcon,
   RuleSystemText,
   SecondaryBg,
@@ -14,28 +13,35 @@ type Props = {
   modalText: string;
   balance: any;
   InputName: string;
-  cashValue: string;
+  cashValue: any;
   register: UseFormRegister<any>;
   onValueChange?: any;
   label: string;
   mask?: string;
 };
-export const BaseModal = ({ modalText, balance, InputName, register, onValueChange, cashValue, mask, label }: Props) => {
+export const BaseModal = ({
+  modalText,
+  balance,
+  InputName,
+  register,
+  onValueChange,
+  cashValue,
+  mask,
+  label,
+}: Props) => {
   return (
     <div className="d-flex flex-column m-4 h-100">
       <div className="d-flex flex-column">
         <div className="d-flex flex-column align-items-center justify-content-center">
           <InformationLineIcon className="d-64"></InformationLineIcon>
-          <RuleSystemText>
-            {modalText}
-          </RuleSystemText>
+          <RuleSystemText>{modalText}</RuleSystemText>
         </div>
         <SecondaryBg className="d-flex justify-content-center p-4">
           <div className="d-flex align-items-center justify-content-center">
             <BalanceText className="d-flex align-items-center">
               Você possui:
             </BalanceText>
-            {balance}
+            <div className="d-flex align-items-center">{balance}</div>
           </div>
         </SecondaryBg>
         <div className="d-flex align-items-center justify-content-around pt-2 my-2">
@@ -48,7 +54,7 @@ export const BaseModal = ({ modalText, balance, InputName, register, onValueChan
             mask={mask}
           />
           <ArrowRightIcon className="d-32 mx-1"></ArrowRightIcon>
-          <CashBackText>{cashValue}</CashBackText>
+          {cashValue}
         </div>
       </div>
     </div>

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Balance } from "../../components/Cards/BalanceCard";
 import { MenssageCard } from "../../components/Cards/MenssageCard";
 import Chart from "../../components/Chart";
 import { Extrato } from "../../components/Extrato";
 import { Header } from "../../components/Header";
+import { MoneyWallet } from "../../components/MoneyWallet";
 import { Button } from "../../styles/global";
-import { ChartContainer, HomeCointainer, HomeWrapper } from "./styles";
 import { CoinWallet } from './../../components/CoinWallet/index';
+import { ChartContainer, HomeCointainer, HomeWrapper } from "./styles";
 
 export const Menssage = styled.span`
   text-align: center;
@@ -73,7 +73,7 @@ export const Home = () => {
       <HomeWrapper className="row mt-4 p-0 w-100 d-flex justify-content-center">
         <div className="col-12 col-md-8 p-0">
           <div className="d-flex justify-content-center flex-wrap flex-md-nowrap">
-            <Balance className="w-100 animate__fadeInUp" title="Carteira - Saldo" btnText="Trocar para moedas"/>
+            <MoneyWallet />
             <CoinWallet />
           </div>
           <ChartContainer className="mb-3">

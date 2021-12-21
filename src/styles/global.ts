@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
 
 export const GlobalStyle = createGlobalStyle`
+
 *{
     margin: 0;
     padding: 0;
@@ -112,12 +113,14 @@ export const Title = styled.h2`
 `;
 
 export const CoinValue = styled.span`
+  color: ${({ theme }) => theme.primary};
   font-size: 44px;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: ${({ theme }) => theme.moneyColor};
   line-height: 56px;
   text-align: center;
   font-weight: bold;
   font-variant: small-caps;
-  color: ${({ theme }) => theme.moneyColor};
 `;
 export const Row = styled.div`
   display: flex;
@@ -197,3 +200,12 @@ ConfigProvider.config({
     warningColor: theme.moneyColor,
   },
 });
+export const BalanceText = styled.div`
+  height: 68px;
+  display: flex;
+  font-size: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.moneyColor};
+  font-weight: bold;
+`;

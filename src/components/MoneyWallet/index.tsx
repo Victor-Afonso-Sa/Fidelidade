@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { AntButton, AntModal } from "../../styles/antDesign";
+import * as AlertService from "../Alert";
 import { Balance } from "../Cards/BalanceCard";
 import { TradeMoney } from "../Modal/components/TradeMoney";
-import * as AlertService from "../Alert";
-import { RiCloseCircleFill } from "react-icons/ri";
 
 type Props = {};
 export const MoneyWallet = (props: Props) => {
@@ -24,7 +24,7 @@ export const MoneyWallet = (props: Props) => {
         action={() => setModalVisible(true)}
       />
       <AntModal
-        title="Resgatar Agora"
+        title="Trocar para moedas"
         centered
         visible={isModalVisible}
         onCancel={() => {

@@ -22,12 +22,4 @@ export const BalanceFooter = styled.div`
   align-items: center;
   margin-top: 10px;
 `;
-export const BalanceText = styled.div`
-  height: 68px;
-  display: flex;
-  font-size: 2.5rem;
-  justify-content: center;
-  align-items: center;
-  color: ${({ theme }) => theme.moneyColor};
-  font-weight: bold;
-`;
+

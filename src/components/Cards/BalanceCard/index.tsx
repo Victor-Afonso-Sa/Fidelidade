@@ -1,14 +1,13 @@
 // @flow
 import * as React from "react";
 import { MdMoreVert } from "react-icons/md";
-import { Button } from "../../../styles/global";
+import { BalanceText, Button } from "../../../styles/global";
 import { DisplayCoins } from "../../DisplayCoins";
 import { CardsContainer } from "../styles";
 import {
   BalanceBody,
   BalanceFooter,
   BalanceHeader,
-  BalanceText,
   BalanceTitle,
 } from "./styles";
 type Props = {
