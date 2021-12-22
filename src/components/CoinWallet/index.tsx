@@ -5,7 +5,6 @@ import * as AlertService from "../Alert";
 import { RescueNow } from "../Modal/components/RescueNow";
 import { Balance } from "./../Cards/BalanceCard/index";
 
-
 export const CoinWallet = (props: any) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [canProceed, setCanProceed] = useState(false);
