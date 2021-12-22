@@ -17,12 +17,12 @@ export const BalanceText = styled.span`
   line-height: 28px;
   text-align: center;
   text-transform: capitalize;
-  color: ${({ theme }) => theme.primary};
+  color: #fff;
   margin-right: 8px;
 `;
 
 export const SecondaryBg = styled.div`
-  background-color: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.primary};
 `;
 
 export const RuleSystemText = styled.h3`
@@ -35,18 +35,16 @@ export const InformationLineIcon = styled(RiInformationLine)`
 `;
 
 export const ArrowRightIcon = styled(FaArrowRight)`
-  color: ${({ theme }) => theme.moneyColor};
+  color: ${({ theme }) => theme.primary};
 `;
 
 export const CashBackText = styled.span`
-  color: white;
+  color: ${({ theme }) => theme.moneyColor};
   font-size: 3em;
   font-weight: bold;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: ${({ theme }) => theme.moneyColor};
-  border: 2px solid ${({ theme }) => theme.moneyColor};
   border-radius: 8px;
-  padding: 10px ;
+  padding: 20px;
+  background: ${({ theme }) => theme.secondary};
   @media screen and (max-width: 576px) {
     font-size: 1.5em;
   }

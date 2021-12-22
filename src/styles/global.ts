@@ -1,15 +1,14 @@
-import { createGlobalStyle } from "styled-components";
-import styled from "styled-components";
 import { ConfigProvider } from "antd";
+import styled, { createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
 
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -20,7 +19,7 @@ body {
   }
 
   code {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   `;
 
@@ -114,18 +113,14 @@ export const Title = styled.h2`
 `;
 
 export const CoinValue = styled.span`
-  font-size: 32px;
-  color: #fff;
-  font-weight: 1000;
+  color: ${({ theme }) => theme.primary};
+  font-size: 44px;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: ${({ theme }) => theme.moneyColor};
   line-height: 56px;
   text-align: center;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  font-weight: bold;
   font-variant: small-caps;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: ${({ theme }) => theme.primary};
 `;
 export const Row = styled.div`
   display: flex;
@@ -170,7 +165,7 @@ export const Button = styled.button<ButtonModel>`
     outline ? theme[styled] : styled === "disabled" ? theme.gray : "white"};
   padding: 0.5em 0.7em;
   border-radius: 4px;
-  border: 2px solid ${({ styled, outline, theme }) => theme[styled]};
+  border: 2px solid ${({ styled, theme }) => theme[styled]};
 `;
 
 export const Tooltip = (component: string) => `
@@ -205,3 +200,12 @@ ConfigProvider.config({
     warningColor: theme.moneyColor,
   },
 });
+export const BalanceText = styled.div`
+  height: 68px;
+  display: flex;
+  font-size: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.moneyColor};
+  font-weight: bold;
+`;

@@ -9,11 +9,9 @@ export const CardsContainer = styled(Card)<Cards>`
   flex-direction: column;
   align-items: space-between;
   color: ${({color, theme}) => color ?? theme.primary};;
-  background-color: ${({background, theme}) => background ?? theme.background};
-  margin: 20px;
+  background-color: ${({background, theme}) => background ?? '#3D59AB'};
+  margin: 10px;
   border-radius: 10px;
-  width: 50%;
-  animation: fadeInUp;
   animation-duration: 1.2s;
   @media screen and (max-width: 576px) {
     width: 100%;
