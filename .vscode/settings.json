@@ -1,0 +1,39 @@
+{
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "editor.wordWrap": "on",
+  "editor.colorDecorators": false,
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.formatOnSave": true,
+  "editor.minimap.renderCharacters": false,
+  "prettier.jsxSingleQuote": false,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": false,
+  "prettier.semi": true,
+  "prettier.trailingComma": "all",
+  "workbench.activityBar.visible": true,
+  "workbench.statusBar.visible": true,
+  "html.autoClosingTags": false,
+  "diffEditor.renderSideBySide": true,
+  "javascript.preferences.quoteStyle": "double",
+  "files.associations": {
+      "*.js": "javascriptreact"
+  },
+  "breadcrumbs.enabled": false,
+  "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.sortOrder": "default",
+  "window.title": "${activeEditorMedium}${separator}${rootName}",
+  "html.format.wrapAttributes": "auto",
+  "html.format.wrapLineLength": 0,
+  "[html]": {
+      "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+}
