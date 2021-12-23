@@ -3,7 +3,7 @@ import { MenssageCard } from "../../components/Cards/MenssageCard";
 import { Extrato } from "../../components/Extrato";
 import { Header } from "../../components/Header";
 import { MoneyWallet } from "../../components/MoneyWallet";
-import { CoinWallet } from "./../../components/CoinWallet/index";
+import { CoinWallet } from "./../../components/CoinWallet";
 import ChartCoins from "./components/ChartCoins";
 import { HomeCointainer, HomeWrapper } from "./styles";
 
