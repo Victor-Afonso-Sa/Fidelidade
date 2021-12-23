@@ -1,24 +1,22 @@
 // @flow
-import * as React from "react";
+
+import { useNavigate } from "react-router-dom";
+import { MdArrowForward } from "react-icons/md";
+
+import { RegisterForm } from "../../components/RegisterForm";
+
+import Logo from "../../assets/logo.svg";
+
 import {
   RegisterContainer,
   RegisterFormContainer,
   RegisterLogoContainer,
   FormHeader,
 } from "./styles";
-import Logo from "../../assets/logo.svg";
-import { MdArrowForward } from "react-icons/md";
-import { RegisterForm } from "../../components/RegisterForm";
-import { RegisterType } from "../../types/RegisterTypes";
-import { useNavigate } from "react-router-dom";
-type Props = {};
 
-export const Register = (props: Props) => {
-  let navigate = useNavigate();
+export const Register = () => {
+  const navigate = useNavigate();
 
-  const onSubmit = (data: RegisterType) => {
-    console.log(data);
-  };
   return (
     <RegisterContainer>
       <RegisterLogoContainer className="col-5 d-none d-md-flex">
@@ -28,7 +26,11 @@ export const Register = (props: Props) => {
         <FormHeader className="mb-3">
           <div className="d-flex justify-content-between m-2">
             <h4 className="fw-bold">Novo Usuário</h4>
-            <MdArrowForward className="hoverable-icon p-1" size={29} onClick={() => navigate("/login")} />
+            <MdArrowForward
+              className="hoverable-icon p-1"
+              size={29}
+              onClick={() => navigate("/login")}
+            />
           </div>
           <div className="d-flex justify-content-center m-2 text-capitalize">
             <h5 className="fw-light">
@@ -40,7 +42,7 @@ export const Register = (props: Props) => {
           </div>
         </FormHeader>
         <div className="d-flex justify-content-center m-4">
-          <RegisterForm onSubmit={onSubmit} btnText="Cadastrar" />
+          <RegisterForm btnText="Cadastrar" />
         </div>
       </RegisterFormContainer>
     </RegisterContainer>
