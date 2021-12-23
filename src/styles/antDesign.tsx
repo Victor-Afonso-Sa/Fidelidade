@@ -18,7 +18,7 @@ export const AntModal = styled(Modal)`
       background-color: ${({ theme }) => theme.primary};
       font-style: normal;
       font-weight: normal;
-      font-size: 34px;
+      font-size: 1.5rem;
       line-height: 56px;
       display: flex;
       align-items: center;
