@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
-import { AntButton, AntModal } from "../../styles/antDesign";
+import { useWallet } from "../../contexts/useWallet";
 import * as AlertService from "../Alert";
 import { RescueNow } from "../Modal/components/RescueNow";
-import { Balance } from "./../Cards/BalanceCard/index";
+import { Balance } from "./../Cards/BalanceCard";
+
+import { AntButton, AntModal } from "../../styles/antDesign";
 
 export const CoinWallet = (props: any) => {
+  const { coinsWallet } = useWallet();
   const [isModalVisible, setModalVisible] = useState(false);
   const [canProceed, setCanProceed] = useState(false);
 
@@ -19,6 +22,7 @@ export const CoinWallet = (props: any) => {
         className="w-100 animate__fadeInUp"
         title="Moedas - Saldo"
         btnText="Resgatar"
+        amount={String(coinsWallet?.amount) || "0"}
         isCoins
         action={() => setModalVisible(true)}
       />

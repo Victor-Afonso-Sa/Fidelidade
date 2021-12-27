@@ -1,13 +1,14 @@
 // @flow
 import * as React from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { useWallet } from "../../contexts/useWallet";
 import { AntButton, AntModal } from "../../styles/antDesign";
 import * as AlertService from "../Alert";
 import { Balance } from "../Cards/BalanceCard";
 import { TradeMoney } from "../Modal/components/TradeMoney";
 
-type Props = {};
-export const MoneyWallet = (props: Props) => {
+export const MoneyWallet = () => {
+  const { moneyWallet } = useWallet();
   const [isModalVisible, setModalVisible] = React.useState(false);
   const [canProceed, setCanProceed] = React.useState(false);
 
@@ -21,6 +22,7 @@ export const MoneyWallet = (props: Props) => {
         className="w-100 animate__fadeInUp"
         title="Carteira - Saldo"
         btnText="Trocar para moedas"
+        amount={moneyWallet?.amountFormatted || "R$ 0,00"}
         action={() => setModalVisible(true)}
       />
       <AntModal

@@ -1,8 +1,8 @@
-// @flow
-import * as React from "react";
 import { MdMoreVert } from "react-icons/md";
-import { BalanceText, Button } from "../../../styles/global";
+
 import { DisplayCoins } from "../../DisplayCoins";
+
+import { BalanceText, Button } from "../../../styles/global";
 import { CardsContainer } from "../styles";
 import {
   BalanceBody,
@@ -10,10 +10,12 @@ import {
   BalanceHeader,
   BalanceTitle,
 } from "./styles";
+
 type Props = {
   className?: string;
   title: string;
   btnText: string;
+  amount: string;
   isCoins?: boolean;
   action?: any;
 };
@@ -22,6 +24,7 @@ export const Balance = ({
   className,
   title,
   btnText,
+  amount,
   isCoins = false,
   action,
 }: Props) => {
@@ -33,9 +36,9 @@ export const Balance = ({
       </BalanceHeader>
       <BalanceBody>
         {isCoins ? (
-          <DisplayCoins amount={100} />
+          <DisplayCoins amount={Number(amount)} />
         ) : (
-          <BalanceText>R$ 200.00</BalanceText>
+          <BalanceText>{amount}</BalanceText>
         )}
       </BalanceBody>
       <BalanceFooter>
