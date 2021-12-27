@@ -8,6 +8,20 @@ interface PaymentProps {
 export const Content = styled.div`
   width: 80%;
   margin: 0 20px;
+  .content-container {
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5e5e5;
+    border-radius: 8px;
+  }
+  @media screen and (max-width: 600px) {
+    .content-container {
+      min-width: 100%;
+    }
+  }
 `;
 
 export const PaymentWrapper = styled.div`
@@ -22,10 +36,10 @@ export const Payment = styled.div<PaymentProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: ${(props) => (props.active ? `2px solid ${props.color}` : "")};
+  border: ${(props) => (props.active ? `` : `2px solid ${props.color}`)};
   border-radius: 10px 10px 0px 0px;
   padding: 5px 40px 5px 40px;
-  background-color: ${(props) => (props.active ? "" : "#E5E5E5")};
+  background-color: ${(props) => (props.active ? "#E5E5E5" : "")};
   height: 60px;
   cursor: pointer;
   span {
@@ -43,28 +57,4 @@ export const Payment = styled.div<PaymentProps>`
 
 export const Title = styled.span`
   margin-top: 5px;
-`;
-
-export const PixKey = styled.div`
-  display: flex;
-  background-color: ${({ theme }) => theme.primary};
-  justify: center;
-  align-items: center;
-  padding: 8px 10px 8px 10px;
-  .pix-text {
-    margin-left: 10px;
-  }
-  .delete-icon {
-    margin-left: 30px;
-  }
-  .text {
-    color: ${({ theme }) => theme.moneyColor};
-  }
-  .text-2 {
-    color: #fff;
-  }
-`;
-
-export const PixTitle = styled.div`
-  color: #fff;
 `;
