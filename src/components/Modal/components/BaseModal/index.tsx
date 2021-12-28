@@ -1,29 +1,29 @@
-// @flow
-import * as React from "react";
 import { UseFormRegister } from "react-hook-form";
-import { Input } from "../../Input";
+
 import {
   ArrowRightIcon,
   BalanceText,
   InformationLineIcon,
   RuleSystemText,
   SecondaryBg,
-} from "./RescueNow/style";
+} from "../RescueNow/style";
+
+import { InputWrapper } from "./styles";
+
 type Props = {
   modalText: string;
   balance: any;
   InputName: string;
   cashValue: any;
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
   onValueChange?: any;
   label: string;
   mask?: string;
 };
+
 export const BaseModal = ({
   modalText,
   balance,
-  InputName,
-  register,
   onValueChange,
   cashValue,
   mask,
@@ -45,14 +45,17 @@ export const BaseModal = ({
           </div>
         </SecondaryBg>
         <div className="d-flex align-items-center justify-content-around pt-2 my-2">
-          <Input
-            name={InputName}
-            register={register}
-            label={label}
-            type="number"
-            customOnChange={onValueChange}
-            mask={mask}
-          />
+          <InputWrapper>
+            <div className="form-floating mb-3">
+              <input
+                type="number"
+                name="amount"
+                onChange={(e) => onValueChange(e.target.value)}
+                className="form-control"
+              />
+              <label htmlFor="amount">{label}</label>
+            </div>
+          </InputWrapper>
           <ArrowRightIcon className="d-32 mx-1"></ArrowRightIcon>
           {cashValue}
         </div>

@@ -1,4 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { toast } from "react-toastify";
+
 import { formatCurrencyPtBr } from "../utils/formatCurrencyPtBr";
 
 enum WalletType {
@@ -18,8 +26,12 @@ type Wallet = {
 };
 
 type WalletContextData = {
-  coinsWallet: Wallet | undefined;
-  moneyWallet: Wallet | undefined;
+  coinsWallet: Wallet;
+  moneyWallet: Wallet;
+  handleConvertMoneyToCoin: (value: string) => void;
+  canProceedConvertMoneyToCoin: boolean;
+  coinsValue: number;
+  handleTransferMoneyWalletToCoinsAccount: () => void;
 };
 
 type WalletProviderProps = {
@@ -29,8 +41,48 @@ type WalletProviderProps = {
 const WalletContext = createContext({} as WalletContextData);
 
 function WalletProvider({ children }: WalletProviderProps) {
-  const [coinsWallet, setCoinsWallet] = useState<Wallet>();
-  const [moneyWallet, setMoneyWallet] = useState<Wallet>();
+  const [coinsWallet, setCoinsWallet] = useState<Wallet>({} as Wallet);
+  const [moneyWallet, setMoneyWallet] = useState<Wallet>({} as Wallet);
+  const [coinsValue, setCoinsValue] = useState(0);
+  const [canProceedConvertMoneyToCoin, setCanProceedConvertMoneyToCoin] =
+    useState(false);
+
+  const handleConvertMoneyToCoin = useCallback(
+    (value: string) => {
+      if (moneyWallet && moneyWallet?.amount < Number(value)) {
+        setCanProceedConvertMoneyToCoin(false);
+        toast.warning("Saldo insuficiente");
+        return;
+      }
+      setCanProceedConvertMoneyToCoin(true);
+      setCoinsValue(value ? parseInt(value) * 100 : 0);
+    },
+    [moneyWallet]
+  );
+
+  const handleTransferMoneyWalletToCoinsAccount = useCallback(() => {
+    if (moneyWallet.amount === 0) {
+      toast.warning("Saldo insuficiente");
+      return;
+    }
+
+    const coinsWalletUpdated: Wallet = {
+      ...coinsWallet,
+      amount: coinsWallet?.amount + coinsValue,
+    };
+
+    setCoinsWallet(coinsWalletUpdated);
+
+    const amount = moneyWallet?.amount - coinsValue / 100;
+
+    const moneyWalletUpdated: Wallet = {
+      ...moneyWallet,
+      amount,
+      amountFormatted: formatCurrencyPtBr(amount),
+    };
+
+    setMoneyWallet(moneyWalletUpdated);
+  }, [coinsValue, coinsWallet, moneyWallet]);
 
   useEffect(() => {
     async function loadWallet() {
@@ -67,20 +119,33 @@ function WalletProvider({ children }: WalletProviderProps) {
         },
       ];
 
-      setCoinsWallet(
-        wallets.find((wallet) => wallet.walletTypeId === WalletType.COINS)
-      );
+      const coinsWallet =
+        wallets.find((wallet) => wallet.walletTypeId === WalletType.COINS) ||
+        ({} as Wallet);
 
-      setMoneyWallet(
-        wallets.find((wallet) => wallet.walletTypeId === WalletType.MONEY)
-      );
+      setCoinsWallet(coinsWallet);
+
+      const moneyWallet =
+        wallets.find((wallet) => wallet.walletTypeId === WalletType.MONEY) ||
+        ({} as Wallet);
+
+      setMoneyWallet(moneyWallet);
     }
 
     loadWallet();
   }, []);
 
   return (
-    <WalletContext.Provider value={{ coinsWallet, moneyWallet }}>
+    <WalletContext.Provider
+      value={{
+        coinsWallet,
+        moneyWallet,
+        handleConvertMoneyToCoin,
+        canProceedConvertMoneyToCoin,
+        coinsValue,
+        handleTransferMoneyWalletToCoinsAccount,
+      }}
+    >
       {children}
     </WalletContext.Provider>
   );
