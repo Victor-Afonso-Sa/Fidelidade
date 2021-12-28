@@ -1,6 +1,10 @@
 // @flow
-import * as React from "react";
 
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  InputHTMLAttributes,
+} from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 import ReactInputMask from "react-input-mask";
 import { CustomInput, InputWrapper } from "./styles";
@@ -9,7 +13,7 @@ type Props = {
   type: string;
   label: string;
   name: string;
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
   inputClassName?: string;
   className?: string;
   placeholder?: string;
@@ -18,37 +22,64 @@ type Props = {
   mask?: string;
   error?: FieldError;
   customOnChange?: Function;
-};
-export const Input = (props: Props) => {
-  const register = props.register(props.name, {
-    onChange: (e) => props.customOnChange ? props.customOnChange(e.target.value) : undefined,
-  });
+} & InputHTMLAttributes<HTMLInputElement>;
 
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  {
+    name,
+    label,
+    type,
+    inputClassName,
+    className,
+    placeholder,
+    value,
+    readOnly,
+    mask,
+    onChange,
+    onBlur,
+    error = null,
+    customOnChange,
+    register,
+    ...rest
+  },
+  ref
+) => {
   return (
     <InputWrapper>
-      <div className={`form-floating mb-3 ${props.className ?? ""}`}>
+      <div className={`form-floating mb-3 ${className ?? ""}`}>
         <ReactInputMask
-          mask={props.mask || ""}
-          onChange={register.onChange}
-          onBlur={register.onBlur}
-          readOnly={props.readOnly}
+          mask={mask || ""}
+          onChange={
+            register
+              ? register(name, {
+                  onChange: (e) =>
+                    customOnChange ? customOnChange(e.target.value) : undefined,
+                }).onChange
+              : onChange
+          }
+          onBlur={onBlur}
+          readOnly={readOnly}
           maskPlaceholder={null}
         >
           {() => (
             <CustomInput
-              type={props.type}
-              className={`${props.inputClassName ?? ""} form-control ${
-                props.error ? "is-invalid" : ""
+              type={type}
+              className={`${inputClassName ?? ""} form-control ${
+                error ? "is-invalid" : ""
               } `}
-              id={props.name}
-              {...register}
-              placeholder={props.placeholder}
-              readOnly={props.readOnly}
+              placeholder={placeholder}
+              readOnly={readOnly}
+              id={name}
+              name={name}
+              ref={ref}
+              {...rest}
             />
           )}
         </ReactInputMask>
-        <label htmlFor={props.name}>{props.label}</label>
+        <label htmlFor={name}>{label}</label>
       </div>
     </InputWrapper>
   );
 };
+
+export const Input = forwardRef(InputBase);
