@@ -1,5 +1,7 @@
 import { TransferContainer } from "./styles";
 import { Select } from "antd";
+import MaskedInput from "antd-mask-input";
+import { AntButton } from "../../../../styles/antDesign";
 
 const { Option } = Select;
 
@@ -23,14 +25,14 @@ export const BankTransfer = () => {
             <span className="text">Agência:</span>
           </div>
           <div>
-            <input type="text" id="agencia" name="agencia" />
+            <MaskedInput mask="1111" type="text" id="agencia" name="agencia" />
           </div>
 
           <div>
             <span className="text">Conta:</span>
           </div>
           <div>
-            <input type="text" id="conta" name="conta" />
+            <MaskedInput mask="1111111-1" type="text" id="conta" name="conta" />
           </div>
 
           <div>
@@ -89,6 +91,11 @@ export const BankTransfer = () => {
           </div>
           <div>
             <input type="text" id="identificacao" name="identificacao" />
+          </div>
+          <div className="transferir">
+            <AntButton key="submit" type="primary" styled="success">
+              Transferir
+            </AntButton>
           </div>
         </form>
       </TransferContainer>

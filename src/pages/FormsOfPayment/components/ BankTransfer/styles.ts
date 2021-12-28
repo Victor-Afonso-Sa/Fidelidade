@@ -26,6 +26,11 @@ export const TransferContainer = styled.div`
     div + div {
       margin-top: 10px;
     }
+    .transferir {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .text {

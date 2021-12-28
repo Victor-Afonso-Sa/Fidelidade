@@ -8,13 +8,16 @@ import {
 } from "./styles";
 import { FaKey } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
-import { Modal, Button } from "antd";
+import { AntButton, AntModal } from "../../../../styles/antDesign";
 import { useState } from "react";
+import { RiCloseCircleFill } from "react-icons/ri";
+import * as AlertService from "../../../../components/Alert";
 
 export const PixKey = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [modalDelete, setModalDelete] = useState<boolean>(false);
   const [activeKeyType, setActiveKeyType] = useState<string>("cpf");
+  const [canProceed] = useState(false);
   return (
     <Container>
       <div className="content-container pt-4 pb-4">
@@ -42,22 +45,40 @@ export const PixKey = () => {
           <div className="new-key">Cadastrar chave</div>
         </PixContainer>
       </div>
-      <Modal
+      <AntModal
         title="Nova chave"
+        centered
         visible={isModalVisible}
-        onOk={() => setIsModalVisible(true)}
-        onCancel={() => setIsModalVisible(false)}
+        onCancel={() => {
+          setIsModalVisible(false);
+        }}
+        closeIcon={<RiCloseCircleFill />}
         footer={[
-          <Button key="back" onClick={() => setIsModalVisible(false)}>
-            Cancelar
-          </Button>,
-          <Button
+          <AntButton
+            key="back"
+            type="default"
+            styled="primary"
+            onClick={() => {
+              setIsModalVisible(false);
+            }}
+          >
+            Fechar
+          </AntButton>,
+          <AntButton
             key="submit"
             type="primary"
-            onClick={() => setIsModalVisible(false)}
+            styled="success"
+            disabled={!canProceed}
+            onClick={() => {
+              setIsModalVisible(false);
+              AlertService.presentAlert({
+                type: "success",
+                message: "Chave cadastrada com sucesso!",
+              });
+            }}
           >
             Cadastrar
-          </Button>,
+          </AntButton>,
         ]}
       >
         <ModalContent>
@@ -95,27 +116,44 @@ export const PixKey = () => {
             placeholder="Entre com o valor da chave"
           />
         </NewKey>
-      </Modal>
-      <Modal
-        title="Deletar chave"
+      </AntModal>
+      <AntModal
+        title="Nova chave"
+        centered
         visible={modalDelete}
-        onOk={() => setModalDelete(true)}
-        onCancel={() => setModalDelete(false)}
+        onCancel={() => {
+          setModalDelete(false);
+        }}
+        closeIcon={<RiCloseCircleFill />}
         footer={[
-          <Button key="back" onClick={() => setModalDelete(false)}>
+          <AntButton
+            key="back"
+            type="default"
+            styled="primary"
+            onClick={() => {
+              setModalDelete(false);
+            }}
+          >
             Cancelar
-          </Button>,
-          <Button
+          </AntButton>,
+          <AntButton
             key="submit"
             type="primary"
-            onClick={() => setModalDelete(false)}
+            styled="success"
+            onClick={() => {
+              setModalDelete(false);
+              AlertService.presentAlert({
+                type: "success",
+                message: "Chave deletada com sucesso!",
+              });
+            }}
           >
             Deletar
-          </Button>,
+          </AntButton>,
         ]}
       >
         Tem certeza que deseja deletar a chave?
-      </Modal>
+      </AntModal>
     </Container>
   );
 };
