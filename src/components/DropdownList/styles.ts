@@ -18,7 +18,7 @@ export const DropdownItemContainer = styled.div`
   align-items: baseline;
   justify-content: space-between;
   border-bottom: 1pt solid ${({ theme }) => theme.gray};
-  padding: 20px 10px;
+  padding: 20px 5px;
   cursor: pointer;
   @media screen and (max-width: 992px) {
     justify-content: center;
@@ -30,6 +30,10 @@ export const DropdownItemContainer = styled.div`
 export const ItemTitle = styled.span`
   color: ${({ theme }) => theme.primary};
   font-weight: bold;
+  font-size: 12px;
+  @media screen and (max-width: 1155px) {
+    font-size: 9px;
+  }
 `;
 export const ItemIcon = styled.span`
   color: ${({ theme }) => theme.gray};
@@ -37,7 +41,8 @@ export const ItemIcon = styled.span`
 `;
 
 export const DropdownMenu = styled(Menu)`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   border: 0;
   padding: 5px;

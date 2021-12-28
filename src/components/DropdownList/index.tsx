@@ -3,6 +3,8 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { DropdownItem } from "./DropdownItem";
 import { DropdownMenu } from "./styles";
+import { MdAccountBox, MdNotifications } from "react-icons/md";
+import { BsBank2 } from "react-icons/bs";
 
 type Props = {};
 
@@ -14,18 +16,18 @@ export const DropdownList = (props: Props) => {
         className="first"
         onClick={() => navigate("/perfil/editar")}
         label="Ver perfil"
-        icon="MdAccountBox"
+        icon={<MdAccountBox />}
       />
       <DropdownItem
         onClick={() => navigate("/perfil/notificacoes")}
         label="Notificações"
-        icon="MdNotifications"
+        icon={<MdNotifications />}
         badgeCount={18}
       />
       <DropdownItem
-        onClick={() => navigate("/perfil/configuracao")}
-        label="Configurações"
-        icon="MdSettings"
+        onClick={() => navigate("/perfil/formas-pagamento")}
+        label="Formas de Pagamento"
+        icon={<BsBank2 />}
       />
     </DropdownMenu>
   );
