@@ -34,7 +34,7 @@ export const CoinWallet = () => {
         className="w-100 animate__fadeInUp"
         title="Moedas - Saldo"
         btnText="Resgatar"
-        amount={String(coinsWallet?.amount) || "0"}
+        amount={coinsWallet?.amount}
         isCoins
         action={toggleRescueNowModal}
       />

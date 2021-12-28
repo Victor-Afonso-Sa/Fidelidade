@@ -22,7 +22,7 @@ type Wallet = {
   walletTypeId: number;
   name: string;
   amount: number;
-  amountFormatted: string;
+  amountFormatted?: string;
 };
 
 type WalletContextData = {
@@ -110,7 +110,7 @@ function WalletProvider({ children }: WalletProviderProps) {
       return;
     }
 
-    const amountMoney = moneyWallet?.amount + Number(cashValue);
+    const amountMoney = moneyWallet?.amount + cashValue;
 
     const moneyWalletUpdated: Wallet = {
       ...moneyWallet,
@@ -125,7 +125,6 @@ function WalletProvider({ children }: WalletProviderProps) {
     const coinsWalletUpdated: Wallet = {
       ...coinsWallet,
       amount: amountCoins,
-      amountFormatted: formatCurrencyPtBr(amountCoins),
     };
 
     setCoinsWallet(coinsWalletUpdated);

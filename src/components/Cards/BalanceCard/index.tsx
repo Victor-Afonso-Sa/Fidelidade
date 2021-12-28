@@ -2,6 +2,8 @@ import { MdMoreVert } from "react-icons/md";
 
 import { DisplayCoins } from "../../DisplayCoins";
 
+import { formatCurrencyPtBr } from "../../../utils/formatCurrencyPtBr";
+
 import { BalanceText, Button } from "../../../styles/global";
 import { CardsContainer } from "../styles";
 import {
@@ -15,7 +17,7 @@ type Props = {
   className?: string;
   title: string;
   btnText: string;
-  amount: string;
+  amount: number;
   isCoins?: boolean;
   action?: any;
 };
@@ -36,9 +38,9 @@ export const Balance = ({
       </BalanceHeader>
       <BalanceBody>
         {isCoins ? (
-          <DisplayCoins amount={Number(amount)} />
+          <DisplayCoins amount={amount} />
         ) : (
-          <BalanceText>{amount}</BalanceText>
+          <BalanceText>{amount ? formatCurrencyPtBr(amount) : 0}</BalanceText>
         )}
       </BalanceBody>
       <BalanceFooter>

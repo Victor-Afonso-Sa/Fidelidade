@@ -33,7 +33,7 @@ export const MoneyWallet = () => {
         className="w-100 animate__fadeInUp"
         title="Carteira - Saldo"
         btnText="Trocar para moedas"
-        amount={moneyWallet?.amountFormatted || "R$ 0,00"}
+        amount={moneyWallet?.amount}
         action={toggleTradeMoneyModal}
       />
 
