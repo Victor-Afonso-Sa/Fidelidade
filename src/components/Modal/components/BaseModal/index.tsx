@@ -1,6 +1,3 @@
-import { useCallback, useEffect, useState } from "react";
-import { UseFormRegister } from "react-hook-form";
-
 import {
   ArrowRightIcon,
   BalanceText,
@@ -16,7 +13,6 @@ type Props = {
   balance: any;
   InputName: string;
   cashValue: any;
-  register?: UseFormRegister<any>;
   onValueChange?: any;
   label: string;
   mask?: string;
