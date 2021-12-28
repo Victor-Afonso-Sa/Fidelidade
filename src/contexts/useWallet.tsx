@@ -29,9 +29,13 @@ type WalletContextData = {
   coinsWallet: Wallet;
   moneyWallet: Wallet;
   handleConvertMoneyToCoin: (value: string) => void;
+  handleConvertCoinsToMoney: (value: string) => void;
   canProceedConvertMoneyToCoin: boolean;
+  canProceedConvertCoinsToMoney: boolean;
   coinsValue: number;
+  cashValue: number;
   handleTransferMoneyWalletToCoinsWallet: () => void;
+  handleTransferCoinsWalletToMoneyWallet: () => void;
 };
 
 type WalletProviderProps = {
@@ -44,7 +48,10 @@ function WalletProvider({ children }: WalletProviderProps) {
   const [coinsWallet, setCoinsWallet] = useState<Wallet>({} as Wallet);
   const [moneyWallet, setMoneyWallet] = useState<Wallet>({} as Wallet);
   const [coinsValue, setCoinsValue] = useState(0);
+  const [cashValue, setCashValue] = useState(0);
   const [canProceedConvertMoneyToCoin, setCanProceedConvertMoneyToCoin] =
+    useState(false);
+  const [canProceedConvertCoinsToMoney, setCanProceedConvertCoinsToMoney] =
     useState(false);
 
   const handleConvertMoneyToCoin = useCallback(
@@ -58,6 +65,19 @@ function WalletProvider({ children }: WalletProviderProps) {
       setCoinsValue(value ? parseInt(value) * 100 : 0);
     },
     [moneyWallet]
+  );
+
+  const handleConvertCoinsToMoney = useCallback(
+    (value: string) => {
+      if (coinsWallet?.amount < Number(value)) {
+        setCanProceedConvertCoinsToMoney(false);
+        toast.warning("Saldo insuficiente");
+        return;
+      }
+      setCanProceedConvertCoinsToMoney(true);
+      setCashValue(value ? parseInt(value) / 100 : 0 / 100);
+    },
+    [coinsWallet]
   );
 
   const handleTransferMoneyWalletToCoinsWallet = useCallback(() => {
@@ -83,6 +103,33 @@ function WalletProvider({ children }: WalletProviderProps) {
 
     setMoneyWallet(moneyWalletUpdated);
   }, [coinsValue, coinsWallet, moneyWallet]);
+
+  const handleTransferCoinsWalletToMoneyWallet = useCallback(() => {
+    if (coinsWallet.amount === 0) {
+      toast.warning("Saldo insuficiente");
+      return;
+    }
+
+    const amountMoney = moneyWallet?.amount + Number(cashValue);
+
+    const moneyWalletUpdated: Wallet = {
+      ...moneyWallet,
+      amount: amountMoney,
+      amountFormatted: formatCurrencyPtBr(amountMoney),
+    };
+
+    setMoneyWallet(moneyWalletUpdated);
+
+    const amountCoins = coinsWallet?.amount - Number(cashValue) * 100;
+
+    const coinsWalletUpdated: Wallet = {
+      ...coinsWallet,
+      amount: amountCoins,
+      amountFormatted: formatCurrencyPtBr(amountCoins),
+    };
+
+    setCoinsWallet(coinsWalletUpdated);
+  }, [cashValue, coinsWallet, moneyWallet]);
 
   useEffect(() => {
     async function loadWallet() {
@@ -142,8 +189,12 @@ function WalletProvider({ children }: WalletProviderProps) {
         moneyWallet,
         handleConvertMoneyToCoin,
         canProceedConvertMoneyToCoin,
+        canProceedConvertCoinsToMoney,
         coinsValue,
+        cashValue,
         handleTransferMoneyWalletToCoinsWallet,
+        handleConvertCoinsToMoney,
+        handleTransferCoinsWalletToMoneyWallet,
       }}
     >
       {children}

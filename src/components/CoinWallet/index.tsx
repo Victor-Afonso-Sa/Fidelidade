@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useWallet } from "../../contexts/useWallet";
 import * as AlertService from "../Alert";
@@ -7,14 +7,26 @@ import { Balance } from "./../Cards/BalanceCard";
 
 import { AntButton, AntModal } from "../../styles/antDesign";
 
-export const CoinWallet = (props: any) => {
-  const { coinsWallet } = useWallet();
+export const CoinWallet = () => {
+  const {
+    coinsWallet,
+    canProceedConvertCoinsToMoney,
+    handleTransferCoinsWalletToMoneyWallet,
+  } = useWallet();
   const [isModalVisible, setModalVisible] = useState(false);
-  const [canProceed, setCanProceed] = useState(false);
 
-  function onModalContentEmitter(params: any) {
-    setCanProceed(params);
-  }
+  const toggleRescueNowModal = useCallback(() => {
+    setModalVisible((prevState) => !prevState);
+  }, []);
+
+  const handleConvertCoinsToMoney = useCallback(() => {
+    handleTransferCoinsWalletToMoneyWallet();
+    setModalVisible(false);
+    AlertService.presentAlert({
+      type: "success",
+      message: "Resgate realizado com sucesso!",
+    });
+  }, [handleTransferCoinsWalletToMoneyWallet]);
 
   return (
     <>
@@ -24,24 +36,20 @@ export const CoinWallet = (props: any) => {
         btnText="Resgatar"
         amount={String(coinsWallet?.amount) || "0"}
         isCoins
-        action={() => setModalVisible(true)}
+        action={toggleRescueNowModal}
       />
       <AntModal
         title="Resgatar Agora"
         centered
         visible={isModalVisible}
-        onCancel={() => {
-          setModalVisible(false);
-        }}
+        onCancel={toggleRescueNowModal}
         closeIcon={<RiCloseCircleFill />}
         footer={[
           <AntButton
             key="back"
             type="default"
             styled="primary"
-            onClick={() => {
-              setModalVisible(false);
-            }}
+            onClick={toggleRescueNowModal}
           >
             Fechar
           </AntButton>,
@@ -49,20 +57,14 @@ export const CoinWallet = (props: any) => {
             key="submit"
             type="primary"
             styled="success"
-            disabled={!canProceed}
-            onClick={() => {
-              setModalVisible(false);
-              AlertService.presentAlert({
-                type: "success",
-                message: "Resgate realizado com sucesso!",
-              });
-            }}
+            disabled={!canProceedConvertCoinsToMoney}
+            onClick={handleConvertCoinsToMoney}
           >
             Finalizar
           </AntButton>,
         ]}
       >
-        <RescueNow value={3000} emitter={onModalContentEmitter} />
+        <RescueNow />
       </AntModal>
     </>
   );
