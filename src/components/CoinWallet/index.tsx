@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { toast } from "react-toastify";
+
 import { useWallet } from "../../contexts/useWallet";
 import * as AlertService from "../Alert";
 import { RescueNow } from "../Modal/components/RescueNow";
@@ -20,12 +22,16 @@ export const CoinWallet = () => {
   }, []);
 
   const handleConvertCoinsToMoney = useCallback(() => {
-    handleTransferCoinsWalletToMoneyWallet();
-    setModalVisible(false);
-    AlertService.presentAlert({
-      type: "success",
-      message: "Resgate realizado com sucesso!",
-    });
+    try {
+      handleTransferCoinsWalletToMoneyWallet();
+      setModalVisible(false);
+      AlertService.presentAlert({
+        type: "success",
+        message: "Resgate realizado com sucesso!",
+      });
+    } catch (error: any) {
+      toast.warning(error.message);
+    }
   }, [handleTransferCoinsWalletToMoneyWallet]);
 
   return (

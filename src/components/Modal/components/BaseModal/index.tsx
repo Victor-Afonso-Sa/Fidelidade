@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from "react";
 import { UseFormRegister } from "react-hook-form";
 
 import {
@@ -48,6 +49,8 @@ export const BaseModal = ({
           <InputWrapper>
             <div className="form-floating mb-3">
               <input
+                autoFocus
+                autoComplete="false"
                 type="number"
                 name="amount"
                 onChange={(e) => onValueChange(e.target.value)}
@@ -56,7 +59,7 @@ export const BaseModal = ({
               <label htmlFor="amount">{label}</label>
             </div>
           </InputWrapper>
-          <ArrowRightIcon className="d-32 mx-1"></ArrowRightIcon>
+          <ArrowRightIcon className="d-32 mx-1" />
           {cashValue}
         </div>
       </div>

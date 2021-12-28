@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 import { useWallet } from "../../contexts/useWallet";
 import { AntButton, AntModal } from "../../styles/antDesign";
 import * as AlertService from "../Alert";
@@ -19,12 +20,16 @@ export const MoneyWallet = () => {
   }, []);
 
   const handleConvertMoneyToCoin = useCallback(() => {
-    handleTransferMoneyWalletToCoinsWallet();
-    setModalVisible(false);
-    AlertService.presentAlert({
-      type: "success",
-      message: "Resgate realizado com sucesso!",
-    });
+    try {
+      handleTransferMoneyWalletToCoinsWallet();
+      setModalVisible(false);
+      AlertService.presentAlert({
+        type: "success",
+        message: "Troca realizada com sucesso!",
+      });
+    } catch (error: any) {
+      toast.warning(error.message);
+    }
   }, [handleTransferMoneyWalletToCoinsWallet]);
 
   return (

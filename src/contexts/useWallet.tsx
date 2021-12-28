@@ -81,9 +81,9 @@ function WalletProvider({ children }: WalletProviderProps) {
   );
 
   const handleTransferMoneyWalletToCoinsWallet = useCallback(() => {
-    if (moneyWallet.amount === 0) {
-      toast.warning("Saldo insuficiente");
-      return;
+    if (moneyWallet.amount <= 0) {
+      setCanProceedConvertMoneyToCoin(false);
+      throw new Error("Saldo insuficiente");
     }
 
     const coinsWalletUpdated: Wallet = {
@@ -105,9 +105,9 @@ function WalletProvider({ children }: WalletProviderProps) {
   }, [coinsValue, coinsWallet, moneyWallet]);
 
   const handleTransferCoinsWalletToMoneyWallet = useCallback(() => {
-    if (coinsWallet.amount === 0) {
-      toast.warning("Saldo insuficiente");
-      return;
+    if (coinsWallet.amount <= 0) {
+      setCanProceedConvertCoinsToMoney(false);
+      throw new Error("Saldo insuficiente");
     }
 
     const amountMoney = moneyWallet?.amount + cashValue;
