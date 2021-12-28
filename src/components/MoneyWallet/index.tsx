@@ -19,9 +19,9 @@ export const MoneyWallet = () => {
     setModalVisible((prevState) => !prevState);
   }, []);
 
-  const handleConvertMoneyToCoin = useCallback(() => {
+  const handleConvertMoneyToCoin = useCallback(async () => {
     try {
-      handleTransferMoneyWalletToCoinsWallet();
+      await handleTransferMoneyWalletToCoinsWallet();
       setModalVisible(false);
       AlertService.presentAlert({
         type: "success",
