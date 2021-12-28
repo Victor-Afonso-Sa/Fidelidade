@@ -31,7 +31,7 @@ type WalletContextData = {
   handleConvertMoneyToCoin: (value: string) => void;
   canProceedConvertMoneyToCoin: boolean;
   coinsValue: number;
-  handleTransferMoneyWalletToCoinsAccount: () => void;
+  handleTransferMoneyWalletToCoinsWallet: () => void;
 };
 
 type WalletProviderProps = {
@@ -60,7 +60,7 @@ function WalletProvider({ children }: WalletProviderProps) {
     [moneyWallet]
   );
 
-  const handleTransferMoneyWalletToCoinsAccount = useCallback(() => {
+  const handleTransferMoneyWalletToCoinsWallet = useCallback(() => {
     if (moneyWallet.amount === 0) {
       toast.warning("Saldo insuficiente");
       return;
@@ -143,7 +143,7 @@ function WalletProvider({ children }: WalletProviderProps) {
         handleConvertMoneyToCoin,
         canProceedConvertMoneyToCoin,
         coinsValue,
-        handleTransferMoneyWalletToCoinsAccount,
+        handleTransferMoneyWalletToCoinsWallet,
       }}
     >
       {children}

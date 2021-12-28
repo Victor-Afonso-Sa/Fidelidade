@@ -10,7 +10,7 @@ export const MoneyWallet = () => {
   const {
     moneyWallet,
     canProceedConvertMoneyToCoin,
-    handleTransferMoneyWalletToCoinsAccount,
+    handleTransferMoneyWalletToCoinsWallet,
   } = useWallet();
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -19,13 +19,13 @@ export const MoneyWallet = () => {
   }, []);
 
   const handleConvertMoneyToCoin = useCallback(() => {
-    handleTransferMoneyWalletToCoinsAccount();
+    handleTransferMoneyWalletToCoinsWallet();
     setModalVisible(false);
     AlertService.presentAlert({
       type: "success",
       message: "Resgate realizado com sucesso!",
     });
-  }, [handleTransferMoneyWalletToCoinsAccount]);
+  }, [handleTransferMoneyWalletToCoinsWallet]);
 
   return (
     <>
