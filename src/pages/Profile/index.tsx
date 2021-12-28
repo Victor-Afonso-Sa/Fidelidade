@@ -13,17 +13,15 @@ export const Profile = (props: Props) => {
   return (
     <div className="d-flex">
       <ProfileSidebar className="col-2">
-          <Row className="mt-2 justify-content-center justify-content-md-start">
-            <MdArrowBack
-              className="icon"
-              size={24}
-              color={theme.primary}
-              onClick={() => navigate("/")}
-            />
-          </Row>
-          <Row className="justify-content-center m-3">
-            <DropdownList />
-          </Row>
+        <Row className="mt-2 justify-content-center justify-content-md-start">
+          <MdArrowBack
+            className="icon"
+            size={24}
+            color={theme.primary}
+            onClick={() => navigate("/")}
+          />
+        </Row>
+        <DropdownList />
       </ProfileSidebar>
       <ProfileContentContainer className="col-10">
         <Outlet />
