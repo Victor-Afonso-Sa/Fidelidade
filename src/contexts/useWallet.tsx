@@ -156,28 +156,35 @@ function WalletProvider({ children }: WalletProviderProps) {
   }, [cashValue, coinsWallet, moneyWallet]);
 
   async function loadWallet() {
-    const response = await api.get<Wallet[]>("Wallet/GetByUserId/1");
-    const wallets = response.data.map((wallet) => {
-      return {
-        ...wallet,
-        amountFormatted:
-          wallet.walletTypeId === WalletType.MONEY
-            ? formatCurrencyPtBr(wallet.amount)
-            : wallet.amount.toString(),
-      };
-    });
+    try {
+      const response = await api.get<Wallet[]>("Wallet/GetByUserId/1");
+      const wallets = response.data.map((wallet) => {
+        return {
+          ...wallet,
+          amountFormatted:
+            wallet.walletTypeId === WalletType.MONEY
+              ? formatCurrencyPtBr(wallet.amount)
+              : wallet.amount.toString(),
+        };
+      });
 
-    const coinsWallet =
-      wallets.find((wallet) => wallet.walletTypeId === WalletType.COINS) ||
-      ({} as Wallet);
+      const coinsWallet =
+        wallets.find((wallet) => wallet.walletTypeId === WalletType.COINS) ||
+        ({} as Wallet);
 
-    setCoinsWallet(coinsWallet);
+      setCoinsWallet(coinsWallet);
 
-    const moneyWallet =
-      wallets.find((wallet) => wallet.walletTypeId === WalletType.MONEY) ||
-      ({} as Wallet);
+      const moneyWallet =
+        wallets.find((wallet) => wallet.walletTypeId === WalletType.MONEY) ||
+        ({} as Wallet);
 
-    setMoneyWallet(moneyWallet);
+      setMoneyWallet(moneyWallet);
+    } catch (error: any) {
+      if (error.message === "Network Error") {
+        toast.error("Sem conexão com o servidor");
+        console.log(error.message);
+      }
+    }
   }
 
   useEffect(() => {
