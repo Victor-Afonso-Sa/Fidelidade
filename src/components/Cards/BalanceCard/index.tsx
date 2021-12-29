@@ -38,9 +38,11 @@ export const Balance = ({
       </BalanceHeader>
       <BalanceBody>
         {isCoins ? (
-          <DisplayCoins amount={amount} />
+          <DisplayCoins amount={amount ? amount : 0} />
         ) : (
-          <BalanceText>{amount ? formatCurrencyPtBr(amount) : 0}</BalanceText>
+          <BalanceText>
+            {amount ? formatCurrencyPtBr(amount) : "R$ 0,00"}
+          </BalanceText>
         )}
       </BalanceBody>
       <BalanceFooter>

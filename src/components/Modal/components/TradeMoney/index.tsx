@@ -14,7 +14,13 @@ export const TradeMoney = () => {
       label="Quantidade"
       mask="99,99"
       modalText="A cada R$ 1,00, você pode trocar por 100 Moedas."
-      balance={<BalanceText>{moneyWallet?.amountFormatted}</BalanceText>}
+      balance={
+        <BalanceText>
+          {moneyWallet?.amountFormatted
+            ? moneyWallet.amountFormatted
+            : "R$ 0,00"}
+        </BalanceText>
+      }
       InputName="value"
       cashValue={
         <BgCoinvalue>
