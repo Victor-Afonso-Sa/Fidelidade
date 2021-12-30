@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { theme } from "./styles/theme";
 
 ReactDOM.render(
   <React.StrictMode>
