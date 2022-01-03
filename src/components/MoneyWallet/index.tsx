@@ -1,19 +1,36 @@
-// @flow
-import * as React from "react";
+import { useCallback, useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { toast } from "react-toastify";
+import { useWallet } from "../../contexts/useWallet";
 import { AntButton, AntModal } from "../../styles/antDesign";
 import * as AlertService from "../Alert";
 import { Balance } from "../Cards/BalanceCard";
 import { TradeMoney } from "../Modal/components/TradeMoney";
 
-type Props = {};
-export const MoneyWallet = (props: Props) => {
-  const [isModalVisible, setModalVisible] = React.useState(false);
-  const [canProceed, setCanProceed] = React.useState(false);
+export const MoneyWallet = () => {
+  const {
+    moneyWallet,
+    canProceedConvertMoneyToCoin,
+    handleTransferMoneyWalletToCoinsWallet,
+  } = useWallet();
+  const [isModalVisible, setModalVisible] = useState(false);
 
-  function onModalContentEmitter(params: any) {
-    setCanProceed(params);
-  }
+  const toggleTradeMoneyModal = useCallback(() => {
+    setModalVisible((prevState) => !prevState);
+  }, []);
+
+  const handleConvertMoneyToCoin = useCallback(async () => {
+    try {
+      await handleTransferMoneyWalletToCoinsWallet();
+      setModalVisible(false);
+      AlertService.presentAlert({
+        type: "success",
+        message: "Troca realizada com sucesso!",
+      });
+    } catch (error: any) {
+      toast.warning(error.message);
+    }
+  }, [handleTransferMoneyWalletToCoinsWallet]);
 
   return (
     <>
@@ -21,24 +38,22 @@ export const MoneyWallet = (props: Props) => {
         className="w-100 animate__fadeInUp"
         title="Carteira - Saldo"
         btnText="Trocar para moedas"
-        action={() => setModalVisible(true)}
+        amount={moneyWallet?.amount}
+        action={toggleTradeMoneyModal}
       />
+
       <AntModal
         title="Trocar para moedas"
         centered
         visible={isModalVisible}
-        onCancel={() => {
-          setModalVisible(false);
-        }}
+        onCancel={toggleTradeMoneyModal}
         closeIcon={<RiCloseCircleFill />}
         footer={[
           <AntButton
             key="back"
             type="default"
             styled="primary"
-            onClick={() => {
-              setModalVisible(false);
-            }}
+            onClick={toggleTradeMoneyModal}
           >
             Fechar
           </AntButton>,
@@ -46,20 +61,14 @@ export const MoneyWallet = (props: Props) => {
             key="submit"
             type="primary"
             styled="success"
-            disabled={!canProceed}
-            onClick={() => {
-              setModalVisible(false);
-              AlertService.presentAlert({
-                type: "success",
-                message: "Resgate realizado com sucesso!",
-              });
-            }}
+            disabled={!canProceedConvertMoneyToCoin}
+            onClick={handleConvertMoneyToCoin}
           >
             Finalizar
           </AntButton>,
         ]}
       >
-        <TradeMoney emitter={onModalContentEmitter} />
+        <TradeMoney />
       </AntModal>
     </>
   );

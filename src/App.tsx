@@ -11,6 +11,7 @@ import "./styles/global.css";
 import "animate.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.variable.min.css";
+import { WalletProvider } from "./contexts/useWallet";
 
 function App() {
   return (
@@ -27,7 +28,9 @@ function App() {
         pauseOnHover
       />
       <ThemeProvider theme={theme}>
-        <AppRoutes />
+        <WalletProvider>
+          <AppRoutes />
+        </WalletProvider>
       </ThemeProvider>
       <Alert></Alert>
     </>
