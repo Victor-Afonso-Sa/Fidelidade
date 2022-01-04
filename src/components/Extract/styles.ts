@@ -1,7 +1,7 @@
 import { Card } from "antd";
 import styled from "styled-components";
 
-export const ExtratoCard = styled(Card)`
+export const ExtractCard = styled(Card)`
   margin-top: 8px;
   margin-bottom: 8px;
   display: flex;

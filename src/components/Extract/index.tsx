@@ -1,11 +1,10 @@
 import { ExtractItem } from "../ExtractItem";
-import { ExtratoCard } from "./styles";
 
-type Props = {};
+import { ExtractCard } from "./styles";
 
-export const Extrato = (props: Props) => {
+export const Extract = () => {
   return (
-    <ExtratoCard>
+    <ExtractCard>
       <div className="header">
         <h6 className="text-center">Histórico de Transações</h6>
       </div>
@@ -14,6 +13,6 @@ export const Extrato = (props: Props) => {
         <ExtractItem amount={"5,00"} date="01/12/2021" />
         <ExtractItem amount={"5,00"} date="01/12/2021" />
       </div>
-    </ExtratoCard>
+    </ExtractCard>
   );
 };
