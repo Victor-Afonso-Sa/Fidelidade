@@ -1,5 +1,3 @@
-// @flow
-import * as React from "react";
 import { HeaderContent, UserAcount, UserName, Wrapper } from "./styles";
 import MiniLogo from "../../assets/mini-logo-F.png";
 import { MdAccountCircle, MdExpandMore } from "react-icons/md";
