@@ -22,4 +22,17 @@ describe("MoneyWallet Component", () => {
     expect(screen.getByText("Carteira - Saldo")).toBeInTheDocument();
     expect(screen.getByText("Trocar para moedas")).toBeInTheDocument();
   });
+
+  it("renders correctly with amount", () => {
+    const useWalletMocked = mocked(useWallet);
+    useWalletMocked.mockReturnValueOnce({
+      moneyWallet: {
+        amount: 100,
+      },
+    } as any);
+
+    render(<MoneyWallet />);
+
+    expect(screen.getByText("R$ 100,00")).toBeInTheDocument();
+  });
 });
