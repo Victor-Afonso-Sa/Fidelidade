@@ -8,6 +8,7 @@ export const Container = styled.div`
   .table-image {
     height: 70px;
     width: 70px;
+    border-radius: 4px;
   }
   .btn-wrapper {
     display: flex;
@@ -19,9 +20,19 @@ export const Container = styled.div`
     .delete-button {
       color: ${({ theme }) => theme.danger};
     }
+    .edit-button {
+      color: ${({ theme }) => theme.primary};
+    }
+    .add-button {
+      color: ${({ theme }) => theme.primary};
+    }
   }
   .ACTIVE {
     color: ${({ theme }) => theme.success};
+    font-weight: bold;
+  }
+  .INACTIVE {
+    color: ${({ theme }) => theme.danger};
     font-weight: bold;
   }
   thead[class*="ant-table-thead"] th {

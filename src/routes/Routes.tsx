@@ -11,6 +11,7 @@ import { EditProfile } from "../pages/Profile/EditProfile";
 import { Register } from "../pages/Register";
 import { FormsOfPayment } from "../pages/FormsOfPayment";
 import { Products } from "../pages/Products";
+import { AddProduct } from "../pages/Products/components/AddProduct";
 
 export const AppRoutes = () => {
   return (
@@ -28,6 +29,7 @@ export const AppRoutes = () => {
           <Route element={<Vendas />} path="/pdv/venda" />
           <Route element={<PdvHome />} path="/pdv//home" />
           <Route element={<Products />} path="/pdv/produtos" />
+          <Route element={<AddProduct />} path="/pdv/produtos/adicionar" />
         </Route>
         <Route element={<Home />} path="/" />
       </Routes>

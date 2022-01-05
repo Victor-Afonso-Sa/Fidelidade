@@ -1,17 +1,23 @@
 import { Container } from "./styles";
-import { Table, Button, Input } from "antd";
-import { AiTwotoneDelete } from "react-icons/ai";
+import { Table, Button, ConfigProvider, Empty } from "antd";
+import {
+  AiOutlineEdit,
+  AiOutlinePlusSquare,
+  AiTwotoneDelete,
+} from "react-icons/ai";
 import { RiCloseCircleFill } from "react-icons/ri";
-import { BsSearch } from "react-icons/bs";
 import { AntButton, AntModal } from "../../styles/antDesign";
 import * as AlertService from "../../components/Alert";
 import { useState } from "react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { theme } from "../../styles/theme";
 
 export const Products = () => {
+  const [modalAdicionar, setModalAdicionar] = useState<boolean>(false);
   const [modalEditar, setModalEditar] = useState<boolean>(false);
   const [modalExcluir, setModalExcluir] = useState<boolean>(false);
   const [codigoAcao, setCodigoAcao] = useState<number>();
+
   const dataSource = [
     {
       sku: 0,
@@ -32,7 +38,7 @@ export const Products = () => {
         "https://veja.abril.com.br/wp-content/uploads/2020/12/TITANIC-FUNDO-DO-MAR-CAPSULA-TITAN-1.jpg",
       price: 2.5,
       inventoryQuantity: 1,
-      status: "ACTIVE",
+      status: "INACTIVE",
       actions: "",
     },
   ];
@@ -54,12 +60,6 @@ export const Products = () => {
       title: "Nome do produto:",
       dataIndex: "name",
       key: "name",
-      filterDropdown: () => {
-        return <Input />;
-      },
-      filterIcon: () => {
-        return <BsSearch color={theme.primary} />;
-      },
     },
     {
       title: "Descrição:",
@@ -96,25 +96,29 @@ export const Products = () => {
         return (
           <div className="btn-wrapper">
             <Button
-              type="primary"
+              className="add-button"
+              icon={<AiOutlinePlusSquare size={23} />}
               onClick={() => {
-                {
-                  setModalEditar(true);
-                  setCodigoAcao(sku);
-                }
+                setModalAdicionar(true);
               }}
-            >
-              Editar
-            </Button>
+            />
+
+            <Button
+              className="edit-button"
+              icon={<AiOutlineEdit size={23} />}
+              onClick={() => {
+                setModalEditar(true);
+                setCodigoAcao(sku);
+              }}
+            />
+
             <Button
               className="delete-button"
               onClick={() => {
-                {
-                  setModalExcluir(true);
-                  setCodigoAcao(sku);
-                }
+                setModalExcluir(true);
+                setCodigoAcao(sku);
               }}
-              icon={<AiTwotoneDelete />}
+              icon={<AiTwotoneDelete size={23} />}
             />
           </div>
         );
@@ -123,7 +127,27 @@ export const Products = () => {
   ];
   return (
     <Container>
-      <Table dataSource={dataSource} columns={columns} bordered />;
+      <ConfigProvider
+        renderEmpty={() => (
+          <Empty
+            description={
+              <>
+                <p>Nenhum produto cadastrado, clique aqui para adicionar:</p>
+                <Button
+                  className="add-button"
+                  icon={<AiOutlinePlusSquare size={23} />}
+                  onClick={() => {
+                    setModalAdicionar(true);
+                  }}
+                />
+              </>
+            }
+          />
+        )}
+      >
+        <Table dataSource={dataSource} columns={columns} bordered />;
+      </ConfigProvider>
+
       <AntModal
         title="Editar produto"
         centered
@@ -196,7 +220,7 @@ export const Products = () => {
           </AntButton>,
         ]}
       >
-        Modal excluir {codigoAcao}
+        <p>Tem certeza que deseja excluir o produto de código: {codigoAcao}?</p>
       </AntModal>
     </Container>
   );
