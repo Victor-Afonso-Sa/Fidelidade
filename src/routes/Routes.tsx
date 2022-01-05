@@ -22,13 +22,12 @@ export const AppRoutes = () => {
           <Route element={<EditProfile />} path="/perfil/editar" />
           <Route element={<h1>notificacoes</h1>} path="/perfil/notificacoes" />
           <Route element={<FormsOfPayment />} path="/perfil/formas-pagamento" />
-          <Route element={<Products />} path="/perfil/produtos" />
         </Route>
         <Route element={<PDV />} path="/pdv">
           <Route element={<h1>Dashboard</h1>} path="/pdv/dashboard" />
           <Route element={<Vendas />} path="/pdv/venda" />
           <Route element={<PdvHome />} path="/pdv//home" />
-          <Route element={<h1>Apps</h1>} path="/pdv//apps" />
+          <Route element={<Products />} path="/pdv/produtos" />
         </Route>
         <Route element={<Home />} path="/" />
       </Routes>

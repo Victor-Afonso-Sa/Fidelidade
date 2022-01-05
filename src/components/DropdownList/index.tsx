@@ -29,11 +29,6 @@ export const DropdownList = (props: Props) => {
         label="Formas de Pagamento"
         icon={<BsBank2 />}
       />
-      <DropdownItem
-        onClick={() => navigate("/perfil/produtos")}
-        label="Produtos"
-        icon={<AiOutlineOrderedList />}
-      />
     </DropdownMenu>
   );
 };

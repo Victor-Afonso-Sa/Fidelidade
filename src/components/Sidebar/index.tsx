@@ -3,7 +3,7 @@ import * as React from "react";
 import { Aside, IconWrapper } from "./styles";
 import { AiFillHome, AiOutlineAreaChart } from "react-icons/ai";
 import { BsHandbagFill } from "react-icons/bs";
-import { MdApps } from "react-icons/md";
+import { AiOutlineOrderedList } from "react-icons/ai";
 type Props = {};
 export const Sidebar = (props: Props) => {
   return (
@@ -27,10 +27,10 @@ export const Sidebar = (props: Props) => {
         <BsHandbagFill />
       </IconWrapper>
       <IconWrapper
-        to="/pdv/apps"
+        to="/pdv/produtos"
         className={({ isActive }) => (isActive ? "active" : "")}
       >
-        <MdApps />
+        <AiOutlineOrderedList />
       </IconWrapper>
     </Aside>
   );
