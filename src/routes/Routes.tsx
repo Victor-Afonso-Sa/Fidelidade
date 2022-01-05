@@ -10,6 +10,7 @@ import { Profile } from "../pages/Profile";
 import { EditProfile } from "../pages/Profile/EditProfile";
 import { Register } from "../pages/Register";
 import { FormsOfPayment } from "../pages/FormsOfPayment";
+import { Products } from "../pages/Products";
 
 export const AppRoutes = () => {
   return (
@@ -21,6 +22,7 @@ export const AppRoutes = () => {
           <Route element={<EditProfile />} path="/perfil/editar" />
           <Route element={<h1>notificacoes</h1>} path="/perfil/notificacoes" />
           <Route element={<FormsOfPayment />} path="/perfil/formas-pagamento" />
+          <Route element={<Products />} path="/perfil/produtos" />
         </Route>
         <Route element={<PDV />} path="/pdv">
           <Route element={<h1>Dashboard</h1>} path="/pdv/dashboard" />
