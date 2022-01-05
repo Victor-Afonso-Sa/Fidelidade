@@ -27,22 +27,18 @@ export const DropdownItem = ({
       className={className}
       onClick={onClick}
       data-tooltip={label}
-      active={Object.values(location)[0] === active ? true : false}
+      active={Object.values(location)[0] === active}
     >
       <ItemTitle className="d-none d-lg-block">{label}</ItemTitle>
       <span>
         {badgeCount ? (
           <Badge count={badgeCount} overflowCount={9}>
-            <ItemIcon
-              active={Object.values(location)[0] === active ? true : false}
-            >
+            <ItemIcon active={Object.values(location)[0] === active}>
               {icon}
             </ItemIcon>
           </Badge>
         ) : (
-          <ItemIcon
-            active={Object.values(location)[0] === active ? true : false}
-          >
+          <ItemIcon active={Object.values(location)[0] === active}>
             {icon}
           </ItemIcon>
         )}
