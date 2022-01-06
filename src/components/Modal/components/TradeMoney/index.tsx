@@ -1,4 +1,4 @@
-import { useWallet } from "../../../../contexts/useWallet";
+import { useWallet } from "../../../../hooks/useWallet";
 
 import { DisplayCoins } from "../../../DisplayCoins";
 import { BaseModal } from "../BaseModal";

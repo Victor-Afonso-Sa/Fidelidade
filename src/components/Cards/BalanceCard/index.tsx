@@ -19,7 +19,7 @@ type Props = {
   btnText: string;
   amount: number;
   isCoins?: boolean;
-  action?: any;
+  action: any;
 };
 
 export const Balance = ({
@@ -38,11 +38,9 @@ export const Balance = ({
       </BalanceHeader>
       <BalanceBody>
         {isCoins ? (
-          <DisplayCoins amount={amount ? amount : 0} />
+          <DisplayCoins amount={amount} />
         ) : (
-          <BalanceText>
-            {amount ? formatCurrencyPtBr(amount) : "R$ 0,00"}
-          </BalanceText>
+          <BalanceText>{formatCurrencyPtBr(amount)}</BalanceText>
         )}
       </BalanceBody>
       <BalanceFooter>
@@ -51,7 +49,7 @@ export const Balance = ({
           type="button"
           styled="primary"
           outline
-          onClick={() => (action ? action() : () => {})}
+          onClick={() => action()}
         >
           {btnText}
         </Button>

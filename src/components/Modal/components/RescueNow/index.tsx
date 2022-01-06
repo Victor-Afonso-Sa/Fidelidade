@@ -1,4 +1,4 @@
-import { useWallet } from "../../../../contexts/useWallet";
+import { useWallet } from "../../../../hooks/useWallet";
 import { formatCurrencyPtBr } from "../../../../utils/formatCurrencyPtBr";
 
 import { DisplayCoins } from "../../../DisplayCoins";
