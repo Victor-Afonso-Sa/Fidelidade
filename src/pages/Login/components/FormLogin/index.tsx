@@ -1,12 +1,11 @@
 // @flow
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import { FieldErrors, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import * as AlertService from "../../../../components/Alert";
 import { Input } from "../../../../components/Input";
-import { CONSTANTS } from "../../../../constants/api";
+import { api } from "../../../../services/api";
 import { LoginType } from "../../../../types/LoginTypes";
 import { CustomForm, LoginButton, Title } from "./styles";
 
@@ -30,8 +29,8 @@ export const FormLogin = () => {
   const handleSignIn: SubmitHandler<LoginType> = (data) => {
     data.cpf = data.cpf.split(".").join("").split("-").join("");
 
-    axios
-      .post(`${CONSTANTS.BASE_URL}/login`, data)
+    api
+      .post(`/login`, data)
       .then((response) => {
         console.log(response.data);
         navigate("/");
