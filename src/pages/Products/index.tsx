@@ -11,9 +11,10 @@ import * as AlertService from "../../components/Alert";
 import { useState } from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { theme } from "../../styles/theme";
+import { useNavigate } from "react-router-dom";
 
 export const Products = () => {
-  const [modalAdicionar, setModalAdicionar] = useState<boolean>(false);
+  const navigate = useNavigate();
   const [modalEditar, setModalEditar] = useState<boolean>(false);
   const [modalExcluir, setModalExcluir] = useState<boolean>(false);
   const [codigoAcao, setCodigoAcao] = useState<number>();
@@ -98,9 +99,7 @@ export const Products = () => {
             <Button
               className="add-button"
               icon={<AiOutlinePlusSquare size={23} />}
-              onClick={() => {
-                setModalAdicionar(true);
-              }}
+              onClick={() => navigate("/pdv/produtos/adicionar")}
             />
 
             <Button
@@ -137,7 +136,7 @@ export const Products = () => {
                   className="add-button"
                   icon={<AiOutlinePlusSquare size={23} />}
                   onClick={() => {
-                    setModalAdicionar(true);
+                    navigate("/pdv/produtos/adicionar");
                   }}
                 />
               </>
