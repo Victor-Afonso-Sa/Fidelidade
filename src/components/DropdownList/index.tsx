@@ -10,14 +10,12 @@ type Props = {};
 
 export const DropdownList = (props: Props) => {
   let navigate = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [active, setActive] = React.useState<string>("");
+
   return (
     <DropdownMenu>
       <DropdownItem
         className="first"
         onClick={() => {
-          setActive("/perfil/editar");
           navigate("/perfil/editar");
         }}
         label="Ver perfil"
@@ -27,7 +25,6 @@ export const DropdownList = (props: Props) => {
       <DropdownItem
         onClick={() => {
           navigate("/perfil/notificacoes");
-          setActive("/perfil/notificacoes");
         }}
         label="Notificações"
         icon={<MdNotifications />}
@@ -37,7 +34,6 @@ export const DropdownList = (props: Props) => {
       <DropdownItem
         onClick={() => {
           navigate("/perfil/formas-pagamento");
-          setActive("/perfil/formas-pagamento");
         }}
         label="Formas de Pagamento"
         icon={<BsBank2 />}

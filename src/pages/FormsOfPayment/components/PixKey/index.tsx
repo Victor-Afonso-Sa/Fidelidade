@@ -20,10 +20,10 @@ import PixLogo from "../../../../assets/pix.png";
 import { Input } from "../../../../components/Input";
 
 export const PixKey = () => {
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [modalDelete, setModalDelete] = useState<boolean>(false);
-  const [modalRecebimento, setModalRecebimento] = useState<boolean>(false);
-  const [activeKeyType, setActiveKeyType] = useState<string>("cpf");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
+  const [modalRecebimento, setModalRecebimento] = useState(false);
+  const [activeKeyType, setActiveKeyType] = useState("cpf");
   const [canProceed] = useState(false);
   return (
     <Container>

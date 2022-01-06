@@ -14,10 +14,10 @@ export const Menssage = styled.span`
 `;
 
 export const Home = () => {
-  const [showBoxFidelidade, setShowBoxFidelidade] = useState<boolean>(true);
+  const [showBoxFidelidade, setShowBoxFidelidade] = useState(true);
 
   function closeModal() {
-    return setShowBoxFidelidade(false);
+    setShowBoxFidelidade(false);
   }
 
   return (
