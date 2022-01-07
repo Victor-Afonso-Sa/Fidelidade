@@ -80,7 +80,7 @@ describe("CoinWallet component", () => {
     expect(screen.queryByText(/fechar/i)).toBeInTheDocument();
   });
 
-  it("should", async () => {
+  it("should call function to convert coins to money", async () => {
     const useWalletMocked = mocked(useWallet);
     const handleTransferCoinsWalletToMoneyWalletMock = jest.fn();
     useWalletMocked.mockReturnValue({
