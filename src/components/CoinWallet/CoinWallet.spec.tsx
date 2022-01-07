@@ -4,6 +4,7 @@ import { mocked } from "jest-mock";
 import * as AlertService from "../Alert";
 import { CoinWallet } from ".";
 import { useWallet } from "../../hooks/useWallet";
+import { toast } from "react-toastify";
 
 jest.mock("../../utils/formatCurrencyPtBr", () => {
   return {
@@ -115,5 +116,39 @@ describe("CoinWallet component", () => {
     await waitFor(async () => {
       expect(handleTransferCoinsWalletToMoneyWalletMock).toHaveBeenCalled();
     });
+  });
+
+  it("should display an error if can't convert coints to money", () => {
+    const useWalletMocked = mocked(useWallet);
+
+    useWalletMocked.mockReturnValue({
+      coinsWallet: {
+        amount: 10,
+      },
+      canProceedConvertCoinsToMoney: true,
+      handleTransferCoinsWalletToMoneyWallet: () => {
+        throw new Error("Error");
+      },
+    } as any);
+
+    const toastSpy = jest.spyOn(toast, "warning");
+
+    render(<CoinWallet />);
+
+    const openModalButton = screen.getByRole("button", {
+      name: /resgatar/i,
+    });
+
+    fireEvent.click(openModalButton);
+
+    const finalizarButton = screen.getByRole("button", {
+      name: /finalizar/i,
+    });
+
+    expect(finalizarButton).toBeInTheDocument();
+
+    fireEvent.click(finalizarButton);
+
+    expect(toastSpy).toHaveBeenCalled();
   });
 });
