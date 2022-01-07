@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { mocked } from "jest-mock";
 
-import { MoneyWallet } from "../../components/MoneyWallet";
+import { MoneyWallet } from ".";
 import { useWallet } from "../../hooks/useWallet";
 
 jest.mock("../../hooks/useWallet");
@@ -34,5 +34,30 @@ describe("MoneyWallet Component", () => {
     render(<MoneyWallet />);
 
     expect(screen.getByText("R$ 100,00")).toBeInTheDocument();
+  });
+
+  it("should open modal", () => {
+    const useWalletMocked = mocked(useWallet);
+    useWalletMocked.mockReturnValue({
+      coinsWallet: {
+        amount: 100,
+      },
+      canProceedConvertCoinsToMoney: true,
+      handleTransferCoinsWalletToMoneyWallet: jest.fn(),
+    } as any);
+
+    render(<MoneyWallet />);
+
+    expect(screen.queryByText(/finalizar/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/fechar/i)).not.toBeInTheDocument();
+
+    const openModalButton = screen.getByRole("button", {
+      name: /trocar para moedas/i,
+    });
+
+    fireEvent.click(openModalButton);
+
+    expect(screen.queryByText(/finalizar/i)).toBeInTheDocument();
+    expect(screen.queryByText(/fechar/i)).toBeInTheDocument();
   });
 });
