@@ -4,8 +4,11 @@ import { Container, Title } from "./styles";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { PrimaryBtn } from "../../../../styles/global";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { AiFillEdit } from "react-icons/ai";
 
-export const AddProduct = () => {
+export const EditProduct = () => {
   const { Option } = Select;
   const searchOptions = [
     {
@@ -29,10 +32,27 @@ export const AddProduct = () => {
       description: "Bebidas",
     },
   ];
+  const { sku } = useParams();
+
+  useEffect(() => {
+    console.log("Codigo: ", sku);
+  }, []);
   return (
     <Container>
-      <Title>Adicionar novo produto</Title>
+      <Title>Editar produto</Title>
       <form className="d-flex flex-column">
+        <div className="row">
+          <div className="d-flex align-items-center justify-content-center">
+            <img
+              src="https://veja.abril.com.br/wp-content/uploads/2020/12/TITANIC-FUNDO-DO-MAR-CAPSULA-TITAN-1.jpg"
+              alt=""
+              className="product-image"
+            />
+            <div className="edit-icon">
+              <AiFillEdit size={20} />
+            </div>
+          </div>
+        </div>
         <Input className="col-12" type="text" name="sku" label="Código Sku" />
 
         <div className="row">
@@ -98,7 +118,7 @@ export const AddProduct = () => {
         />
         <div className="d-flex mt-3 justify-content-end float-end mb-4">
           <PrimaryBtn type="submit" className="">
-            Adicionar
+            Salvar
           </PrimaryBtn>
         </div>
       </form>

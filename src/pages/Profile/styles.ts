@@ -11,7 +11,7 @@ export const ProfileSidebar = styled.div`
     margin-left: 21px;
     cursor: pointer;
     @media screen and (max-width: 576px) {
-        margin-left: 0;
+      margin-left: 0;
     }
   }
 `;

@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 30px 0px;
+  margin: 20px 0px;
   .table-image {
     height: 70px;
     width: 70px;
@@ -37,5 +38,24 @@ export const Container = styled.div`
   }
   thead[class*="ant-table-thead"] th {
     background-color: ${({ theme }) => theme.background} !important;
+  }
+`;
+
+export const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin-bottom: 10px;
+  input {
+    width: 100%;
+    border-right: none;
+  }
+  .search-button {
+    margin-left: 2px;
+    height: 55px;
+  }
+  .auto-complete {
+    width: 100%;
   }
 `;

@@ -11,6 +11,15 @@ export const Container = styled.div`
     padding-left: 0px;
     margin-bottom: 5px;
   }
+  .product-image {
+    height: 100px;
+    width: 150px;
+    border-radius: 4px;
+  }
+  .edit-icon {
+    margin-left: 5px;
+    cursor: pointer;
+  }
 `;
 
 export const Title = styled.h1`

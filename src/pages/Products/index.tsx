@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container, SearchWrapper } from "./styles";
 import { Table, Button, ConfigProvider, Empty } from "antd";
 import {
   AiOutlineEdit,
@@ -9,14 +9,13 @@ import { RiCloseCircleFill } from "react-icons/ri";
 import { AntButton, AntModal } from "../../styles/antDesign";
 import * as AlertService from "../../components/Alert";
 import { useState } from "react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { theme } from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 
 export const Products = () => {
   const navigate = useNavigate();
-  const [modalEditar, setModalEditar] = useState<boolean>(false);
-  const [modalExcluir, setModalExcluir] = useState<boolean>(false);
+  const [modalExcluir, setModalExcluir] = useState(false);
   const [codigoAcao, setCodigoAcao] = useState<number>();
 
   const dataSource = [
@@ -30,6 +29,7 @@ export const Products = () => {
       inventoryQuantity: 1,
       status: "ACTIVE",
       actions: "",
+      label: "Produto teste",
     },
     {
       sku: 1,
@@ -41,6 +41,7 @@ export const Products = () => {
       inventoryQuantity: 1,
       status: "INACTIVE",
       actions: "",
+      label: "Produto 2",
     },
   ];
   const columns = [
@@ -105,10 +106,7 @@ export const Products = () => {
             <Button
               className="edit-button"
               icon={<AiOutlineEdit size={23} />}
-              onClick={() => {
-                setModalEditar(true);
-                setCodigoAcao(sku);
-              }}
+              onClick={() => navigate(`/pdv/produtos/editar/${sku}`)}
             />
 
             <Button
@@ -126,6 +124,20 @@ export const Products = () => {
   ];
   return (
     <Container>
+      <SearchWrapper>
+        {/* <Input type="text" name="search" placeholder="Procurar um produto" /> */}
+        <Autocomplete
+          id="category"
+          options={dataSource}
+          className="auto-complete"
+          renderInput={(params) => (
+            <TextField {...params} label="Procurar produto:" />
+          )}
+        />
+        <Button type="primary" className="search-button" name="search">
+          Pesquisar
+        </Button>
+      </SearchWrapper>
       <ConfigProvider
         renderEmpty={() => (
           <Empty
@@ -147,43 +159,6 @@ export const Products = () => {
         <Table dataSource={dataSource} columns={columns} bordered />;
       </ConfigProvider>
 
-      <AntModal
-        title="Editar produto"
-        centered
-        visible={modalEditar}
-        onCancel={() => {
-          setModalEditar(false);
-        }}
-        closeIcon={<RiCloseCircleFill />}
-        footer={[
-          <AntButton
-            key="back"
-            type="default"
-            styled="primary"
-            onClick={() => {
-              setModalEditar(false);
-            }}
-          >
-            Fechar
-          </AntButton>,
-          <AntButton
-            key="submit"
-            type="primary"
-            styled="success"
-            onClick={() => {
-              setModalEditar(false);
-              AlertService.presentAlert({
-                type: "success",
-                message: "Produto editado com sucesso!",
-              });
-            }}
-          >
-            Atualizar
-          </AntButton>,
-        ]}
-      >
-        Modal editar {codigoAcao}
-      </AntModal>
       <AntModal
         title="Excluir produto"
         centered
