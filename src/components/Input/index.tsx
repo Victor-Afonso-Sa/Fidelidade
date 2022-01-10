@@ -45,24 +45,18 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
   ref
 ) => {
   return (
-    <InputWrapper data-testid="input-component">
+    <InputWrapper>
       <div className={`form-floating mb-3 ${className ?? ""}`}>
         <ReactInputMask
           mask={mask || ""}
-          onChange={
-            register
-              ? register(name, {
-                  onChange: (e) =>
-                    customOnChange ? customOnChange(e.target.value) : undefined,
-                }).onChange
-              : onChange
-          }
+          onChange={onChange}
           onBlur={onBlur}
           readOnly={readOnly}
           maskPlaceholder={null}
         >
           {() => (
             <CustomInput
+              data-testid="input-component"
               type={type}
               className={`${inputClassName ?? ""} form-control ${
                 error ? "is-invalid" : ""
