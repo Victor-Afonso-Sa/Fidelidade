@@ -52,4 +52,26 @@ describe("Modal component", () => {
 
     expect(closeModalButtonMock).toHaveBeenCalled();
   });
+
+  it("should click in cancel modal button", () => {
+    const cancelModalButtonMock = jest.fn();
+    render(
+      <Modal
+        modalContent={{
+          ModalContent: () => <div> modal content</div>,
+          contentProps: {},
+        }}
+        state={true}
+        setState={cancelModalButtonMock}
+        okText="ok"
+        cancelText="cancel"
+        title="title"
+      />
+    );
+
+    const cancelButton = screen.getByTestId("modal-cancel");
+    cancelButton.click();
+
+    expect(cancelModalButtonMock).toHaveBeenCalled();
+  });
 });

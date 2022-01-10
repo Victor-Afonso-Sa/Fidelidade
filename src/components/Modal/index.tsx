@@ -48,6 +48,7 @@ export const Modal = (props: ModalPropsModel) => {
         {<ModalContent {...contentProps} emitter={onModalContentEmitter} />}
         <div className="d-flex justify-content-end col-12">
           <Button
+            data-testid="modal-cancel"
             styled="primary"
             outline
             onClick={() => {
