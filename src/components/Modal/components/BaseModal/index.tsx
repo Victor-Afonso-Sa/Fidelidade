@@ -45,6 +45,7 @@ export const BaseModal = ({
           <InputWrapper>
             <div className="form-floating mb-3">
               <input
+                data-testid="input-base-modal"
                 autoFocus
                 autoComplete="false"
                 type="number"
