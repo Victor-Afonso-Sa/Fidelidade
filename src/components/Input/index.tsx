@@ -45,7 +45,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
   ref
 ) => {
   return (
-    <InputWrapper>
+    <InputWrapper data-testid="input-component">
       <div className={`form-floating mb-3 ${className ?? ""}`}>
         <ReactInputMask
           mask={mask || ""}
