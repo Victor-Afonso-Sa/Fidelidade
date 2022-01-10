@@ -16,4 +16,11 @@ describe("Input component", () => {
 
     expect(screen.getByTestId("input-component")).toBeInTheDocument();
   });
+
+  it("should render without className", () => {
+    render(<Input name="fakeName" type="number" label="fake-label" />);
+    screen.debug();
+
+    expect(screen.queryByText(/fake-class/i)).not.toBeInTheDocument();
+  });
 });
