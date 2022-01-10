@@ -36,6 +36,7 @@ export const Modal = (props: ModalPropsModel) => {
         <ModalTitle className="d-flex justify-content-between align-items-center">
           <h3>{title}</h3>
           <button
+            data-testid="modal-close"
             className="btn rounded-circle m-0 p-0 d-32"
             onClick={() => {
               setState(!state);

@@ -30,4 +30,26 @@ describe("Modal component", () => {
       })
     ).toBeInTheDocument();
   });
+
+  it("should click in close modal button", () => {
+    const closeModalButtonMock = jest.fn();
+    render(
+      <Modal
+        modalContent={{
+          ModalContent: () => <div> modal content</div>,
+          contentProps: {},
+        }}
+        state={true}
+        setState={closeModalButtonMock}
+        okText="ok"
+        cancelText="cancel"
+        title="title"
+      />
+    );
+
+    const closeButton = screen.getByTestId("modal-close");
+    closeButton.click();
+
+    expect(closeModalButtonMock).toHaveBeenCalled();
+  });
 });
