@@ -5,6 +5,10 @@ import {
   NewKey,
   PixContainer,
   PixTitle,
+  WrapperRecebimento,
+  Title,
+  Type,
+  Saldo,
 } from "./styles";
 import { FaKey } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
@@ -12,26 +16,31 @@ import { AntButton, AntModal } from "../../../../styles/antDesign";
 import { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import * as AlertService from "../../../../components/Alert";
+import PixLogo from "../../../../assets/pix.png";
+import { Input } from "../../../../components/Input";
 
 export const PixKey = () => {
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [modalDelete, setModalDelete] = useState<boolean>(false);
-  const [activeKeyType, setActiveKeyType] = useState<string>("cpf");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
+  const [modalRecebimento, setModalRecebimento] = useState(false);
+  const [activeKeyType, setActiveKeyType] = useState("cpf");
   const [canProceed] = useState(false);
   return (
     <Container>
       <div className="content-container pt-4 pb-4">
         <PixContainer>
-          <div>
-            <FaKey color="#fff" size={20} />
-          </div>
-          <div className="pix-text">
+          <div className="wrapper" onClick={() => setModalRecebimento(true)}>
             <div>
-              <PixTitle>Chave Aleatória</PixTitle>
+              <FaKey color="#fff" size={20} />
             </div>
-            <div>
-              <span className="text">Chave: </span>
-              <span className="text-2">NÚMERO DA CHAVE</span>
+            <div className="pix-text">
+              <div>
+                <PixTitle>Chave Aleatória</PixTitle>
+              </div>
+              <div>
+                <span className="text">Chave: </span>
+                <span className="text-2">NÚMERO DA CHAVE</span>
+              </div>
             </div>
           </div>
           <div className="delete-icon" onClick={() => setModalDelete(true)}>
@@ -117,8 +126,9 @@ export const PixKey = () => {
           />
         </NewKey>
       </AntModal>
+
       <AntModal
-        title="Nova chave"
+        title="Deletar chave"
         centered
         visible={modalDelete}
         onCancel={() => {
@@ -153,6 +163,59 @@ export const PixKey = () => {
         ]}
       >
         Tem certeza que deseja deletar a chave?
+      </AntModal>
+
+      <AntModal
+        title="Forma de Recebimento"
+        centered
+        visible={modalRecebimento}
+        onCancel={() => {
+          setModalRecebimento(false);
+        }}
+        closeIcon={<RiCloseCircleFill />}
+        footer={[
+          <AntButton
+            key="back"
+            type="default"
+            styled="primary"
+            onClick={() => {
+              setModalRecebimento(false);
+            }}
+          >
+            Cancelar
+          </AntButton>,
+          <AntButton
+            key="submit"
+            type="primary"
+            styled="success"
+            onClick={() => {
+              setModalRecebimento(false);
+              AlertService.presentAlert({
+                type: "success",
+                message: "Transferência realizada com sucesso!",
+              });
+            }}
+          >
+            Transferir
+          </AntButton>,
+        ]}
+      >
+        <WrapperRecebimento>
+          <div>
+            <Title>PIX</Title>
+            <img
+              src={PixLogo}
+              alt="Logo PIX Banco Central"
+              className="logo-pix"
+            />
+          </div>
+          <Type>Chave Aleatória</Type>
+          <Saldo>
+            <header>Saldo Disponível:</header>
+            <div>R$3.200,00</div>
+          </Saldo>
+          <Input type="number" label="Valor" name="valor" id="valor" />
+        </WrapperRecebimento>
       </AntModal>
     </Container>
   );

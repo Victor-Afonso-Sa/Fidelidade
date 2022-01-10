@@ -38,7 +38,7 @@ export const Header = ({ name, cargo }: Props) => {
               <Badge count={10} offset={[0, 10]} overflowCount={9}>
                 <Avatar shape="circle" size={60} icon={<MdAccountCircle />} />
               </Badge>
-              <MdExpandMore className="dropdown-toggle" size="30px" />
+              <MdExpandMore className="dropdown-toggle clickable" size="30px" />
             </UserAcount>
           </Dropdown>
         </HeaderContent>

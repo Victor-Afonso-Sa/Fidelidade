@@ -17,7 +17,7 @@ export const AppRoutes = () => {
       <Routes>
         <Route element={<Login />} path="/login" />
         <Route element={<Register />} path="/cadastro" />
-        <Route element={<Profile />} path="/perfil">
+        <Route element={<Profile />}>
           <Route element={<EditProfile />} path="/perfil/editar" />
           <Route element={<h1>notificacoes</h1>} path="/perfil/notificacoes" />
           <Route element={<FormsOfPayment />} path="/perfil/formas-pagamento" />

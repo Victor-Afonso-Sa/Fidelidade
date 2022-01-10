@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { MenssageCard } from "../../components/Cards/MenssageCard";
 import { Extrato } from "../../components/Extrato";
@@ -13,6 +14,12 @@ export const Menssage = styled.span`
 `;
 
 export const Home = () => {
+  const [showBoxFidelidade, setShowBoxFidelidade] = useState(true);
+
+  function closeModal() {
+    setShowBoxFidelidade(false);
+  }
+
   return (
     <HomeCointainer>
       <Header name="'Nome e sobrenome'" />
@@ -26,11 +33,13 @@ export const Home = () => {
         </div>
         <div className="col-12 col-md-4 p-0">
           <Extrato />
-          <div>
+
+          {showBoxFidelidade && (
             <MenssageCard
               className="animate__fadeInRight"
               color="#fff"
               title="Sistema de Moedas"
+              onClose={closeModal}
               content={
                 <Menssage>
                   No <span className="text__green">+Fidelidade</span>, você pode
@@ -39,7 +48,7 @@ export const Home = () => {
                 </Menssage>
               }
             />
-          </div>
+          )}
         </div>
       </HomeWrapper>
     </HomeCointainer>

@@ -22,9 +22,10 @@ export const FormHeader = styled.div`
   flex-direction: column;
   padding: 20px;
   background-color: ${({ theme }) => theme.primary};
-  border-top-left-radius: 20px;
+  border-radius: 5px;
   color: #fff !important;
-  h4,h5 {
+  h4,
+  h5 {
     color: #fff !important;
   }
 `;
