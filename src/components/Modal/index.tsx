@@ -28,7 +28,10 @@ export const Modal = (props: ModalPropsModel) => {
   }
 
   return (
-    <Backdrop className="d-flex align-items-center justify-content-center">
+    <Backdrop
+      data-testid="modal"
+      className="d-flex align-items-center justify-content-center"
+    >
       <ModalFrame className="d-flex flex-column justify-content-between">
         <ModalTitle className="d-flex justify-content-between align-items-center">
           <h3>{title}</h3>
