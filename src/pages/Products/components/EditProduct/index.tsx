@@ -36,7 +36,7 @@ export const EditProduct = () => {
 
   useEffect(() => {
     console.log("Codigo: ", sku);
-  }, []);
+  }, [sku]);
   return (
     <Container>
       <Title>Editar produto</Title>
