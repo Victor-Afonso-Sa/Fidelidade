@@ -59,7 +59,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
   };
 
   const handleError = (errors: FieldErrors) => {
-    Object.values(errors).map((e) =>
+    Object.values(errors).forEach((e) =>
       e?.message
         ? AlertService.presentAlert({
             type: "danger",
