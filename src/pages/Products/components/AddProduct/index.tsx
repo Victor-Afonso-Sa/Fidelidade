@@ -1,9 +1,10 @@
 import { Select } from "antd";
 import { Input } from "../../../../components/Input";
-import { Container, Title } from "./styles";
+import { CategoryWrapper, Container, Title } from "./styles";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { PrimaryBtn } from "../../../../styles/global";
+import { AiOutlinePlusSquare } from "react-icons/ai";
 
 export const AddProduct = () => {
   const { Option } = Select;
@@ -91,11 +92,17 @@ export const AddProduct = () => {
           </div>
         </div>
 
-        <Autocomplete
-          id="category"
-          options={searchOptions}
-          renderInput={(params) => <TextField {...params} label="Categoria:" />}
-        />
+        <CategoryWrapper>
+          <Autocomplete
+            id="category"
+            options={searchOptions}
+            className="autocomplete"
+            renderInput={(params) => (
+              <TextField {...params} label="Categoria:" />
+            )}
+          />
+          <AiOutlinePlusSquare size={18} className="add-category" />
+        </CategoryWrapper>
         <div className="d-flex mt-3 justify-content-end float-end mb-4">
           <PrimaryBtn type="submit" className="">
             Adicionar
