@@ -18,6 +18,19 @@ export const Products = () => {
   const [modalExcluir, setModalExcluir] = useState(false);
   const [codigoAcao, setCodigoAcao] = useState<number>();
 
+  function openModalDelete(sku: number) {
+    setModalExcluir(true);
+    setCodigoAcao(sku);
+  }
+
+  function onDelete() {
+    setModalExcluir(false);
+    AlertService.presentAlert({
+      type: "success",
+      message: "Produto excluído com sucesso!",
+    });
+  }
+
   const dataSource = [
     {
       sku: 0,
@@ -111,10 +124,7 @@ export const Products = () => {
 
             <Button
               className="delete-button"
-              onClick={() => {
-                setModalExcluir(true);
-                setCodigoAcao(sku);
-              }}
+              onClick={() => openModalDelete(sku)}
               icon={<AiTwotoneDelete size={23} />}
             />
           </div>
@@ -125,7 +135,6 @@ export const Products = () => {
   return (
     <Container>
       <SearchWrapper>
-        {/* <Input type="text" name="search" placeholder="Procurar um produto" /> */}
         <Autocomplete
           id="category"
           options={dataSource}
@@ -182,13 +191,7 @@ export const Products = () => {
             key="submit"
             type="primary"
             styled="danger"
-            onClick={() => {
-              setModalExcluir(false);
-              AlertService.presentAlert({
-                type: "success",
-                message: "Produto excluído com sucesso!",
-              });
-            }}
+            onClick={() => onDelete()}
           >
             Excluir
           </AntButton>,
