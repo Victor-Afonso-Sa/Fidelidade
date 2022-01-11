@@ -2,13 +2,14 @@
 import axios from "axios";
 import * as yup from "yup";
 import { FieldErrors, SubmitHandler, useForm } from "react-hook-form";
-import * as AlertService from "../../components/Alert";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Input } from "../Input";
-import { CepType, RegisterType } from "../../types/RegisterTypes";
+import * as AlertService from "../../components/Alert";
+import { InputMask } from "../InputMask";
 
+import { CepType, RegisterType } from "../../types/RegisterTypes";
 import { PrimaryBtn } from "../../styles/global";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 type Props = {
   btnText: string;
@@ -46,7 +47,6 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
   };
 
   const getAddress = (cep: string) => {
-    console.log(cep);
     if (cep.match("[0-9]{5}-[0-9]{3}")) {
       axios
         .get<CepType>(`https://viacep.com.br/ws/${cep}/json/`)
@@ -57,6 +57,8 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
         });
     }
   };
+
+  const cepField = register("cep", { required: true });
 
   const handleError = (errors: FieldErrors) => {
     Object.values(errors).forEach((e) =>
@@ -126,15 +128,16 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
           />
         </div>
         <div className="col-12 col-md-6">
-          <Input
-            readOnly={allReadOnly}
-            type="text"
-            label="CEP"
+          <InputMask
             mask="99999-999"
-            register={register}
-            customOnChange={(cep: string) => getAddress(cep)}
+            placeholder="99999-999"
+            label="CEP"
+            onChange={(e) => {
+              console.log(e.target.value);
+              cepField.onChange(e);
+              getAddress(e.target.value);
+            }}
             error={formState.errors.cep}
-            {...register("cep", { required: true })}
           />
         </div>
       </div>
