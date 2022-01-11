@@ -1,13 +1,12 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import * as AlertService from "../Alert";
-import Alert from "../Alert";
+import Alert, { presentAlert } from "../Alert";
 
 describe("Alert component", () => {
   it("render correct message", async () => {
     const message = "My success message";
     render(<Alert />);
     await waitFor(() => {
-      AlertService.presentAlert({ message, type: "success" });
+      presentAlert({ message, type: "success" });
       expect(screen.getByText(message)).toBeInTheDocument();
     });
   });
@@ -15,7 +14,7 @@ describe("Alert component", () => {
     const message = "My success message";
     render(<Alert />);
     await waitFor(() => {
-      AlertService.presentAlert({ message, type: "info" });
+      presentAlert({ message, type: "info" });
     });
 
     // Validate message
