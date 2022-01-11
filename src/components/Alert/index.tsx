@@ -54,11 +54,23 @@ const Alert = () => {
       >
         <AlertTitleIcon className="d-flex justify-content-center align-items-center">
           {alertProps.type === "success" ? (
-            <AiOutlineCheckCircle size={128} color={theme.success} />
+            <AiOutlineCheckCircle
+              size={128}
+              data-testid="success"
+              color={theme.success}
+            />
           ) : alertProps.type === "info" ? (
-            <RiErrorWarningLine size={128} color={theme.primary} />
+            <RiErrorWarningLine
+              size={128}
+              data-testid="info"
+              color={theme.primary}
+            />
           ) : alertProps.type === "danger" ? (
-            <RiCloseCircleLine size={128} color={theme.danger} />
+            <RiCloseCircleLine
+              size={128}
+              data-testid="danger"
+              color={theme.danger}
+            />
           ) : (
             <></>
           )}
