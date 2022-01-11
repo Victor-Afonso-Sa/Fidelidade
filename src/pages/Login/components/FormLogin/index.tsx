@@ -1,11 +1,14 @@
 // @flow
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+
 import * as AlertService from "../../../../components/Alert";
 import { Input } from "../../../../components/Input";
+
 import { api } from "../../../../services/api";
+
 import { LoginType } from "../../../../types/LoginTypes";
 import { CustomForm, LoginButton, Title } from "./styles";
 
@@ -44,7 +47,7 @@ export const FormLogin = () => {
   };
 
   const handleError = (errors: FieldErrors) => {
-    Object.values(errors).map((e) =>
+    Object.values(errors).forEach((e) =>
       e?.message
         ? AlertService.presentAlert({
             type: "danger",
@@ -55,31 +58,35 @@ export const FormLogin = () => {
   };
 
   return (
-    <>
-      <CustomForm onSubmit={handleSubmit(handleSignIn, handleError)}>
-        <Title className="mb-3 ">Bem-vindo!</Title>
+    <CustomForm
+      data-testid="form-login"
+      onSubmit={handleSubmit(handleSignIn, handleError)}
+    >
+      <Title className="mb-3 ">Bem-vindo!</Title>
 
-        <Input
-          placeholder="Insira seu CPF"
-          label="CPF"
-          type="text"
-          mask="999.999.999-99"
-          inputClassName="cpf"
-          error={formState.errors.cpf}
-          {...register("cpf", { required: true })}
-        />
-        <Input
-          placeholder="Insira sua senha"
-          label="Senha"
-          type="password"
-          inputClassName="password"
-          error={formState.errors.password}
-          {...register("password", { required: true })}
-        />
-        <LoginButton type="submit" className="my-2">
-          Entrar
-        </LoginButton>
-      </CustomForm>
-    </>
+      <Input
+        data-testid="input-cpf"
+        placeholder="Insira seu CPF"
+        label="CPF"
+        type="text"
+        mask="999.999.999-99"
+        inputClassName="cpf"
+        error={formState.errors.cpf}
+        {...register("cpf", { required: true })}
+      />
+
+      <Input
+        data-testid="input-password"
+        placeholder="Insira sua senha"
+        label="Senha"
+        type="password"
+        inputClassName="password"
+        error={formState.errors.password}
+        {...register("password", { required: true })}
+      />
+      <LoginButton data-testid="login-button" type="submit" className="my-2">
+        Entrar
+      </LoginButton>
+    </CustomForm>
   );
 };
