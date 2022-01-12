@@ -1,6 +1,8 @@
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "styled-components";
 
+import { WalletProvider } from "./hooks/useWallet";
+
 import Alert from "./components/Alert";
 import { AppRoutes } from "./routes/Routes";
 
@@ -11,7 +13,6 @@ import "./styles/global.css";
 import "animate.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.variable.min.css";
-import { WalletProvider } from "./contexts/useWallet";
 
 function App() {
   return (
