@@ -99,7 +99,7 @@ describe("RegisterForm Component", () => {
       fireEvent.submit(screen.getByTestId("RegisterForm"));
       await waitFor(async () => {
         expect(presentAlertSpy).toHaveBeenCalledWith({
-          message: "CEP inválido",
+          message: "Por favor verfique os campos e tente novamente",
           type: "danger",
         });
       });
@@ -115,7 +115,7 @@ describe("RegisterForm Component", () => {
       fireEvent.submit(screen.getByTestId("RegisterForm"));
       await waitFor(async () => {
         expect(presentAlertSpy).toHaveBeenCalledWith({
-          message: "CPF inválido",
+          message: "Por favor verfique os campos e tente novamente",
           type: "danger",
         });
       });

@@ -11,7 +11,7 @@ describe("Sidebar Component", () => {
 
   beforeEach(() => {
     render(
-      <MemoryRouter initialEntries={["/pdv/home"]}>
+      <MemoryRouter initialEntries={["/pdv"]}>
         <Sidebar />
       </MemoryRouter>
     );
@@ -27,28 +27,43 @@ describe("Sidebar Component", () => {
     expect(sellIcon).toBeInTheDocument();
     expect(appsIcon).toBeInTheDocument();
   });
+  it("Should changed homeIcon classname to not active correctly", () => {
+    expect(homeIcon).not.toHaveClass("active");
+  });
 
   it("Should changed homeIcon classname to active correctly", () => {
     userEvent.click(homeIcon);
 
-    expect(homeIcon.classList).toContain("active");
+    expect(homeIcon).toHaveClass("active");
   });
 
   it("Should changed DashboarIcon classname to active correctly", () => {
     userEvent.click(dashboardIcon);
 
-    expect(dashboardIcon.classList).toContain("active");
+    expect(dashboardIcon).toHaveClass("active");
+  });
+
+  it("Should changed dashboarIcon classname to not active correctly", () => {
+    expect(dashboardIcon).not.toHaveClass("active");
   });
 
   it("Should changed sellIcon classname to active correctly", () => {
     userEvent.click(sellIcon);
 
-    expect(sellIcon.classList).toContain("active");
+    expect(sellIcon).toHaveClass("active");
+  });
+
+  it("Should changed sellIcon classname to not active correctly", () => {
+    expect(sellIcon).not.toHaveClass("active");
   });
 
   it("Should changed appsIcon classname to active correctly", () => {
     userEvent.click(appsIcon);
 
-    expect(appsIcon.classList).toContain("active");
+    expect(appsIcon).toHaveClass("active");
+  });
+
+  it("Should changed appsIcon classname to not active correctly", () => {
+    expect(appsIcon).not.toHaveClass("active");
   });
 });

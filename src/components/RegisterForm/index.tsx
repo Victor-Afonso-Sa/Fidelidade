@@ -55,7 +55,10 @@ export const RegisterForm = ({
   );
 
   const handleRegisterNewUser: SubmitHandler<RegisterType> = async (data) => {
-    console.log(data);
+    presentAlert({
+      type: "success",
+      message: "Sucesso",
+    });
   };
 
   const getAddress = (cep: string) => {
@@ -85,6 +88,7 @@ export const RegisterForm = ({
       <form
         className="d-flex flex-column"
         onSubmit={handleSubmit(handleRegisterNewUser, handleError)}
+        data-testid="RegisterForm"
       >
         <Input
           className="col-12"
@@ -190,6 +194,11 @@ export const RegisterForm = ({
               {...register("state", { required: true })}
             />
           </div>
+        </div>
+        <div className="d-flex justify-content-end float-end mb-4">
+          <PrimaryBtn type="submit" className="">
+            {btnText}
+          </PrimaryBtn>
         </div>
       </form>
     </Container>
