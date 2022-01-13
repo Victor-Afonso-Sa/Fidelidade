@@ -43,6 +43,29 @@ describe("Login Page", () => {
     });
   });
 
+  it("should call function handleError when occour schema validation", async () => {
+    const useNavigateMocked = mocked(useNavigate);
+    useNavigateMocked.mockReturnValueOnce({
+      navigate: jest.fn(),
+    } as any);
+
+    render(<FormLogin />);
+    const presentAlertSpy = jest.spyOn(AlertService, "presentAlert");
+
+    await act(async () => {
+      const inputCpfElement = screen.getByTestId("input-cpf");
+
+      fireEvent.input(inputCpfElement, { target: { value: "123.456.789-01" } });
+
+      const formElement = screen.getByTestId("form-login");
+      fireEvent.submit(formElement);
+    });
+
+    await waitFor(() => {
+      expect(presentAlertSpy).toHaveBeenCalled();
+    });
+  });
+
   it("should throws error when submit", async () => {
     const useNavigateMocked = mocked(useNavigate);
     useNavigateMocked.mockReturnValueOnce({

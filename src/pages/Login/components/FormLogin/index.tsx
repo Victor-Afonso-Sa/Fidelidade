@@ -40,7 +40,6 @@ export const FormLogin = () => {
   };
 
   const handleError = (errors: FieldErrors) => {
-    console.log(errors);
     Object.values(errors).forEach((e) =>
       e?.message
         ? presentAlert({
