@@ -67,7 +67,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
       e?.message
         ? AlertService.presentAlert({
             type: "danger",
-            message: "Por favor verfique os campos e tente novamente",
+            message: "Por favor verifique os campos e tente novamente",
           })
         : false
     );
@@ -81,6 +81,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
         <Input
           className="col-12"
           type="text"
+          data-testid="name"
           label="Nome Completo"
           readOnly={allReadOnly}
           error={formState.errors.nomeCompleto}
@@ -90,6 +91,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
         <Input
           className="col-12"
           readOnly={allReadOnly}
+          data-testid="email"
           type="email"
           label="Email"
           error={formState.errors.email}
@@ -101,6 +103,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
             <Input
               inputClassName="w-100"
               type="password"
+              data-testid="password"
               label="Senha"
               readOnly={allReadOnly}
               error={formState.errors.senha}
@@ -111,6 +114,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
             <Input
               readOnly={allReadOnly}
               inputClassName="w-100"
+              data-testid="confirm-password"
               type="password"
               label="Confirmar Senha"
               error={formState.errors.confirmarSenha}
@@ -123,6 +127,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
             <Input
               readOnly={allReadOnly}
               type="text"
+              data-testid="cpf"
               label="CPF"
               mask="999.999.999-99"
               error={formState.errors.cpf}
@@ -132,6 +137,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
           <div className="col-12 col-md-6">
             <InputMask
               mask="99999-999"
+              data-testid="cep"
               placeholder="99999-999"
               label="CEP"
               onChange={(e) => {
@@ -148,6 +154,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
             <Input
               readOnly={allReadOnly}
               type="text"
+              data-testid="street"
               label="Rua"
               error={formState.errors.rua}
               {...register("rua", { required: true })}
@@ -158,6 +165,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
               readOnly={allReadOnly}
               type="text"
               label="Número"
+              data-testid="streetNumber"
               error={formState.errors.numero}
               {...register("numero", { required: true })}
             />
@@ -169,6 +177,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
             <Input
               readOnly={allReadOnly}
               type="text"
+              data-testid="city"
               label="Cidade"
               error={formState.errors.cidade}
               {...register("cidade", { required: true })}
@@ -178,6 +187,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
             <Input
               readOnly={allReadOnly}
               type="text"
+              data-testid="state"
               label="Estado"
               error={formState.errors.uf}
               {...register("uf", { required: true })}
