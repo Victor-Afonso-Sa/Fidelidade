@@ -23,7 +23,7 @@ export const PixContainer = styled.div`
     margin-left: 20px;
   }
   .delete-icon {
-    margin-left: 50px;
+    width: 20%;
     cursor: pointer;
   }
 
@@ -35,6 +35,13 @@ export const PixContainer = styled.div`
   }
   .new-key {
     color: #fff;
+  }
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 80%;
   }
 `;
 
@@ -78,4 +85,46 @@ export const KeyType = styled.div<KeyTypeProps>`
   color: ${(props) => (props.active ? `#fff` : `${props.theme.primary}`)};
   font-size: 16px;
   cursor: pointer;
+`;
+
+export const WrapperRecebimento = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .logo-pix {
+    height: 30px;
+    width: 30px;
+    margin-top: -5px;
+  }
+  min-width: 400px;
+`;
+
+export const Title = styled.span`
+  color: ${({ theme }) => theme.primary};
+  margin-right: 10px;
+  font-size: 17px;
+  font-weight: bold;
+`;
+
+export const Type = styled.div`
+  color: ${({ theme }) => theme.primary};
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+`;
+
+export const Saldo = styled.div`
+  margin-top: 10px;
+  background-color: ${({ theme }) => theme.primary};
+  padding: 10px 20px 10px 20px;
+  border-radius: 8px;
+  color: #fff;
+  header {
+    width: 100%;
+    font-size: 12px;
+  }
+  div {
+    font-size: 28px;
+  }
 `;

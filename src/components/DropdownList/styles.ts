@@ -1,5 +1,14 @@
 import { Menu } from "antd";
 import styled from "styled-components";
+import { theme } from "../../styles/theme";
+
+interface DropdownItemContainerProps {
+  active?: boolean;
+}
+
+interface IconProps {
+  active?: boolean;
+}
 
 export const DropdownListContainer = styled.div`
   display: flex;
@@ -12,13 +21,14 @@ export const DropdownListContainer = styled.div`
   padding: 0px 15px 10px 15px;
   border-radius: 10px;
 `;
-export const DropdownItemContainer = styled.div`
+export const DropdownItemContainer = styled.div<DropdownItemContainerProps>`
   width: 100%;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   border-bottom: 1pt solid ${({ theme }) => theme.gray};
   padding: 20px 5px;
+  background-color: ${(props) => (props.active ? `${theme.background}` : "")};
   cursor: pointer;
   @media screen and (max-width: 992px) {
     justify-content: center;
@@ -35,8 +45,9 @@ export const ItemTitle = styled.span`
     font-size: 9px;
   }
 `;
-export const ItemIcon = styled.span`
-  color: ${({ theme }) => theme.gray};
+export const ItemIcon = styled.span<IconProps>`
+  padding-left: 12px;
+  color: ${(props) => (props.active ? `${theme.darkBlue}` : `${theme.gray}`)};
   font-size: 24px;
 `;
 

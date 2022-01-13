@@ -8,7 +8,7 @@ import { PixKey } from "./components/PixKey";
 import { BankTransfer } from "./components/ BankTransfer";
 
 export const FormsOfPayment = () => {
-  const [formOfPayment, setFormOfPayment] = useState<string>("pix");
+  const [formOfPayment, setFormOfPayment] = useState("pix");
   return (
     <>
       <div className="d-flex flex-column align-items-center mt-5">

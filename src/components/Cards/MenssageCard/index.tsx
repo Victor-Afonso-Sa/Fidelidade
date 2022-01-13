@@ -1,12 +1,17 @@
-import { MdClear } from "react-icons/md";
-
+// @flow
+import * as React from "react";
 import { Cards } from "../../../types/global";
-import { CardsContainer } from "../styles";
-import { MenssageCardBody, MenssageCardHeader } from "./styles";
+import {
+  CardsContainer,
+  MenssageCardBody,
+  MenssageCardHeader,
+} from "../styles";
+import { MdClear } from "react-icons/md";
 interface Props extends Cards {
   title: string;
   content: any;
   className?: string;
+  onClose: any;
 }
 
 export const MenssageCard = ({
@@ -15,6 +20,7 @@ export const MenssageCard = ({
   title,
   content,
   className,
+  onClose,
 }: Props) => {
   return (
     <CardsContainer
@@ -25,7 +31,11 @@ export const MenssageCard = ({
     >
       <MenssageCardHeader>
         <span>{title}</span>
-        <MdClear className="hoverable-icon ms-auto p-1" size={28} />
+        <MdClear
+          className="hoverable-icon ms-auto p-1"
+          size={28}
+          onClick={onClose}
+        />
       </MenssageCardHeader>
       <MenssageCardBody>{content}</MenssageCardBody>
     </CardsContainer>

@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 interface HeaderContentType {
-  cargo: boolean
+  cargo: boolean;
 }
 
 export const Wrapper = styled.nav`
@@ -10,14 +10,18 @@ export const Wrapper = styled.nav`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   height: 70px;
 
-  & .header__title{
+  .clickable {
+    cursor: pointer;
+  }
+
+  & .header__title {
     margin-left: 28px;
     letter-spacing: 0.1em;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 24px;
     font-weight: lighter;
   }
-`
+`;
 export const HeaderContent = styled.div<HeaderContentType>`
   margin-left: auto;
   height: 100%;
@@ -25,8 +29,9 @@ export const HeaderContent = styled.div<HeaderContentType>`
   justify-content: flex-end;
   align-items: center;
   padding: 0 10px;
-  background-color: ${({cargo, theme}) => cargo ? theme.darkBlue : "transparent"};
-`
+  background-color: ${({ cargo, theme }) =>
+    cargo ? theme.darkBlue : "transparent"};
+`;
 export const UserName = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,9 +49,9 @@ export const UserName = styled.div`
   @media screen and (max-width: 576px) {
     display: none;
   }
-`
+`;
 export const UserAcount = styled.div`
   color: #fff;
   display: flex;
   align-items: center;
-`
+`;
