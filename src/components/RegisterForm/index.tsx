@@ -39,8 +39,8 @@ const schema: yup.SchemaOf<RegisterType> = yup.object().shape({
     .required("O CEP é obrigatório"),
   street: yup.string().required("A rua é obrigatória"),
   number: yup.string().required("O número é obrigatório"),
-  state: yup.string().required("O estado é obrigatório"),
   city: yup.string().required("A cidade é obrigatória"),
+  state: yup.string().required("O estado é obrigatório"),
 });
 
 export const RegisterForm = ({
@@ -74,7 +74,8 @@ export const RegisterForm = ({
   };
 
   const handleError = (errors: FieldErrors) => {
-    Object.values(errors).map((e) =>
+    console.log(errors);
+    Object.values(errors).forEach((e) =>
       e?.message
         ? presentAlert({
             type: "danger",
@@ -146,11 +147,15 @@ export const RegisterForm = ({
               readOnly={allReadOnly}
               type="text"
               label="CEP"
-              mask="99999-999"
-              register={register}
-              customOnChange={(cep: string) => getAddress(cep)}
+              required
               error={formState.errors.cep}
-              {...register("cep", { required: true })}
+              {...register("cep", {
+                required: true,
+                onChange: (e) => {
+                  console.log(e.target.value);
+                  getAddress(e.target.value);
+                },
+              })}
             />
           </div>
         </div>
@@ -177,10 +182,9 @@ export const RegisterForm = ({
         <div className="row">
           <div className="col-12 col-md-6">
             <Input
-              type="text"
-              mask="*"
-              label="Cidade"
               readOnly
+              type="text"
+              label="Cidade"
               error={formState.errors.city}
               {...register("city", { required: true })}
             />

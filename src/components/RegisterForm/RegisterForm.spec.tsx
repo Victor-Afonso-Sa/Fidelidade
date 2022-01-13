@@ -26,7 +26,8 @@ describe("RegisterForm Component", () => {
         element.name === "cpf" ||
         element.name === "cep" ||
         element.name === "street" ||
-        element.name === "state"
+        element.name === "state" ||
+        element.name === "city"
       ) {
         fireEvent.input(element, {
           target: { value: fakeForm[element.name] },
@@ -71,10 +72,10 @@ describe("RegisterForm Component", () => {
         target: { value: "30550-130" },
       });
       await waitFor(async () => {
-        expect(screen.getByLabelText("CEP")).toHaveValue("30550-130");
-        expect(screen.getByTestId("city")).toHaveValue("Belo Horizonte");
-        expect(screen.getByTestId("state")).toHaveValue("MG");
-        expect(screen.getByTestId("street")).toHaveValue("Rua Capuri");
+        expect(elementsForm.cep).toHaveValue("30550-130");
+        expect(elementsForm.city).toHaveValue("Belo Horizonte");
+        expect(elementsForm.state).toHaveValue("MG");
+        expect(elementsForm.street).toHaveValue("Rua Capuri");
       });
     });
   });
