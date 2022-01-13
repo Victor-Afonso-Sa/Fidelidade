@@ -12,4 +12,5 @@ export const NewBuyCard = styled.div`
   font-weight: bold;
   font-size: 32px;
   box-shadow: 0px 0px 4px 0px gray;
+  cursor: pointer;
 `;

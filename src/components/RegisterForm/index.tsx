@@ -10,6 +10,7 @@ import { InputMask } from "../InputMask";
 
 import { CepType, RegisterType } from "../../types/RegisterTypes";
 import { PrimaryBtn } from "../../styles/global";
+import { Container } from "./styles";
 
 type Props = {
   btnText: string;
@@ -42,7 +43,7 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
     }
   );
 
-  const handleRegisterNewUser: SubmitHandler<RegisterType> = (data) => {
+  const handleRegisterNewUser: SubmitHandler<RegisterType> = async (data) => {
     console.log(data);
   };
 
@@ -65,127 +66,129 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
       e?.message
         ? AlertService.presentAlert({
             type: "danger",
-            message: e.message,
+            message: "Por favor verfique os campos e tente novamente",
           })
         : false
     );
   };
-
   return (
-    <form
-      className="d-flex flex-column"
-      onSubmit={handleSubmit(handleRegisterNewUser, handleError)}
-    >
-      <Input
-        className="col-12"
-        type="text"
-        label="Nome Completo"
-        readOnly={allReadOnly}
-        error={formState.errors.nomeCompleto}
-        {...register("nomeCompleto", { required: true })}
-      />
+    <Container>
+      <form
+        className="d-flex flex-column"
+        onSubmit={handleSubmit(handleRegisterNewUser, handleError)}
+      >
+        <Input
+          className="col-12"
+          type="text"
+          label="Nome Completo"
+          readOnly={allReadOnly}
+          error={formState.errors.nomeCompleto}
+          {...register("nomeCompleto", { required: true })}
+        />
 
-      <Input
-        className="col-12"
-        readOnly={allReadOnly}
-        type="email"
-        label="Email"
-        error={formState.errors.email}
-        {...register("email", { required: true })}
-      />
+        <Input
+          className="col-12"
+          readOnly={allReadOnly}
+          type="email"
+          label="Email"
+          error={formState.errors.email}
+          {...register("email", { required: true })}
+        />
 
-      <div className="row">
-        <div className="col-12 col-md-6">
-          <Input
-            inputClassName="w-100"
-            type="password"
-            label="Senha"
-            readOnly={allReadOnly}
-            error={formState.errors.senha}
-            {...register("senha", { required: true })}
-          />
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <Input
+              inputClassName="w-100"
+              type="password"
+              label="Senha"
+              readOnly={allReadOnly}
+              error={formState.errors.senha}
+              {...register("senha", { required: true })}
+            />
+          </div>
+          <div className="col-12 col-md-6">
+            <Input
+              readOnly={allReadOnly}
+              inputClassName="w-100"
+              type="password"
+              label="Confirmar Senha"
+              error={formState.errors.confirmarSenha}
+              {...register("confirmarSenha", { required: true })}
+            />
+          </div>
         </div>
-        <div className="col-12 col-md-6">
-          <Input
-            readOnly={allReadOnly}
-            inputClassName="w-100"
-            type="password"
-            label="Confirmar Senha"
-            error={formState.errors.confirmarSenha}
-            {...register("confirmarSenha", { required: true })}
-          />
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <Input
+              readOnly={allReadOnly}
+              type="text"
+              label="CPF"
+              mask="999.999.999-99"
+              error={formState.errors.cpf}
+              {...register("cpf", { required: true })}
+            />
+          </div>
+          <div className="col-12 col-md-6">
+            <InputMask
+              mask="99999-999"
+              placeholder="99999-999"
+              label="CEP"
+              onChange={(e) => {
+                console.log(e.target.value);
+                cepField.onChange(e);
+                getAddress(e.target.value);
+              }}
+              error={formState.errors.cep}
+            />
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-12 col-md-6">
-          <Input
-            readOnly={allReadOnly}
-            type="text"
-            label="CPF"
-            mask="999.999.999-99"
-            error={formState.errors.cpf}
-            {...register("cpf", { required: true })}
-          />
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <Input
+              readOnly={allReadOnly}
+              type="text"
+              label="Rua"
+              error={formState.errors.rua}
+              {...register("rua", { required: true })}
+            />
+          </div>
+          <div className="col-12 col-md-6">
+            <Input
+              readOnly={allReadOnly}
+              type="text"
+              label="Número"
+              error={formState.errors.numero}
+              {...register("numero", { required: true })}
+            />
+          </div>
         </div>
-        <div className="col-12 col-md-6">
-          <InputMask
-            mask="99999-999"
-            placeholder="99999-999"
-            label="CEP"
-            onChange={(e) => {
-              console.log(e.target.value);
-              cepField.onChange(e);
-              getAddress(e.target.value);
-            }}
-            error={formState.errors.cep}
-          />
+
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <Input
+              readOnly={allReadOnly}
+              type="text"
+              label="Cidade"
+              error={formState.errors.cidade}
+              {...register("cidade", { required: true })}
+            />
+          </div>
+          <div className="col-12 col-md-6">
+            <Input
+              readOnly={allReadOnly}
+              type="text"
+              label="Estado"
+              error={formState.errors.uf}
+              {...register("uf", { required: true })}
+            />
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-12 col-md-6">
-          <Input
-            type="text"
-            label="Rua"
-            readOnly
-            error={formState.errors.rua}
-            {...register("rua", { required: true })}
-          />
+        <div className="d-flex justify-content-end float-end mb-4">
+          <PrimaryBtn type="submit" className="">
+            {btnText}
+          </PrimaryBtn>
         </div>
-        <div className="col-12 col-md-6">
-          <Input
-            readOnly={allReadOnly}
-            type="text"
-            label="Número"
-            error={formState.errors.numero}
-            {...register("numero", { required: true })}
-          />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12 col-md-6">
-          <Input
-            type="text"
-            label="Cidade"
-            readOnly
-            error={formState.errors.cidade}
-            {...register("cidade", { required: true })}
-          />
-        </div>
-        <div className="col-12 col-md-6">
-          <Input
-            type="text"
-            label="Estado"
-            readOnly
-            error={formState.errors.uf}
-            {...register("uf", { required: true })}
-          />
-        </div>
-      </div>
-      <div className="d-flex justify-content-end float-end mb-4">
-        <PrimaryBtn type="submit" className="">
-          {btnText}
-        </PrimaryBtn>
-      </div>
-    </form>
+      </form>
+    </Container>
   );
 };

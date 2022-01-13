@@ -7,6 +7,7 @@ interface Props extends Cards {
   title: string;
   content: any;
   className?: string;
+  onClose: any;
 }
 
 export const MenssageCard = ({
@@ -15,6 +16,7 @@ export const MenssageCard = ({
   title,
   content,
   className,
+  onClose,
 }: Props) => {
   return (
     <CardsContainer
@@ -25,7 +27,11 @@ export const MenssageCard = ({
     >
       <MenssageCardHeader>
         <span>{title}</span>
-        <MdClear className="hoverable-icon ms-auto p-1" size={28} />
+        <MdClear
+          className="hoverable-icon ms-auto p-1"
+          size={28}
+          onClick={onClose}
+        />
       </MenssageCardHeader>
       <MenssageCardBody>{content}</MenssageCardBody>
     </CardsContainer>
