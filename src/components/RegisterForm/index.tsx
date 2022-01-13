@@ -23,6 +23,7 @@ const schema = yup.object().shape({
   senha: yup.string().required("A senha é obrigatória"),
   confirmarSenha: yup
     .string()
+    .required("Confirmar senha é obrigatório")
     .when("senha", (senha, field) =>
       senha
         ? field.required().oneOf([yup.ref("senha")], "As senhas não conferem")
