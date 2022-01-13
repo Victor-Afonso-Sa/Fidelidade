@@ -10,7 +10,7 @@ type Props = {
 export const DisplayCoins = ({ amount }: Props) => {
   return (
     <CoinWrapper>
-      <img src={CoinSVG} alt="Moeda araujo" width="44" />
+      <img src={CoinSVG} alt="Moeda" width="44" />
       <span className="content-coin-value">
         <CoinValue>{amount}</CoinValue>
       </span>

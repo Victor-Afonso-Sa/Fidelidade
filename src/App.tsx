@@ -1,17 +1,15 @@
+import "animate.css";
+import "antd/dist/antd.variable.min.css";
 import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "styled-components";
-
-import Alert from "./components/Alert";
-import { AppRoutes } from "./routes/Routes";
-
-import { theme } from "./styles/theme";
 import "react-toastify/dist/ReactToastify.min.css";
+import { ThemeProvider } from "styled-components";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Alert from "./components/Alert";
+import { WalletProvider } from "./contexts/useWallet";
+import { AppRoutes } from "./routes/Routes";
 import { GlobalStyle } from "./styles/global";
 import "./styles/global.css";
-import "animate.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "antd/dist/antd.variable.min.css";
-import { WalletProvider } from "./contexts/useWallet";
+import { theme } from "./styles/theme";
 
 function App() {
   return (

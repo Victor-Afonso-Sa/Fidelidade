@@ -19,7 +19,7 @@ export const Login = (props: Props) => {
         <div className="d-flex mt-auto mx-auto">
           <img className="mt-4" src={Logo} alt="Logo araujo" />
         </div>
-        <div className="mt-auto"> 
+        <div className="mt-auto">
           <img className="w-100 " src={Circles} alt="Circulos" />
         </div>
       </ContainerImg>

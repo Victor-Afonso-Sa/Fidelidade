@@ -2,7 +2,6 @@
 import axios from "axios";
 import * as yup from "yup";
 import { FieldErrors, SubmitHandler, useForm } from "react-hook-form";
-import * as AlertService from "../../components/Alert";
 
 import { Input } from "../Input";
 import { CepType, RegisterType } from "../../types/RegisterTypes";
@@ -10,36 +9,49 @@ import { CepType, RegisterType } from "../../types/RegisterTypes";
 import { PrimaryBtn } from "../../styles/global";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Container } from "./styles";
+import { presentAlert } from "../Alert";
 
 type Props = {
   btnText: string;
   allReadOnly?: boolean;
+  formValues?: RegisterType;
 };
 
-const schema = yup.object().shape({
+const schema: yup.SchemaOf<RegisterType> = yup.object().shape({
   nomeCompleto: yup.string().required("O nome é obrigatório"),
   email: yup.string().required("O email é obrigatório"),
-  senha: yup.string().required("A senha é obrigatória"),
-  confirmarSenha: yup
+  password: yup.string().required("A senha é obrigatória"),
+  confirmPassword: yup
     .string()
     .when("senha", (senha, field) =>
       senha
         ? field.required().oneOf([yup.ref("senha")], "As senhas não conferem")
-        : field,
-    ),
-  cpf: yup.string().required("O CPF é obrigatório"),
-  cep: yup.string().required("O CEP é obrigatório"),
-  rua: yup.string().required("A rua é obrigatória"),
-  numero: yup.string().required("O número é obrigatório"),
-  cidade: yup.string().required("A cidade é obrigatória"),
-  uf: yup.string().required("O estado é obrigatório"),
+        : field
+    )
+    .required("O campo confirmar senha é obrigatória"),
+  cpf: yup
+    .string()
+    .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "CPF inválido")
+    .required("O CPF é obrigatório"),
+  cep: yup
+    .string()
+    .matches(/[0-9]{5}-[0-9]{3}/, "CEP inválido")
+    .required("O CEP é obrigatório"),
+  street: yup.string().required("A rua é obrigatória"),
+  number: yup.string().required("O número é obrigatório"),
+  state: yup.string().required("O estado é obrigatório"),
+  city: yup.string().required("A cidade é obrigatória"),
 });
 
-export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
+export const RegisterForm = ({
+  btnText,
+  allReadOnly = false,
+  formValues,
+}: Props) => {
   const { register, setValue, handleSubmit, formState } = useForm<RegisterType>(
     {
       resolver: yupResolver(schema),
-    },
+    }
   );
 
   const handleRegisterNewUser: SubmitHandler<RegisterType> = async (data) => {
@@ -47,14 +59,13 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
   };
 
   const getAddress = (cep: string) => {
-    console.log(cep);
     if (cep.match("[0-9]{5}-[0-9]{3}")) {
       axios
         .get<CepType>(`https://viacep.com.br/ws/${cep}/json/`)
         .then((resp) => {
-          setValue("rua", resp.data.logradouro);
-          setValue("cidade", resp.data.localidade);
-          setValue("uf", resp.data.uf);
+          setValue("street", resp.data.logradouro);
+          setValue("city", resp.data.localidade);
+          setValue("state", resp.data.uf);
         });
     }
   };
@@ -62,11 +73,11 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
   const handleError = (errors: FieldErrors) => {
     Object.values(errors).map((e) =>
       e?.message
-        ? AlertService.presentAlert({
+        ? presentAlert({
             type: "danger",
             message: "Por favor verfique os campos e tente novamente",
           })
-        : false,
+        : false
     );
   };
   return (
@@ -100,8 +111,8 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
               type="password"
               label="Senha"
               readOnly={allReadOnly}
-              error={formState.errors.senha}
-              {...register("senha", { required: true })}
+              error={formState.errors.password}
+              {...register("password", { required: true })}
             />
           </div>
           <div className="col-12 col-md-6">
@@ -110,8 +121,8 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
               inputClassName="w-100"
               type="password"
               label="Confirmar Senha"
-              error={formState.errors.confirmarSenha}
-              {...register("confirmarSenha", { required: true })}
+              error={formState.errors.confirmPassword}
+              {...register("confirmPassword", { required: true })}
             />
           </div>
         </div>
@@ -142,11 +153,11 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
         <div className="row">
           <div className="col-12 col-md-6">
             <Input
-              readOnly={allReadOnly}
               type="text"
               label="Rua"
-              error={formState.errors.rua}
-              {...register("rua", { required: true })}
+              readOnly
+              error={formState.errors.street}
+              {...register("street", { required: true })}
             />
           </div>
           <div className="col-12 col-md-6">
@@ -154,35 +165,31 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
               readOnly={allReadOnly}
               type="text"
               label="Número"
-              error={formState.errors.numero}
-              {...register("numero", { required: true })}
+              error={formState.errors.number}
+              {...register("number", { required: true })}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-12 col-md-6">
             <Input
-              readOnly={allReadOnly}
               type="text"
+              mask="*"
               label="Cidade"
-              error={formState.errors.cidade}
-              {...register("cidade", { required: true })}
+              readOnly
+              error={formState.errors.city}
+              {...register("city", { required: true })}
             />
           </div>
           <div className="col-12 col-md-6">
             <Input
-              readOnly={allReadOnly}
               type="text"
               label="Estado"
-              error={formState.errors.uf}
-              {...register("uf", { required: true })}
+              readOnly
+              error={formState.errors.state}
+              {...register("state", { required: true })}
             />
           </div>
-        </div>
-        <div className="d-flex justify-content-end float-end mb-4">
-          <PrimaryBtn type="submit" className="">
-            {btnText}
-          </PrimaryBtn>
         </div>
       </form>
     </Container>

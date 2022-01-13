@@ -42,7 +42,9 @@ export const PaymentCard = ({
       className={`${active ? "active" : ""} ${className ?? ""} `}
       onClick={onClick}
     >
-      <span className="icon">{Icon}</span>
+      <span className="icon" data-testid="paymentIcon">
+        {Icon}
+      </span>
       <span>{label}</span>
     </PaymentCardWrapper>
   );
