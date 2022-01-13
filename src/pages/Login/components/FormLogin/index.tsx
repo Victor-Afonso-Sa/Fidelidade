@@ -32,7 +32,6 @@ export const FormLogin = () => {
       data.cpf = data.cpf.split(".").join("").split("-").join("");
       navigate("/");
     } catch (error) {
-      console.log(";alksdjfaksd", error);
       presentAlert({
         type: "danger",
         message: "Usuário ou senha incorretos ",

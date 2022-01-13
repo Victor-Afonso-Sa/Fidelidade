@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { mocked } from "jest-mock";
 import { act } from "react-dom/test-utils";
 import { useNavigate } from "react-router-dom";
+import * as AlertService from "../../../../components/Alert";
 import { FormLogin } from ".";
 
 jest.mock("react-router-dom");
@@ -39,6 +40,31 @@ describe("Login Page", () => {
 
     await waitFor(() => {
       expect(navigateMock).toHaveBeenCalledWith("/");
+    });
+  });
+
+  it("should throws error when submit", async () => {
+    const useNavigateMocked = mocked(useNavigate);
+    useNavigateMocked.mockReturnValueOnce({
+      navigate: jest.fn(),
+    } as any);
+
+    render(<FormLogin />);
+    const presentAlertSpy = jest.spyOn(AlertService, "presentAlert");
+
+    await act(async () => {
+      const inputCpfElement = screen.getByTestId("input-cpf");
+      const inputPasswordElement = screen.getByTestId("input-password");
+
+      fireEvent.input(inputCpfElement, { target: { value: "123.456.789-01" } });
+      fireEvent.input(inputPasswordElement, { target: { value: "12345678" } });
+
+      const formElement = screen.getByTestId("form-login");
+      fireEvent.submit(formElement);
+    });
+
+    await waitFor(() => {
+      expect(presentAlertSpy).toHaveBeenCalled();
     });
   });
 });
