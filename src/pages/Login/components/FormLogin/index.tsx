@@ -4,13 +4,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-import * as AlertService from "../../../../components/Alert";
 import { Input } from "../../../../components/Input";
-
-import { api } from "../../../../services/api";
 
 import { LoginType } from "../../../../types/LoginTypes";
 import { CustomForm, LoginButton, Title } from "./styles";
+import { presentAlert } from "../../../../components/Alert";
 
 const validateCPF = RegExp(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/);
 
@@ -30,26 +28,23 @@ export const FormLogin = () => {
   });
 
   const handleSignIn: SubmitHandler<LoginType> = (data) => {
-    data.cpf = data.cpf.split(".").join("").split("-").join("");
-
-    api
-      .post(`/login`, data)
-      .then((response) => {
-        console.log(response.data);
-        navigate("/");
-      })
-      .catch((error) => {
-        AlertService.presentAlert({
-          type: "danger",
-          message: "Usuário ou senha incorretos ",
-        });
+    try {
+      data.cpf = data.cpf.split(".").join("").split("-").join("");
+      navigate("/");
+    } catch (error) {
+      console.log(";alksdjfaksd", error);
+      presentAlert({
+        type: "danger",
+        message: "Usuário ou senha incorretos ",
       });
+    }
   };
 
   const handleError = (errors: FieldErrors) => {
+    console.log(errors);
     Object.values(errors).forEach((e) =>
       e?.message
-        ? AlertService.presentAlert({
+        ? presentAlert({
             type: "danger",
             message: e.message,
           })
@@ -80,10 +75,11 @@ export const FormLogin = () => {
         placeholder="Insira sua senha"
         label="Senha"
         type="password"
-        inputClassName="password"
+        mask="***"
         error={formState.errors.password}
         {...register("password", { required: true })}
       />
+
       <LoginButton data-testid="login-button" type="submit" className="my-2">
         Entrar
       </LoginButton>
