@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { Register } from ".";
@@ -38,38 +38,47 @@ describe("Check validation on register", () => {
 
     const inputName = screen.getByTestId("name");
     userEvent.type(inputName, "Guilherme");
-    expect(inputName).toHaveValue("Guilherme");
 
     const inputEmail = screen.getByTestId("email");
     userEvent.type(inputEmail, "email@gmail.com");
-    expect(inputEmail).toHaveValue("email@gmail.com");
 
     const inputPassword = screen.getByTestId("password");
     userEvent.type(inputPassword, "123456abc");
-    expect(inputPassword).toHaveValue("123456abc");
 
     const inputConfirmPassword = screen.getByTestId("confirm-password");
     userEvent.type(inputConfirmPassword, "123456abc");
-    expect(inputConfirmPassword).toHaveValue("123456abc");
 
     const inputCpf = screen.getByTestId("cpf");
-    fireEvent.input(inputCpf, { target: { value: "123.456.789-01" } });
+    fireEvent.change(inputCpf, { target: { value: 12345678901 } });
     expect(inputCpf).toHaveValue("123.456.789-01");
 
+    const inputStreetNumber = screen.getByTestId("streetNumber");
+    userEvent.type(inputStreetNumber, "123");
+
     const inputCep = screen.getByTestId("cep");
-    fireEvent.input(inputCep, { target: { value: "17018-750" } });
+    fireEvent.change(inputCep, { target: { value: 17018750 } });
     expect(inputCep).toHaveValue("17018-750");
 
-    const inputStreet = await screen.findByTestId("street");
-    userEvent.type(inputStreet, "Avenida Brasil");
-    expect(inputStreet).toHaveValue("Avenida Brasil");
+    await waitFor(() => {
+      const inputStreet = screen.getByTestId("street");
+      expect(inputStreet).toHaveValue("Rua Luiz Bleriot");
+      const inputCity = screen.getByTestId("city");
+      expect(inputCity).toHaveValue("Bauru");
+      const inputState = screen.getByTestId("state");
+      expect(inputState).toHaveValue("SP");
+    });
 
-    const inputCity = screen.getByTestId("city");
-    userEvent.type(inputCity, "Bauru");
-    expect(inputCity).toHaveValue("Bauru");
+    const buttonSignUp = screen.getByRole("button", {
+      name: /cadastrar/i,
+    });
 
-    const inputState = screen.getByTestId("state");
-    userEvent.type(inputState, "SP");
-    expect(inputState).toHaveValue("SP");
+    userEvent.click(buttonSignUp);
+    const inputs = await screen.findAllByRole("textbox");
+    inputs.map((input) => expect(input).not.toHaveClass("is-invalid"));
+
+    await waitFor(() => {
+      const textHome = screen.queryByText(/olá/i);
+      expect(textHome).not.toBeInTheDocument();
+    });
   });
 });

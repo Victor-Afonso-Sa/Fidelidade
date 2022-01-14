@@ -6,11 +6,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Input } from "../Input";
 import * as AlertService from "../../components/Alert";
-import { InputMask } from "../InputMask";
 
 import { CepType, RegisterType } from "../../types/RegisterTypes";
 import { PrimaryBtn } from "../../styles/global";
 import { Container } from "./styles";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   btnText: string;
@@ -38,6 +39,7 @@ const schema = yup.object().shape({
 });
 
 export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
+  const navigate = useNavigate();
   const { register, setValue, handleSubmit, formState } = useForm<RegisterType>(
     {
       resolver: yupResolver(schema),
@@ -45,7 +47,13 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
   );
 
   const handleRegisterNewUser: SubmitHandler<RegisterType> = async (data) => {
-    console.log(data);
+    try {
+      await api.post("/cadastro", data);
+      console.log("Cadastro realizado com sucesso!");
+      navigate("/");
+    } catch (e) {
+      console.error("Algo deu errado!");
+    }
   };
 
   const getAddress = (cep: string) => {
@@ -59,8 +67,6 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
         });
     }
   };
-
-  const cepField = register("cep", { required: true });
 
   const handleError = (errors: FieldErrors) => {
     Object.values(errors).forEach((e) =>
@@ -134,17 +140,19 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
             />
           </div>
           <div className="col-12 col-md-6">
-            <InputMask
+            <Input
               mask="99999-999"
+              readOnly={allReadOnly}
+              type="text"
               data-testid="cep"
-              placeholder="99999-999"
               label="CEP"
-              onChange={(e) => {
-                console.log(e.target.value);
-                cepField.onChange(e);
-                getAddress(e.target.value);
-              }}
               error={formState.errors.cep}
+              {...register("cep", {
+                required: true,
+                onChange: (e) => {
+                  getAddress(e.target.value);
+                },
+              })}
             />
           </div>
         </div>
