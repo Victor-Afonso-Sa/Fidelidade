@@ -16,9 +16,9 @@ type Props = {
   allReadOnly?: boolean;
   formValues?: RegisterType;
 };
-
+const validateCPF = RegExp(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/);
 const schema: yup.SchemaOf<RegisterType> = yup.object().shape({
-  nomeCompleto: yup.string().required("O nome é obrigatório"),
+  name: yup.string().required("O nome é obrigatório"),
   email: yup.string().required("O email é obrigatório"),
   password: yup.string().required("A senha é obrigatória"),
   confirmPassword: yup
@@ -31,7 +31,7 @@ const schema: yup.SchemaOf<RegisterType> = yup.object().shape({
     .required("O campo confirmar senha é obrigatória"),
   cpf: yup
     .string()
-    .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "CPF inválido")
+    .matches(validateCPF, "CPF inválido")
     .required("O CPF é obrigatório"),
   cep: yup
     .string()
@@ -55,6 +55,7 @@ export const RegisterForm = ({
   );
 
   const handleRegisterNewUser: SubmitHandler<RegisterType> = async (data) => {
+    console.log(data);
     presentAlert({
       type: "success",
       message: "Sucesso",
@@ -96,8 +97,8 @@ export const RegisterForm = ({
           type="text"
           label="Nome Completo"
           readOnly={allReadOnly}
-          error={formState.errors.nomeCompleto}
-          {...register("nomeCompleto", { required: true })}
+          error={formState.errors.name}
+          {...register("name", { required: true })}
         />
 
         <Input
@@ -145,14 +146,13 @@ export const RegisterForm = ({
           <div className="col-12 col-md-6">
             <Input
               readOnly={allReadOnly}
+              mask="99999-999"
               type="text"
               label="CEP"
-              required
               error={formState.errors.cep}
               {...register("cep", {
                 required: true,
                 onChange: (e) => {
-                  console.log(e.target.value);
                   getAddress(e.target.value);
                 },
               })}
@@ -182,9 +182,9 @@ export const RegisterForm = ({
         <div className="row">
           <div className="col-12 col-md-6">
             <Input
-              readOnly
               type="text"
               label="Cidade"
+              readOnly
               error={formState.errors.city}
               {...register("city", { required: true })}
             />

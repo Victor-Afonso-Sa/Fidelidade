@@ -9,32 +9,16 @@ describe("RegisterForm Component", () => {
   let submitButton: HTMLButtonElement;
   let elementsForm: { [key: string]: HTMLInputElement } = {};
   let fakeForm: { [key: string]: string } = {
-    nomeCompleto: "fake-name",
+    city: "Belo Horizonte",
+    name: "fake-name",
     email: "fake-email",
     password: "fake-password",
     confirmPassword: "fake-password",
     cpf: "126.931.436-08",
-    cep: "30550-130",
-    number: "99",
+    cep: "30575-430",
     state: "MG",
     street: "Rua capuri",
-    city: "Belo Horizonte",
-  };
-  const fillAllFields = () => {
-    Object.values(elementsForm).forEach((element: any) => {
-      if (
-        element.name === "cpf" ||
-        element.name === "cep" ||
-        element.name === "street" ||
-        element.name === "state" ||
-        element.name === "city"
-      ) {
-        fireEvent.input(element, {
-          target: { value: fakeForm[element.name] },
-        });
-      }
-      userEvent.type(element, fakeForm[element.name]);
-    });
+    number: "99",
   };
   beforeEach(() => {
     act(() => {
@@ -43,6 +27,7 @@ describe("RegisterForm Component", () => {
     Object.keys(fakeForm).forEach((key) => {
       elementsForm[key] = screen.getByTestId(key) as HTMLInputElement;
     });
+
     submitButton = screen.getByRole("button") as HTMLButtonElement;
   });
 
@@ -54,14 +39,26 @@ describe("RegisterForm Component", () => {
   });
 
   it("Should show te success alert if the form is correct", async () => {
-    await act(async () => {
-      fillAllFields();
-      fireEvent.submit(screen.getByTestId("RegisterForm"));
-      await waitFor(async () => {
-        expect(presentAlertSpy).toHaveBeenCalledWith({
-          message: "Sucesso",
-          type: "success",
+    await Object.values(elementsForm).map((element) => {
+      if (
+        element.name === "cpf" ||
+        element.name === "cep" ||
+        element.name === "state" ||
+        element.name === "city" ||
+        element.name === "street"
+      ) {
+        fireEvent.change(element, {
+          target: { value: fakeForm[element.name] },
         });
+      }
+      userEvent.type(element, fakeForm[element.name]);
+      return element.value;
+    });
+    userEvent.click(submitButton);
+    await waitFor(() => {
+      expect(presentAlertSpy).toHaveBeenCalledWith({
+        message: "Sucesso",
+        type: "success",
       });
     });
   });
@@ -73,7 +70,7 @@ describe("RegisterForm Component", () => {
       });
       await waitFor(async () => {
         expect(elementsForm.cep).toHaveValue("30550-130");
-        expect(elementsForm.city).toHaveValue("Belo Horizonte");
+        expect(screen.getByTestId("city")).toHaveValue("Belo Horizonte");
         expect(elementsForm.state).toHaveValue("MG");
         expect(elementsForm.street).toHaveValue("Rua Capuri");
       });
@@ -82,7 +79,7 @@ describe("RegisterForm Component", () => {
 
   it("Should all fields be invalid", async () => {
     await act(async () => {
-      fireEvent.submit(screen.getByTestId("RegisterForm"));
+      userEvent.click(submitButton);
       await waitFor(async () => {
         Object.values(elementsForm).forEach((element: any) => {
           expect(element).toHaveClass("is-invalid");
@@ -92,33 +89,58 @@ describe("RegisterForm Component", () => {
   });
 
   it("Should validate the field CEP", async () => {
-    await act(async () => {
-      fillAllFields();
-      fireEvent.input(elementsForm.cep, {
-        target: { value: "30550" },
-      });
-      fireEvent.submit(screen.getByTestId("RegisterForm"));
-      await waitFor(async () => {
-        expect(presentAlertSpy).toHaveBeenCalledWith({
-          message: "Por favor verfique os campos e tente novamente",
-          type: "danger",
+    await Object.values(elementsForm).map((element) => {
+      if (
+        element.name === "cpf" ||
+        element.name === "cep" ||
+        element.name === "state" ||
+        element.name === "street"
+      ) {
+        fireEvent.change(element, {
+          target: { value: fakeForm[element.name] },
         });
+      }
+      userEvent.type(element, fakeForm[element.name]);
+      return element.value;
+    });
+    fireEvent.input(elementsForm.cep, {
+      target: { value: "30550" },
+    });
+    userEvent.click(submitButton);
+    await waitFor(async () => {
+      expect(presentAlertSpy).toHaveBeenCalledWith({
+        message: "Por favor verfique os campos e tente novamente",
+        type: "danger",
       });
     });
   });
-
   it("Should validate the field CPF", async () => {
-    await act(async () => {
-      fillAllFields();
-      fireEvent.input(elementsForm.cpf, {
-        target: { value: "305.500" },
-      });
-      fireEvent.submit(screen.getByTestId("RegisterForm"));
-      await waitFor(async () => {
-        expect(presentAlertSpy).toHaveBeenCalledWith({
-          message: "Por favor verfique os campos e tente novamente",
-          type: "danger",
+    await Object.values(elementsForm).map((element) => {
+      if (
+        element.name === "cpf" ||
+        element.name === "cep" ||
+        element.name === "state" ||
+        element.name === "street"
+      ) {
+        fireEvent.change(element, {
+          target: { value: fakeForm[element.name] },
         });
+      }
+      userEvent.type(element, fakeForm[element.name]);
+      return element.value;
+    });
+    Object.values(elementsForm).map((element) => {
+      element.value = fakeForm[element.name];
+      return element;
+    });
+    fireEvent.input(elementsForm.cpf, {
+      target: { value: "305.500" },
+    });
+    userEvent.click(submitButton);
+    await waitFor(async () => {
+      expect(presentAlertSpy).toHaveBeenCalledWith({
+        message: "Por favor verfique os campos e tente novamente",
+        type: "danger",
       });
     });
   });

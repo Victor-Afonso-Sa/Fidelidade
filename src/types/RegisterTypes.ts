@@ -12,7 +12,7 @@ export type CepType = {
 };
 
 export interface RegisterType {
-  nomeCompleto: string;
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
