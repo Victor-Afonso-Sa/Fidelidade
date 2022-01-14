@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { toast } from "react-toastify";
-import { useWallet } from "../../contexts/useWallet";
+import { useWallet } from "../../hooks/useWallet";
 import { AntButton, AntModal } from "../../styles/antDesign";
 import * as AlertService from "../Alert";
 import { Balance } from "../Cards/BalanceCard";
@@ -38,7 +38,7 @@ export const MoneyWallet = () => {
         className="w-100 animate__fadeInUp"
         title="Carteira - Saldo"
         btnText="Trocar para moedas"
-        amount={moneyWallet?.amount}
+        amount={moneyWallet?.amount ?? 0}
         action={toggleTradeMoneyModal}
       />
 

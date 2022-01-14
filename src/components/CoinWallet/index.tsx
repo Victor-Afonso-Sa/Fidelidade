@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 
-import { useWallet } from "../../contexts/useWallet";
+import { useWallet } from "../../hooks/useWallet";
 import * as AlertService from "../Alert";
 import { RescueNow } from "../Modal/components/RescueNow";
 import { Balance } from "./../Cards/BalanceCard";
@@ -40,7 +40,7 @@ export const CoinWallet = () => {
         className="w-100 animate__fadeInUp"
         title="Moedas - Saldo"
         btnText="Resgatar"
-        amount={coinsWallet?.amount}
+        amount={coinsWallet?.amount ?? 0}
         isCoins
         action={toggleRescueNowModal}
       />

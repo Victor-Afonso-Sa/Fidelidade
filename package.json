@@ -36,8 +36,16 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test  --watchAll false",
+    "test:coverage": "react-scripts test --coverage --watchAll false",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/pages/**/*.tsx",
+      "src/components/**/*.tsx",
+      "src/hooks/**/*.tsx"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -64,6 +72,8 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-input-mask": "^3.0.1",
     "@types/styled-components": "^5.1.16",
-    "eslint": "^7.11.0"
+    "eslint": "^7.11.0",
+    "jest-canvas-mock": "^2.3.1",
+    "jest-mock": "^27.4.2"
   }
 }

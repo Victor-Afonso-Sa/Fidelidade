@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { MenssageCard } from "../../components/Cards/MenssageCard";
-import { Extrato } from "../../components/Extrato";
+import { Extract } from "../../components/Extract";
 import { Header } from "../../components/Header";
 import { MoneyWallet } from "../../components/MoneyWallet";
 import { CoinWallet } from "./../../components/CoinWallet";
@@ -32,7 +32,7 @@ export const Home = () => {
           <ChartCoins />
         </div>
         <div className="col-12 col-md-4 p-0">
-          <Extrato />
+          <Extract />
 
           {showBoxFidelidade && (
             <MenssageCard

@@ -1,25 +1,25 @@
 export type CepType = {
-    cep: string
-    logradouro: string
-    complemento: string
-    bairro: string
-    localidade: string
-    uf: string
-    ibge: string
-    gia: string
-    ddd: string
-    siafi: string
-}
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  ibge: string;
+  gia: string;
+  ddd: string;
+  siafi: string;
+};
 
 export interface RegisterType {
-    nomeCompleto: string;
-    email: string;
-    senha: string;
-    confirmarSenha: string;
-    cpf: string;
-    cep: string;
-    rua: string;
-    numero: string;
-    cidade: string;
-    uf: string;
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  cpf: string;
+  cep: string;
+  street: string;
+  number: string;
+  city: string;
+  state: string;
 }

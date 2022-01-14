@@ -9,25 +9,29 @@ export const Sidebar = (props: Props) => {
   return (
     <Aside>
       <IconWrapper
+        data-testid="homeIcon"
         to="/pdv/home"
         className={({ isActive }) => (isActive ? "active" : "")}
       >
         <AiFillHome />
       </IconWrapper>
       <IconWrapper
+        data-testid="dashboardIcon"
         to="/pdv/dashboard"
         className={({ isActive }) => (isActive ? "active" : "")}
       >
         <AiOutlineAreaChart />
       </IconWrapper>
       <IconWrapper
+        data-testid="sellIcon"
         to="/pdv/venda"
         className={({ isActive }) => (isActive ? "active" : "")}
       >
         <BsHandbagFill />
       </IconWrapper>
       <IconWrapper
-        to="/pdv/produtos"
+        data-testid="appsIcon"
+        to="/pdv/apps"
         className={({ isActive }) => (isActive ? "active" : "")}
       >
         <AiOutlineOrderedList />

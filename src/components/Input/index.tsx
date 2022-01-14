@@ -63,6 +63,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
         >
           {() => (
             <CustomInput
+              data-testid={name}
               type={type}
               className={`${inputClassName ?? ""} form-control ${
                 error ? "is-invalid" : ""
