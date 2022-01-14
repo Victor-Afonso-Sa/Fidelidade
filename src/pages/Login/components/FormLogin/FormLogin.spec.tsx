@@ -4,6 +4,7 @@ import { act } from "react-dom/test-utils";
 import { useNavigate } from "react-router-dom";
 import * as AlertService from "../../../../components/Alert";
 import { FormLogin } from ".";
+import userEvent from "@testing-library/user-event";
 
 jest.mock("react-router-dom");
 
@@ -12,8 +13,8 @@ describe("Login Page", () => {
     render(<FormLogin />);
 
     expect(screen.getByTestId("form-login")).toBeInTheDocument();
-    expect(screen.getByTestId("input-cpf")).toBeInTheDocument();
-    expect(screen.getByTestId("input-password")).toBeInTheDocument();
+    expect(screen.getByTestId("cpf")).toBeInTheDocument();
+    expect(screen.getByTestId("password")).toBeInTheDocument();
     expect(screen.getByTestId("login-button")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /entrar/i })).toBeInTheDocument();
   });
@@ -28,14 +29,14 @@ describe("Login Page", () => {
     render(<FormLogin />);
 
     await act(async () => {
-      const inputCpfElement = screen.getByTestId("input-cpf");
-      const inputPasswordElement = screen.getByTestId("input-password");
+      const inputCpfElement = screen.getByTestId("cpf");
+      const inputPasswordElement = screen.getByTestId("password");
 
       fireEvent.input(inputCpfElement, { target: { value: "123.456.789-01" } });
       fireEvent.input(inputPasswordElement, { target: { value: "12345678" } });
 
-      const formElement = screen.getByTestId("form-login");
-      fireEvent.submit(formElement);
+      const formElement = screen.getByTestId("login-button");
+      userEvent.click(formElement);
     });
 
     await waitFor(() => {
@@ -53,7 +54,7 @@ describe("Login Page", () => {
     const presentAlertSpy = jest.spyOn(AlertService, "presentAlert");
 
     await act(async () => {
-      const inputCpfElement = screen.getByTestId("input-cpf");
+      const inputCpfElement = screen.getByTestId("cpf");
 
       fireEvent.input(inputCpfElement, { target: { value: "123.456.789-01" } });
 
@@ -76,8 +77,8 @@ describe("Login Page", () => {
     const presentAlertSpy = jest.spyOn(AlertService, "presentAlert");
 
     await act(async () => {
-      const inputCpfElement = screen.getByTestId("input-cpf");
-      const inputPasswordElement = screen.getByTestId("input-password");
+      const inputCpfElement = screen.getByTestId("cpf");
+      const inputPasswordElement = screen.getByTestId("password");
 
       fireEvent.input(inputCpfElement, { target: { value: "123.456.789-01" } });
       fireEvent.input(inputPasswordElement, { target: { value: "12345678" } });

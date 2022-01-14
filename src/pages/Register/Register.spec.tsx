@@ -45,14 +45,14 @@ describe("Check validation on register", () => {
     const inputPassword = screen.getByTestId("password");
     userEvent.type(inputPassword, "123456abc");
 
-    const inputConfirmPassword = screen.getByTestId("confirm-password");
+    const inputConfirmPassword = screen.getByTestId("confirmPassword");
     userEvent.type(inputConfirmPassword, "123456abc");
 
     const inputCpf = screen.getByTestId("cpf");
     fireEvent.change(inputCpf, { target: { value: 12345678901 } });
     expect(inputCpf).toHaveValue("123.456.789-01");
 
-    const inputStreetNumber = screen.getByTestId("streetNumber");
+    const inputStreetNumber = screen.getByTestId("number");
     userEvent.type(inputStreetNumber, "123");
 
     const inputCep = screen.getByTestId("cep");

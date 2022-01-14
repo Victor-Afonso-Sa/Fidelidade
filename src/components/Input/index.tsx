@@ -11,13 +11,14 @@ import { InputWrapper } from "./styles";
 type Props = {
   label: string;
   name: string;
+  className?: string;
   inputClassName?: string;
   readOnly?: boolean | false;
   error?: FieldError;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  { name, label, inputClassName, readOnly, error = null, ...rest },
+  { name, label, inputClassName, className, readOnly, error = null, ...rest },
   ref
 ) => {
   return (
@@ -25,8 +26,9 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
       <div className={"form-floating mb-3"}>
         <input
           name={name}
+          data-testid={name}
           id={name}
-          className={`${inputClassName ?? ""} form-control ${
+          className={`${className ?? ""} form-control ${
             error ? "is-invalid" : ""
           } `}
           ref={ref}
@@ -35,34 +37,6 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
         <label htmlFor={name}>{label}</label>
       </div>
     </InputWrapper>
-    // <InputWrapper>
-    //   <div className={`form-floating mb-3 ${className ?? ""}`}>
-    //     <ReactInputMask
-    //       mask={mask || ""}
-    //       onChange={onChange}
-    //       onBlur={onBlur}
-    //       readOnly={readOnly}
-    //       maskPlaceholder={null}
-    //     >
-    //       {() => (
-    //         <CustomInput
-    //           data-testid="input-component"
-    //           type={type}
-    //           className={`${inputClassName ?? ""} form-control ${
-    //             error ? "is-invalid" : ""
-    //           } `}
-    //           placeholder={placeholder}
-    //           readOnly={readOnly}
-    //           id={name}
-    //           name={name}
-    //           ref={ref}
-    //           {...rest}
-    //         />
-    //       )}
-    //     </ReactInputMask>
-    //     <label htmlFor={name}>{label}</label>
-    //   </div>
-    // </InputWrapper>
   );
 };
 

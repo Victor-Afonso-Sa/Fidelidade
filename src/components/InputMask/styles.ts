@@ -30,7 +30,6 @@ export const Container = styled.div`
     font-size: 1.2em;
     padding-top: 34px !important;
     padding-bottom: 4px !important;
-
     &:focus {
       background-color: transparent;
       border-bottom: 2pt solid ${({ theme }) => theme.primary};

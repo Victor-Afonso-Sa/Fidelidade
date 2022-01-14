@@ -59,7 +59,6 @@ export const FormLogin = () => {
       <Title className="mb-3 ">Bem-vindo!</Title>
 
       <InputMask
-        data-testid="input-cpf"
         placeholder="Insira seu CPF"
         label="CPF"
         type="text"
@@ -70,7 +69,6 @@ export const FormLogin = () => {
       />
 
       <Input
-        data-testid="input-password"
         placeholder="Insira sua senha"
         label="Senha"
         type="password"

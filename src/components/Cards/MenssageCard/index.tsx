@@ -1,8 +1,10 @@
-import { MdClear } from "react-icons/md";
-
 import { Cards } from "../../../types/global";
-import { CardsContainer } from "../styles";
-import { MenssageCardBody, MenssageCardHeader } from "./styles";
+import {
+  CardsContainer,
+  MenssageCardBody,
+  MenssageCardHeader,
+} from "../styles";
+import { MdClear } from "react-icons/md";
 interface Props extends Cards {
   title: string;
   content: any;

@@ -21,7 +21,7 @@ describe("InputMask component", () => {
 
     expect(screen.getByText(/fake-label/i)).toBeInTheDocument();
 
-    expect(screen.getByTestId("inputmask-component")).toBeInTheDocument();
+    expect(screen.getByTestId("fakeName")).toBeInTheDocument();
   });
 
   it("should render without className", () => {
@@ -64,11 +64,11 @@ describe("InputMask component", () => {
     expect(screen.queryByText(/is-invalid/i)).not.toBeInTheDocument();
   });
 
-  it("should render with errora", async () => {
+  it("should call function", async () => {
     const useFormMocked = mocked(useForm);
     const customOnChangeMock = jest
       .fn()
-      .mockImplementationOnce((value: string) => console.log(value));
+      .mockImplementationOnce((value: string) => jest.fn());
     const onChangeMock = jest.fn();
     const registerMock = jest.fn().mockReturnValue({
       onChange: customOnChangeMock,
@@ -92,7 +92,7 @@ describe("InputMask component", () => {
       />
     );
 
-    const inputElement = screen.getByTestId("inputmask-component");
+    const inputElement = screen.getByTestId("fakeName");
 
     await act(async () => {
       fireEvent.change(inputElement, { target: { value: "fake-value" } });

@@ -32,11 +32,7 @@ export const EditProduct = () => {
       description: "Bebidas",
     },
   ];
-  const { sku } = useParams();
 
-  useEffect(() => {
-    console.log("Codigo: ", sku);
-  }, [sku]);
   return (
     <Container>
       <Title>Editar produto</Title>

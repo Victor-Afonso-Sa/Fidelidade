@@ -6,6 +6,7 @@ import "@testing-library/jest-dom";
 
 // src/setupTests.js
 import { server } from "./mocks/server";
+import "jest-canvas-mock";
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());

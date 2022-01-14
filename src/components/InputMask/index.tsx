@@ -29,10 +29,12 @@ const InputMaskBase: ForwardRefRenderFunction<
       <div className={"form-floating mb-3"}>
         <ReactInputMask
           mask={mask}
-          data-testid="inputmask-component"
+          data-testid={name}
+          name={name}
           className={`${inputClassName ?? ""} form-control ${
             error ? "is-invalid" : ""
           } `}
+          inputRef={ref}
           {...rest}
         />
         <label htmlFor={name}>{label}</label>

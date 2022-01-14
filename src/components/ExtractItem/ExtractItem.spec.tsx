@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ExtractItem } from "../../components/ExtractItem";
+import { ExtractItem } from ".";
 
 describe("ExtractItem Component", () => {
   it("renders correctly", () => {

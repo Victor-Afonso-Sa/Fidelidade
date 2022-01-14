@@ -28,6 +28,7 @@ export const DropdownItem = ({
       onClick={onClick}
       data-tooltip={label}
       active={Object.values(location)[0] === active}
+      data-testid={label}
     >
       <ItemTitle className="d-none d-lg-block">{label}</ItemTitle>
       <span>
