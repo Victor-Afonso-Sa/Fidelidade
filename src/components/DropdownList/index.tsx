@@ -1,14 +1,10 @@
-// @flow
-import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { DropdownItem } from "./DropdownItem";
 import { DropdownMenu } from "./styles";
 import { MdAccountBox, MdNotifications } from "react-icons/md";
 import { BsBank2 } from "react-icons/bs";
-import { AiOutlineOrderedList } from "react-icons/ai";
-type Props = {};
 
-export const DropdownList = (props: Props) => {
+export const DropdownList = () => {
   let navigate = useNavigate();
 
   return (

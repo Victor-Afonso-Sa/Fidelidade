@@ -9,6 +9,7 @@ import { Input } from "../../../../components/Input";
 import { LoginType } from "../../../../types/LoginTypes";
 import { CustomForm, LoginButton, Title } from "./styles";
 import { presentAlert } from "../../../../components/Alert";
+import { InputMask } from "../../../../components/InputMask";
 
 const validateCPF = RegExp(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/);
 
@@ -57,7 +58,7 @@ export const FormLogin = () => {
     >
       <Title className="mb-3 ">Bem-vindo!</Title>
 
-      <Input
+      <InputMask
         data-testid="input-cpf"
         placeholder="Insira seu CPF"
         label="CPF"
@@ -73,7 +74,6 @@ export const FormLogin = () => {
         placeholder="Insira sua senha"
         label="Senha"
         type="password"
-        mask="***"
         error={formState.errors.password}
         {...register("password", { required: true })}
       />

@@ -129,7 +129,6 @@ export const RegisterForm = ({ btnText, allReadOnly = false }: Props) => {
               type="text"
               data-testid="cpf"
               label="CPF"
-              mask="999.999.999-99"
               error={formState.errors.cpf}
               {...register("cpf", { required: true })}
             />

@@ -10,27 +10,29 @@ export const InputWrapper = styled.div`
     color: ${({ theme }) => theme.primary};
     padding-left: 0px;
   }
-  .w-60{
+  .w-60 {
     width: 60%;
   }
-  .cpf{
-      text-align: center;
+  .cpf {
+    text-align: center;
   }
-`;
-export const CustomInput = styled.input`
-  border: 1pt solid ${({ theme }) => theme.primary};
-  background-color: transparent;
-  border: 0;
-  border-radius: 0;
-  border-bottom: 1pt solid ${({ theme }) => theme.primary};
-  padding-left: 5px !important;
-  font-size: 1.2em;
-  padding-top: 34px !important;
-  padding-bottom: 4px !important;
 
-  &:focus {
+  input {
+    border: 1pt solid ${({ theme }) => theme.primary};
     background-color: transparent;
-    border-bottom: 2pt solid ${({ theme }) => theme.primary};
-    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1pt solid ${({ theme }) => theme.primary};
+    padding-left: 5px !important;
+    font-size: 1.2em;
+    padding-top: 34px !important;
+    padding-bottom: 4px !important;
+
+    &:focus {
+      background-color: transparent;
+      border-bottom: 2pt solid ${({ theme }) => theme.primary};
+      box-shadow: none;
+    }
   }
 `;
+export const CustomInput = styled.input``;
