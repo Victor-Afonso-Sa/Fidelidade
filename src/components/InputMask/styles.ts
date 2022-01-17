@@ -5,17 +5,21 @@ export const Container = styled.div`
   border: none;
   outline: none;
   box-shadow: none;
+
   label {
     font-weight: bold;
     color: ${({ theme }) => theme.primary};
     padding-left: 0px;
   }
+
   .w-60 {
     width: 60%;
   }
+
   .cpf {
     text-align: center;
   }
+
   input {
     border: 1pt solid ${({ theme }) => theme.primary};
     background-color: transparent;

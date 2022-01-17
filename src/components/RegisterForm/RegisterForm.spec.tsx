@@ -39,15 +39,15 @@ describe("RegisterForm Component", () => {
   });
 
   it("Should show te success alert if the form is correct", async () => {
-    await Object.values(elementsForm).map((element) => {
+    Object.values(elementsForm).forEach((element) => {
       if (
-        element.name === "cpf" ||
-        element.name === "cep" ||
-        element.name === "state" ||
         element.name === "city" ||
-        element.name === "street"
+        element.name === "street" ||
+        element.name === "state" ||
+        element.name === "cpf" ||
+        element.name === "cep"
       ) {
-        fireEvent.change(element, {
+        fireEvent.input(element, {
           target: { value: fakeForm[element.name] },
         });
       }
@@ -109,7 +109,7 @@ describe("RegisterForm Component", () => {
     userEvent.click(submitButton);
     await waitFor(async () => {
       expect(presentAlertSpy).toHaveBeenCalledWith({
-        message: "Por favor verfique os campos e tente novamente",
+        message: "Por favor verifique os campos e tente novamente",
         type: "danger",
       });
     });
@@ -139,7 +139,7 @@ describe("RegisterForm Component", () => {
     userEvent.click(submitButton);
     await waitFor(async () => {
       expect(presentAlertSpy).toHaveBeenCalledWith({
-        message: "Por favor verfique os campos e tente novamente",
+        message: "Por favor verifique os campos e tente novamente",
         type: "danger",
       });
     });

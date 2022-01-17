@@ -1,5 +1,3 @@
-// @flow
-import * as React from "react";
 import { DisplayCoins } from "../../../../../../components/DisplayCoins";
 import { InputContainer, RightCardWrapper } from "../styles";
 import UserImage from "../../../../../../assets/user.svg";
@@ -7,14 +5,11 @@ import { CardRow } from "./CardRow";
 import { PrimaryBtnOutline } from "../../../../../../styles/global";
 import { SecondaryBtn } from "./../../../../../../styles/global";
 import { Input } from "../../../../../../components/Input";
-import { useForm } from "react-hook-form";
 import { MdClear } from "react-icons/md";
+import { useState } from "react";
 
-type Props = {};
-
-export const RightCard = (props: Props) => {
-  const [applyCoins, setApplyCoins] = React.useState(false);
-  const { register } = useForm();
+export const RightCard = () => {
+  const [applyCoins, setApplyCoins] = useState(false);
   return (
     <RightCardWrapper className="col-12 col-md-4">
       <div className="d-flex align-items-center">
@@ -35,14 +30,20 @@ export const RightCard = (props: Props) => {
             <Input
               className="mx-auto w-50"
               name="DiscountCoins"
-              register={register}
               type="number"
               label="Quantidade"
             />
-            <MdClear className="" size="14" onClick={() => setApplyCoins(false)}/>
+            <MdClear
+              className=""
+              size="14"
+              onClick={() => setApplyCoins(false)}
+            />
           </InputContainer>
         ) : (
-          <PrimaryBtnOutline className="mt-2 mt-lg-0" onClick={() => setApplyCoins(true)}>
+          <PrimaryBtnOutline
+            className="mt-2 mt-lg-0"
+            onClick={() => setApplyCoins(true)}
+          >
             Usar moedas
           </PrimaryBtnOutline>
         )}

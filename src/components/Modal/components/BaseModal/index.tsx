@@ -27,7 +27,7 @@ export const BaseModal = ({
   label,
 }: Props) => {
   return (
-    <div className="d-flex flex-column m-4 h-100">
+    <div className="d-flex flex-column m-4 h-100" data-testid="base-modal">
       <div className="d-flex flex-column">
         <div className="d-flex flex-column align-items-center justify-content-center">
           <InformationLineIcon className="d-64"></InformationLineIcon>
@@ -45,6 +45,7 @@ export const BaseModal = ({
           <InputWrapper>
             <div className="form-floating mb-3">
               <input
+                data-testid="input-base-modal"
                 autoFocus
                 autoComplete="false"
                 type="number"

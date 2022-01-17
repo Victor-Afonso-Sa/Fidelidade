@@ -60,16 +60,15 @@ describe("InputMask component", () => {
         }}
       />
     );
-    screen.debug();
 
     expect(screen.queryByText(/is-invalid/i)).not.toBeInTheDocument();
   });
 
-  it("should render with errora", async () => {
+  it("should call function", async () => {
     const useFormMocked = mocked(useForm);
     const customOnChangeMock = jest
       .fn()
-      .mockImplementationOnce((value: string) => console.log(value));
+      .mockImplementationOnce((value: string) => jest.fn());
     const onChangeMock = jest.fn();
     const registerMock = jest.fn().mockReturnValue({
       onChange: customOnChangeMock,

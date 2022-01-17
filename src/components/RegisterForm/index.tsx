@@ -4,12 +4,13 @@ import * as yup from "yup";
 import { FieldErrors, SubmitHandler, useForm } from "react-hook-form";
 
 import { Input } from "../Input";
-import { CepType, RegisterType } from "../../types/RegisterTypes";
 
+import { CepType, RegisterType } from "../../types/RegisterTypes";
 import { PrimaryBtn } from "../../styles/global";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { Container } from "./styles";
 import { presentAlert } from "../Alert";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { InputMask } from "../InputMask";
 
 type Props = {
   btnText: string;
@@ -23,6 +24,7 @@ const schema: yup.SchemaOf<RegisterType> = yup.object().shape({
   password: yup.string().required("A senha é obrigatória"),
   confirmPassword: yup
     .string()
+    .required("Confirmar senha é obrigatório")
     .when("senha", (senha, field) =>
       senha
         ? field.required().oneOf([yup.ref("senha")], "As senhas não conferem")
@@ -55,7 +57,6 @@ export const RegisterForm = ({
   );
 
   const handleRegisterNewUser: SubmitHandler<RegisterType> = async (data) => {
-    console.log(data);
     presentAlert({
       type: "success",
       message: "Sucesso",
@@ -75,12 +76,11 @@ export const RegisterForm = ({
   };
 
   const handleError = (errors: FieldErrors) => {
-    console.log(errors);
     Object.values(errors).forEach((e) =>
       e?.message
         ? presentAlert({
             type: "danger",
-            message: "Por favor verfique os campos e tente novamente",
+            message: "Por favor verifique os campos e tente novamente",
           })
         : false
     );
@@ -95,6 +95,7 @@ export const RegisterForm = ({
         <Input
           className="col-12"
           type="text"
+          data-testid="name"
           label="Nome Completo"
           readOnly={allReadOnly}
           error={formState.errors.name}
@@ -104,6 +105,7 @@ export const RegisterForm = ({
         <Input
           className="col-12"
           readOnly={allReadOnly}
+          data-testid="email"
           type="email"
           label="Email"
           error={formState.errors.email}
@@ -115,6 +117,7 @@ export const RegisterForm = ({
             <Input
               inputClassName="w-100"
               type="password"
+              data-testid="password"
               label="Senha"
               readOnly={allReadOnly}
               error={formState.errors.password}
@@ -134,20 +137,24 @@ export const RegisterForm = ({
         </div>
         <div className="row">
           <div className="col-12 col-md-6">
-            <Input
+            <InputMask
+              placeholder="Insira seu CPF"
+              mask="999.999.999-99"
               readOnly={allReadOnly}
               type="text"
+              data-testid="cpf"
               label="CPF"
-              mask="999.999.999-99"
               error={formState.errors.cpf}
               {...register("cpf", { required: true })}
             />
           </div>
           <div className="col-12 col-md-6">
-            <Input
-              readOnly={allReadOnly}
+            <InputMask
               mask="99999-999"
+              readOnly={allReadOnly}
+              placeholder="99999-999"
               type="text"
+              data-testid="cep"
               label="CEP"
               error={formState.errors.cep}
               {...register("cep", {
@@ -163,6 +170,7 @@ export const RegisterForm = ({
           <div className="col-12 col-md-6">
             <Input
               type="text"
+              data-testid="street"
               label="Rua"
               readOnly
               error={formState.errors.street}
@@ -179,10 +187,12 @@ export const RegisterForm = ({
             />
           </div>
         </div>
+
         <div className="row">
           <div className="col-12 col-md-6">
             <Input
               type="text"
+              data-testid="city"
               label="Cidade"
               readOnly
               error={formState.errors.city}
@@ -192,6 +202,7 @@ export const RegisterForm = ({
           <div className="col-12 col-md-6">
             <Input
               type="text"
+              data-testid="state"
               label="Estado"
               readOnly
               error={formState.errors.state}

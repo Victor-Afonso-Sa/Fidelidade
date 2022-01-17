@@ -33,22 +33,23 @@ export const Home = () => {
         </div>
         <div className="col-12 col-md-4 p-0">
           <Extract />
-
-          {showBoxFidelidade && (
-            <MenssageCard
-              className="animate__fadeInRight"
-              color="#fff"
-              title="Sistema de Moedas"
-              onClose={closeModal}
-              content={
-                <Menssage>
-                  No <span className="text__green">+Fidelidade</span>, você pode
-                  recarregar as moedas para facilitar na hora da compra. Clique
-                  nesse card para saber mais.
-                </Menssage>
-              }
-            />
-          )}
+          <div>
+            {showBoxFidelidade && (
+              <MenssageCard
+                className="animate__fadeInRight"
+                color="#fff"
+                title="Sistema de Moedas"
+                onClose={closeModal}
+                content={
+                  <Menssage>
+                    No <span className="text__green">+Fidelidade</span>, você
+                    pode recarregar as moedas para facilitar na hora da compra.
+                    Clique nesse card para saber mais.
+                  </Menssage>
+                }
+              />
+            )}
+          </div>
         </div>
       </HomeWrapper>
     </HomeCointainer>

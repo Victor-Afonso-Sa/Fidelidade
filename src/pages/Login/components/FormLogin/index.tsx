@@ -1,13 +1,15 @@
 // @flow
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import * as AlertService from "../../../../components/Alert";
+
 import { Input } from "../../../../components/Input";
-import { api } from "../../../../services/api";
+
 import { LoginType } from "../../../../types/LoginTypes";
 import { CustomForm, LoginButton, Title } from "./styles";
+import { presentAlert } from "../../../../components/Alert";
+import { InputMask } from "../../../../components/InputMask";
 
 const validateCPF = RegExp(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/);
 
@@ -27,26 +29,21 @@ export const FormLogin = () => {
   });
 
   const handleSignIn: SubmitHandler<LoginType> = (data) => {
-    data.cpf = data.cpf.split(".").join("").split("-").join("");
-
-    api
-      .post(`/login`, data)
-      .then((response) => {
-        console.log(response.data);
-        navigate("/");
-      })
-      .catch((error) => {
-        AlertService.presentAlert({
-          type: "danger",
-          message: "Usuário ou senha incorretos ",
-        });
+    try {
+      data.cpf = data.cpf.split(".").join("").split("-").join("");
+      navigate("/");
+    } catch (error) {
+      presentAlert({
+        type: "danger",
+        message: "Usuário ou senha incorretos ",
       });
+    }
   };
 
   const handleError = (errors: FieldErrors) => {
-    Object.values(errors).map((e) =>
+    Object.values(errors).forEach((e) =>
       e?.message
-        ? AlertService.presentAlert({
+        ? presentAlert({
             type: "danger",
             message: e.message,
           })
@@ -55,31 +52,33 @@ export const FormLogin = () => {
   };
 
   return (
-    <>
-      <CustomForm onSubmit={handleSubmit(handleSignIn, handleError)}>
-        <Title className="mb-3 ">Bem-vindo!</Title>
+    <CustomForm
+      data-testid="form-login"
+      onSubmit={handleSubmit(handleSignIn, handleError)}
+    >
+      <Title className="mb-3 ">Bem-vindo!</Title>
 
-        <Input
-          placeholder="Insira seu CPF"
-          label="CPF"
-          type="text"
-          mask="999.999.999-99"
-          inputClassName="cpf"
-          error={formState.errors.cpf}
-          {...register("cpf", { required: true })}
-        />
-        <Input
-          placeholder="Insira sua senha"
-          label="Senha"
-          type="password"
-          inputClassName="password"
-          error={formState.errors.password}
-          {...register("password", { required: true })}
-        />
-        <LoginButton type="submit" className="my-2">
-          Entrar
-        </LoginButton>
-      </CustomForm>
-    </>
+      <InputMask
+        placeholder="Insira seu CPF"
+        label="CPF"
+        type="text"
+        mask="999.999.999-99"
+        inputClassName="cpf"
+        error={formState.errors.cpf}
+        {...register("cpf", { required: true })}
+      />
+
+      <Input
+        placeholder="Insira sua senha"
+        label="Senha"
+        type="password"
+        error={formState.errors.password}
+        {...register("password", { required: true })}
+      />
+
+      <LoginButton data-testid="login-button" type="submit" className="my-2">
+        Entrar
+      </LoginButton>
+    </CustomForm>
   );
 };

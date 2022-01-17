@@ -1,5 +1,3 @@
-// @flow
-import * as React from "react";
 import { Cards } from "../../../types/global";
 import {
   CardsContainer,

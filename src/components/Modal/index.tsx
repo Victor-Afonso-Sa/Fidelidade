@@ -28,11 +28,15 @@ export const Modal = (props: ModalPropsModel) => {
   }
 
   return (
-    <Backdrop className="d-flex align-items-center justify-content-center">
+    <Backdrop
+      data-testid="modal"
+      className="d-flex align-items-center justify-content-center"
+    >
       <ModalFrame className="d-flex flex-column justify-content-between">
         <ModalTitle className="d-flex justify-content-between align-items-center">
           <h3>{title}</h3>
           <button
+            data-testid="modal-close"
             className="btn rounded-circle m-0 p-0 d-32"
             onClick={() => {
               setState(!state);
@@ -44,6 +48,7 @@ export const Modal = (props: ModalPropsModel) => {
         {<ModalContent {...contentProps} emitter={onModalContentEmitter} />}
         <div className="d-flex justify-content-end col-12">
           <Button
+            data-testid="modal-cancel"
             styled="primary"
             outline
             onClick={() => {

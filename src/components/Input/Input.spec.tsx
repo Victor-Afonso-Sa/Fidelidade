@@ -1,6 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { mocked } from "jest-mock";
-import { useForm } from "react-hook-form";
 import { Input } from ".";
 
 jest.mock("react-hook-form");
@@ -28,20 +26,11 @@ describe("Input component", () => {
   });
 
   it("should render with error", () => {
-    const useFormMocked = mocked(useForm);
-    const registerMock = jest.fn().mockReturnValue({
-      onChange: jest.fn(),
-    });
-    useFormMocked.mockReturnValue({
-      register: registerMock,
-    } as any);
-
     render(
       <Input
         name="fakeName"
         type="number"
         label="fake-label"
-        register={registerMock}
         error={{
           type: "fake-type",
           message: "fake-message",

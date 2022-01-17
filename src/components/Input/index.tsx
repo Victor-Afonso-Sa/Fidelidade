@@ -5,78 +5,35 @@ import {
   ForwardRefRenderFunction,
   InputHTMLAttributes,
 } from "react";
-import { FieldError, UseFormRegister } from "react-hook-form";
-import ReactInputMask from "react-input-mask";
-import { CustomInput, InputWrapper } from "./styles";
+import { FieldError } from "react-hook-form";
+import { InputWrapper } from "./styles";
 
 type Props = {
-  type: string;
   label: string;
   name: string;
-  register?: UseFormRegister<any>;
-  inputClassName?: string;
   className?: string;
-  placeholder?: string;
-  value?: string;
+  inputClassName?: string;
   readOnly?: boolean | false;
-  mask?: string;
   error?: FieldError;
-  customOnChange?: Function;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  {
-    name,
-    label,
-    type,
-    inputClassName,
-    className,
-    placeholder,
-    value,
-    readOnly,
-    mask,
-    onChange,
-    onBlur,
-    error = null,
-    customOnChange,
-    register,
-    ...rest
-  },
+  { name, label, inputClassName, className, readOnly, error = null, ...rest },
   ref
 ) => {
   return (
     <InputWrapper>
-      <div className={`form-floating mb-3 ${className ?? ""}`}>
-        <ReactInputMask
-          mask={mask || ""}
-          onChange={
-            register
-              ? register(name, {
-                  onChange: (e) =>
-                    customOnChange ? customOnChange(e.target.value) : undefined,
-                }).onChange
-              : onChange
-          }
-          onBlur={onBlur}
-          readOnly={readOnly}
-          maskPlaceholder={null}
-        >
-          {() => (
-            <CustomInput
-              data-testid={name}
-              type={type}
-              className={`${inputClassName ?? ""} form-control ${
-                error ? "is-invalid" : ""
-              } `}
-              placeholder={placeholder}
-              readOnly={readOnly}
-              id={name}
-              name={name}
-              ref={ref}
-              {...rest}
-            />
-          )}
-        </ReactInputMask>
+      <div className={"form-floating mb-3"}>
+        <input
+          name={name}
+          data-testid={name}
+          id={name}
+          className={`${className ?? ""} form-control ${
+            error ? "is-invalid" : ""
+          } `}
+          ref={ref}
+          {...rest}
+        />
         <label htmlFor={name}>{label}</label>
       </div>
     </InputWrapper>

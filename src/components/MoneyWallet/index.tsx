@@ -3,7 +3,7 @@ import { RiCloseCircleFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 import { useWallet } from "../../hooks/useWallet";
 import { AntButton, AntModal } from "../../styles/antDesign";
-import * as AlertService from "../Alert";
+import { presentAlert } from "../Alert";
 import { Balance } from "../Cards/BalanceCard";
 import { TradeMoney } from "../Modal/components/TradeMoney";
 
@@ -23,7 +23,7 @@ export const MoneyWallet = () => {
     try {
       await handleTransferMoneyWalletToCoinsWallet();
       setModalVisible(false);
-      AlertService.presentAlert({
+      presentAlert({
         type: "success",
         message: "Troca realizada com sucesso!",
       });

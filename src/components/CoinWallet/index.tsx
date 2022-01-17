@@ -15,15 +15,16 @@ export const CoinWallet = () => {
     canProceedConvertCoinsToMoney,
     handleTransferCoinsWalletToMoneyWallet,
   } = useWallet();
+
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleRescueNowModal = useCallback(() => {
     setModalVisible((prevState) => !prevState);
   }, []);
 
-  const handleConvertCoinsToMoney = useCallback(() => {
+  const handleConvertCoinsToMoney = useCallback(async () => {
     try {
-      handleTransferCoinsWalletToMoneyWallet();
+      await handleTransferCoinsWalletToMoneyWallet();
       setModalVisible(false);
       AlertService.presentAlert({
         type: "success",
@@ -60,6 +61,7 @@ export const CoinWallet = () => {
             Fechar
           </AntButton>,
           <AntButton
+            data-testid="btn-resgatar"
             key="submit"
             type="primary"
             styled="success"

@@ -1,5 +1,10 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { mocked } from "jest-mock";
+import * as AlertService from "../Alert";
 import { CoinWallet } from ".";
+import { useWallet } from "../../hooks/useWallet";
+import { toast } from "react-toastify";
 
 jest.mock("../../utils/formatCurrencyPtBr", () => {
   return {
@@ -7,8 +12,19 @@ jest.mock("../../utils/formatCurrencyPtBr", () => {
   };
 });
 
+jest.mock("../../hooks/useWallet");
+
 describe("CoinWallet component", () => {
   it("should renders correctly", () => {
+    const useWalletMocked = mocked(useWallet);
+    useWalletMocked.mockReturnValueOnce({
+      coinsWallet: {
+        amount: null,
+      },
+      canProceedConvertCoinsToMoney: true,
+      handleTransferCoinsWalletToMoneyWallet: jest.fn(),
+    } as any);
+
     render(<CoinWallet />);
 
     expect(
@@ -25,6 +41,15 @@ describe("CoinWallet component", () => {
   });
 
   it("should renders with closed modal", () => {
+    const useWalletMocked = mocked(useWallet);
+    useWalletMocked.mockReturnValueOnce({
+      coinsWallet: {
+        amount: null,
+      },
+      canProceedConvertCoinsToMoney: true,
+      handleTransferCoinsWalletToMoneyWallet: jest.fn(),
+    } as any);
+
     render(<CoinWallet />);
 
     expect(screen.queryByText(/finalizar/i)).not.toBeInTheDocument();
@@ -32,6 +57,15 @@ describe("CoinWallet component", () => {
   });
 
   it("should open modal", () => {
+    const useWalletMocked = mocked(useWallet);
+    useWalletMocked.mockReturnValue({
+      coinsWallet: {
+        amount: 10,
+      },
+      canProceedConvertCoinsToMoney: true,
+      handleTransferCoinsWalletToMoneyWallet: jest.fn(),
+    } as any);
+
     render(<CoinWallet />);
 
     expect(screen.queryByText(/finalizar/i)).not.toBeInTheDocument();
@@ -45,5 +79,76 @@ describe("CoinWallet component", () => {
 
     expect(screen.queryByText(/finalizar/i)).toBeInTheDocument();
     expect(screen.queryByText(/fechar/i)).toBeInTheDocument();
+  });
+
+  it("should call function to convert coins to money", async () => {
+    const useWalletMocked = mocked(useWallet);
+    const handleTransferCoinsWalletToMoneyWalletMock = jest.fn();
+    useWalletMocked.mockReturnValue({
+      coinsWallet: {
+        amount: 100000,
+      },
+      canProceedConvertCoinsToMoney: true,
+      handleTransferCoinsWalletToMoneyWallet:
+        handleTransferCoinsWalletToMoneyWalletMock,
+    } as any);
+
+    jest.spyOn(AlertService, "presentAlert").mockImplementation(() => {
+      return {
+        type: "success",
+        message: "Resgate realizado com sucesso!",
+      };
+    });
+
+    render(<CoinWallet />);
+
+    const openModalButton = screen.getByRole("button", {
+      name: /resgatar/i,
+    });
+
+    userEvent.click(openModalButton);
+
+    const finalizarButton = screen.getByTestId("btn-resgatar");
+    expect(finalizarButton).toBeInTheDocument();
+
+    userEvent.click(finalizarButton);
+
+    await waitFor(async () => {
+      expect(handleTransferCoinsWalletToMoneyWalletMock).toHaveBeenCalled();
+    });
+  });
+
+  it("should display an error if can't convert coints to money", () => {
+    const useWalletMocked = mocked(useWallet);
+
+    useWalletMocked.mockReturnValue({
+      coinsWallet: {
+        amount: 10,
+      },
+      canProceedConvertCoinsToMoney: true,
+      handleTransferCoinsWalletToMoneyWallet: () => {
+        throw new Error("Error");
+      },
+    } as any);
+
+    const toastSpy = jest.spyOn(toast, "warning");
+
+    render(<CoinWallet />);
+
+    const openModalButton = screen.getByRole("button", {
+      name: /resgatar/i,
+    });
+
+    fireEvent.click(openModalButton);
+
+    const finalizarButton = screen.getByRole("button", {
+      name: /finalizar/i,
+    });
+
+    expect(finalizarButton).toBeInTheDocument();
+
+    fireEvent.click(finalizarButton);
+
+    expect(toastSpy).toHaveBeenCalled();
   });
 });
