@@ -32,4 +32,38 @@ export const handlers = [
       })
     );
   }),
+
+  rest.get("https://viacep.com.br/ws/30550-130/json/", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        cep: "30550-130",
+        logradouro: "Rua Capuri",
+        complemento: "",
+        bairro: "Salgado Filho",
+        localidade: "Belo Horizonte",
+        uf: "MG",
+        ibge: "3106200",
+        gia: "",
+        ddd: "31",
+        siafi: "4123",
+      })
+    );
+  }),
+
+  rest.get("https://viacep.com.br/ws/30575-430/json/", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        cep: "30575-430",
+        logradouro: "Rua Professor Carlos Tunes",
+        complemento: "",
+        bairro: "Palmeiras",
+        localidade: "Belo Horizonte",
+        uf: "MG",
+        ibge: "3106200",
+        gia: "",
+        ddd: "31",
+        siafi: "4123",
+      })
+    );
+  }),
 ];
